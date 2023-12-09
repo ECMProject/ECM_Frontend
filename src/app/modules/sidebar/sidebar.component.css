@@ -1,0 +1,71 @@
+::ng-deep :root{
+  --bg-color: #30303d;
+  --bg-color-alternative: #303064; 
+  --button-color: #007bff;
+} 
+
+.sidebar {
+  width: 11rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 1.25rem;
+  background-color: var(--bg-color);
+  transition: width 0.5s;
+}
+
+.collapsed {
+  width: 5rem;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 0.625rem;
+  margin: 0.625rem;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+}
+
+.toggle-btn {
+  cursor: pointer;
+  transform: translate(25px);
+  color: white;
+  transition: left 0.3s, font-size 0.3s;
+}
+
+.icon {
+  font-size: 1.5rem;
+  transition: left 0.3s, font-size 0.3s;
+}
+
+.icon-sidebar {
+  font-size: 1.5rem;
+  padding: 0.4rem;
+  transition: left 0.3s, font-size 0.3s;
+}
+
+.icon-sidebar:hover {
+  font-size: 1.7rem;
+}
+
+.text-sidebar {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.3rem;
+  transition: left 0.3s, font-size 0.3s;
+}
+
+.text-sidebar:hover {
+  background-color: var(--bg-color-alternative);
+}

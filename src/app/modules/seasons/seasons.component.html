@@ -1,0 +1,50 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+</head>
+
+<div class="content">
+  <h1 class="season-title">
+    <i class="bx bx-calendar" style="margin: 10px"></i>Mis Ciclos
+  </h1>
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Ciclo</th>
+        <th>Curso</th>
+        <th>Profesor</th>
+        <th>Modo</th>
+        <th>Nota</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ciclo of studentSeasons" class="table-row">
+        <td>{{ ciclo.stud_season.seas_period.peri_description }}</td>
+        <td>{{ ciclo.stud_season.seas_course.cour_description }}</td>
+        <td>{{ ciclo.stud_season.seas_teacher.memb_name + ' ' + ciclo.stud_season.seas_teacher.memb_surname }}</td>
+        <td>{{ ciclo.stud_season.seas_mode.mode_name }}</td>
+        <td>
+          <div
+            class="nota-circle"
+            [ngClass]="ciclo.seas_final >= 13 ? 'aprobado' : 'reprobado'"
+          >
+            {{ ciclo.seas_final }}
+          </div>
+        </td>
+        <td>
+          <button class="button-detail" (click)="verDetalles()">
+            <i
+              class="bx bx-show bx-show-icon"
+              style="margin-right: 5px; margin-top: 2px"
+            ></i
+            >Detalles
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

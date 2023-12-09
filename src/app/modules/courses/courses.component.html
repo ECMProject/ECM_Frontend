@@ -1,0 +1,37 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+</head>
+
+<div class="content">
+    <h1 class="courses-title"><i class='bx bx-book' style="margin: 10px"></i>Cursos</h1>
+    <input type="text" class="search-bar" placeholder="Buscar...">
+  
+    <h2 class="main-title"><i class='bx bx-caret-right-circle' style="margin: 10px"></i>Primer Nivel</h2>
+    
+    <div class="carousel-container">
+      <div class="arrow left" (click)="scroll(-1)">
+        <i class='bx bx-left-arrow'></i>
+      </div>
+  
+      <div class="carousel">
+  
+        <div class="card" *ngFor="let item of items">
+          <img src="{{ item.image }}" alt="{{ item.title }}">
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+          <button class="details-button">VER DETALLE</button>
+        </div>
+  
+      </div>
+  
+      <div class="arrow right" (click)="scroll(1)">
+        <i class='bx bx-right-arrow'></i>
+      </div>
+    </div>
+  
+    <h2 class="main-title"><i class='bx bx-caret-right-circle' style="margin: 10px"></i>Segundo Nivel</h2>
+  
+</div>

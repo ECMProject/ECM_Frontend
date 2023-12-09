@@ -7,10 +7,12 @@ import {HttpClientModule} from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidebarComponent } from './modules/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SidebarComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

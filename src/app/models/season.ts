@@ -1,4 +1,3 @@
-
 export interface Season {
   seas_id : number;
   seas_period : number;
