@@ -25,7 +25,13 @@
       <tr *ngFor="let ciclo of studentSeasons" class="table-row">
         <td>{{ ciclo.stud_season.seas_period.peri_description }}</td>
         <td>{{ ciclo.stud_season.seas_course.cour_description }}</td>
-        <td>{{ ciclo.stud_season.seas_teacher.memb_name + ' ' + ciclo.stud_season.seas_teacher.memb_surname }}</td>
+        <td>
+          {{
+            ciclo.stud_season.seas_teacher.memb_name +
+              " " +
+              ciclo.stud_season.seas_teacher.memb_surname
+          }}
+        </td>
         <td>{{ ciclo.stud_season.seas_mode.mode_name }}</td>
         <td>
           <div
@@ -36,7 +42,7 @@
           </div>
         </td>
         <td>
-          <button class="button-detail" (click)="verDetalles()">
+          <button class="button-detail" (click)="verDetalles(ciclo)">
             <i
               class="bx bx-show bx-show-icon"
               style="margin-right: 5px; margin-top: 2px"

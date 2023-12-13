@@ -4,6 +4,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort'; // Import MatSortModule
+import { MatChipsModule } from '@angular/material/chips';
 
 import { CommonModule } from '@angular/common';
 
@@ -33,6 +34,7 @@ const coursesRoutes: Route[] = [
     NgClass,
     NgIf,
     CommonModule,
+    MatChipsModule,
     // Include MatSortModule
   ]
 })

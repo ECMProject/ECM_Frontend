@@ -1,0 +1,49 @@
+::ng-deep :root {
+  --bg-color: #30303d;
+  --bg-color-alternative: #303064;
+  --button-color: #007bff;
+}
+
+.modal-title {
+  border-bottom: 3px solid var(--bg-color);
+  margin-top: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: linear-gradient(to bottom, var(--bg-color) 6%, white 6%);
+}
+
+.modal-info {
+  margin-bottom: 0.8rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modal-actions button {
+  transform: translateX(-0.1rem);
+  background-color: var(--button-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-actions button:hover {
+  background-color: #0056b3;
+}
+
+.info-label {
+  font-weight: 530;
+  margin-right: 0.2rem;
+}

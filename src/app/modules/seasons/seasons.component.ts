@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { Student } from 'src/app/models/student';
+import { SeasonDetailDialogComponent } from '../season-detail-dialog/season-detail-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-seasons',
@@ -11,7 +13,7 @@ export class SeasonsComponent {
 
   studentSeasons: Student[] = [];
 
-  constructor(private studentService: StudentService) {}
+  constructor(public dialog: MatDialog, private studentService: StudentService) {}
 
   ngOnInit(): void {
     this.getData();
@@ -31,7 +33,13 @@ export class SeasonsComponent {
     );
   }
 
-  verDetalles(){
-    console.log("Detalles");
+  verDetalles(ciclo: Student) {
+    const dialogRef = this.dialog.open(SeasonDetailDialogComponent, {
+      data: { ciclo: ciclo } // Pasa el objeto ciclo al modal
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('El modal se cerró');
+    });
   }
 }

@@ -1,26 +1,29 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {catchError, Observable, retry, throwError} from "rxjs";
+import { Injectable } from '@angular/core';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 
-import { Season } from './../models/student';
+import { catchError, Observable, retry, throwError } from 'rxjs';
+
+import { Course } from './../models/student';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class SeasonService {
 
+export class CourseService {
   // Endpoint Backend
-  basePath = 'http://127.0.0.1:8000/ecm/season';
+  basePath = 'http://127.0.0.1:8000/ecm/courses';
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
+  };
 
-  }
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   // API Error Handling
   handleError(error: HttpErrorResponse) {
@@ -34,14 +37,15 @@ export class SeasonService {
       );
     }
     // Return Observable with Error Message to Client
-    return throwError(() => new Error('Something happened with request, please try again later'));
+    return throwError(
+      () => new Error('Something happened with request, please try again later')
+    );
   }
 
-  getSeasonList(): Observable<Season[]> {
+  getCoursesList(): Observable<Course[]> {
     const url = `${this.basePath}/list`;
     return this.http
-      .get<Season[]>(url)
+      .get<Course[]>(url)
       .pipe(retry(2), catchError(this.handleError));
   }
-
 }
