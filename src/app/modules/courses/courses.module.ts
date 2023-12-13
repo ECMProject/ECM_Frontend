@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 
 import { CoursesComponent } from './courses.component';
 import {NgClass, NgIf} from "@angular/common";
+import { FormsModule } from '@angular/forms';
 
 const coursesRoutes: Route[] = [
   {
@@ -35,6 +36,7 @@ const coursesRoutes: Route[] = [
     NgIf,
     CommonModule,
     MatChipsModule,
+    FormsModule
     // Include MatSortModule
   ]
 })

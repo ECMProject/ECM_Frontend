@@ -3,6 +3,9 @@ import { Course } from './../../models/student';
 import { Season } from './../../models/student';
 import { SeasonService } from './../../services/season.service';
 import { CourseService } from 'src/app/services/courses.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-courses',
@@ -11,6 +14,7 @@ import { CourseService } from 'src/app/services/courses.service';
 })
 
 export class CoursesComponent {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   courses: Course[] = [];
   seasons: Season[] = [];
   seasonsFilter: Season[] = [];
@@ -19,6 +23,10 @@ export class CoursesComponent {
 
   selectedCategory: string | null = 'All';
   selectedCategories: Set<string> = new Set<string>(['All']);
+
+  searchTerm: string = '';
+
+  dataSource = new MatTableDataSource<Season>();
 
   constructor(
     private courseService: CourseService,
@@ -29,16 +37,30 @@ export class CoursesComponent {
     this.getSeasonData();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   getSeasonData() {
     this.seasonService.getSeasonList().subscribe(
       (data) => {
         this.seasons = data;
         this.seasonsFilter = this.seasons;
+        this.filterSeasons();
       },
       (error) => {
         console.error('Error al obtener los datos:', error);
       }
     );
+  }
+
+  filterSeasons() {
+    this.seasonsFilter = this.seasons.filter(season =>
+      season.seas_course.cour_description.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+
+    this.dataSource.data = this.seasonsFilter;
+    this.dataSource.paginator = this.paginator;
   }
 
   filtrarPorCategoria(categoria: string) {
@@ -57,5 +79,8 @@ export class CoursesComponent {
         return this.selectedCategories.has(categoria);
       });
     }
+
+    this.dataSource.data = this.seasonsFilter;
+    this.dataSource.paginator = this.paginator;
   }
 }

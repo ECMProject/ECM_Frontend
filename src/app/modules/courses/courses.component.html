@@ -10,7 +10,7 @@
   <h1 class="courses-title">
     <i class="bx bx-book" style="margin: 10px"></i>Cursos
   </h1>
-  <input type="text" class="search-bar" placeholder="Buscar..." />
+  <input type="text" class="search-bar" placeholder="Buscar..." [(ngModel)]="searchTerm" (input)="filterSeasons()" />
   <div class="filtro-categorias">
     <mat-chip-listbox #chipList>
       <mat-chip-option
@@ -112,4 +112,5 @@
       </tr>
     </tbody>
   </table>
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
 </div>
