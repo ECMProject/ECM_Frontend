@@ -20,6 +20,7 @@ export class CoursesComponent {
   seasonsFilter: Season[] = [];
 
   categorias = ['All', 'Nivel 1', 'Nivel 2', 'Nivel 3'];
+  displayedColumns: string[] = [ 'id', 'course', 'mode', 'level', 'teacher', 'shift', 'actions'];
 
   selectedCategory: string | null = 'All';
   selectedCategories: Set<string> = new Set<string>(['All']);

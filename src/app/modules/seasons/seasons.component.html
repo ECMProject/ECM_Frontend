@@ -10,47 +10,90 @@
   <h1 class="season-title">
     <i class="bx bx-calendar" style="margin: 10px"></i>Mis Ciclos
   </h1>
-  <table class="custom-table">
-    <thead>
-      <tr>
-        <th>Ciclo</th>
-        <th>Curso</th>
-        <th>Profesor</th>
-        <th>Modo</th>
-        <th>Nota</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let ciclo of studentSeasons" class="table-row">
-        <td>{{ ciclo.stud_season.seas_period.peri_description }}</td>
-        <td>{{ ciclo.stud_season.seas_course.cour_description }}</td>
-        <td>
-          {{
-            ciclo.stud_season.seas_teacher.memb_name +
-              " " +
-              ciclo.stud_season.seas_teacher.memb_surname
-          }}
-        </td>
-        <td>{{ ciclo.stud_season.seas_mode.mode_name }}</td>
-        <td>
-          <div
-            class="nota-circle"
-            [ngClass]="ciclo.seas_final >= 13 ? 'aprobado' : 'reprobado'"
-          >
-            {{ ciclo.seas_final }}
-          </div>
-        </td>
-        <td>
-          <button class="button-detail" (click)="verDetalles(ciclo)">
-            <i
-              class="bx bx-show bx-show-icon"
-              style="margin-right: 5px; margin-top: 2px"
-            ></i
-            >Detalles
-          </button>
-        </td>
-      </tr>
-    </tbody>
+
+  <table mat-table [dataSource]="dataSource" class="custom-mat-table">
+    <ng-container matColumnDef="period">
+      <th mat-header-cell *matHeaderCellDef class="th-column">Periodo</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        {{ element.stud_season.seas_period.peri_description }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="course">
+      <th mat-header-cell *matHeaderCellDef class="th-column">Curso</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        {{ element.stud_season.seas_course.cour_description }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="teacher">
+      <th mat-header-cell *matHeaderCellDef class="th-column">Profesor</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        {{
+          element.stud_member.memb_name + " " + element.stud_member.memb_surname
+        }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="mode">
+      <th mat-header-cell *matHeaderCellDef class="th-column">Modo</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <ng-container
+          *ngIf="element.stud_season.seas_mode.mode_name === 'Virtual'"
+        >
+          <span class="icon-with-text">
+            <i class="bx bxl-zoom icon" style="margin-right: 5px"></i> Virtual
+          </span>
+        </ng-container>
+        <ng-container
+          *ngIf="element.stud_season.seas_mode.mode_name === 'Online'"
+        >
+          <span class="icon-with-text">
+            <i class="bx bx-desktop icon" style="margin-right: 5px"></i>
+            Online
+          </span>
+        </ng-container>
+        <ng-container
+          *ngIf="element.stud_season.seas_mode.mode_name === 'Presencial'"
+        >
+          <span class="icon-with-text">
+            <i class="bx bx-user icon" style="margin-right: 5px"></i>
+            Presencial
+          </span>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="note">
+      <th mat-header-cell *matHeaderCellDef class="th-column">Nota</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <div
+          class="nota-circle"
+          [ngClass]="element.seas_final >= 13 ? 'aprobado' : 'reprobado'"
+        >
+          {{ element.seas_final }}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef class="th-column">Acciones</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <button class="button-detail" (click)="verDetalles(element)">
+          <i
+            class="bx bx-show bx-show-icon"
+            style="margin-right: 5px; margin-top: 2px"
+          ></i
+          >Detalles
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 15, 20]"
+  ></mat-paginator>
 </div>
