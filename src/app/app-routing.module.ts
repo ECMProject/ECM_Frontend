@@ -1,8 +1,16 @@
+import { LoginModule } from './modules/login/login.module';
 import { Route } from '@angular/router';
 
 export const appRoutes: Route[] = [
-  { path: '', redirectTo: 'courses', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
 
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('src/app/modules/login/login.module').then(
+        (m) => m.LoginModule
+      ),
+  },
   {
     path: 'courses',
     loadChildren: () =>

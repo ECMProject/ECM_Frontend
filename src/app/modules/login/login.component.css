@@ -1,0 +1,89 @@
+::ng-deep :root {
+  --bg-color: #30303d;
+  --bg-color-alternative: #303064;
+  --button-color: #007bff;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.background {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--button-color);
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+svg {
+  position: absolute;
+  height: 100%;
+}
+
+form {
+  width: 30%;
+  height: 250px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+label {
+  display: block;
+  margin: 0.4rem 0.7rem;
+  font-size: 1rem;
+}
+
+input {
+  width: 94%;
+  padding: 0.8rem;
+  border-radius: 5px;
+  border: solid 1px #000;
+  box-sizing: border-box;
+  margin-left: 0.6rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+button {
+  background: var(--button-color);
+  color: white;
+  padding: 0.8rem 0.6rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 1rem 0.7rem;
+}
+
+button:hover {
+  background-color: #008bfd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.form-title {
+  margin: 1rem 0.7rem;
+  text-align: center;
+}
+
+.input-container {
+  position: relative;
+}
+
+.input-icon {
+  transform: translate(-30px);
+}

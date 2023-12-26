@@ -8,26 +8,26 @@ import { MatChipsModule } from '@angular/material/chips';
 
 import { CommonModule } from '@angular/common';
 
-import { InscriptionsComponent } from './inscriptions.component';
 import { NgClass, NgIf } from "@angular/common";
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login.component';
 
-const inscriptionsRoutes: Route[] = [
+const coursesRoutes: Route[] = [
   {
     path: '',
-    component: InscriptionsComponent
+    component: LoginComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    InscriptionsComponent,
+    LoginComponent,
   ],
   exports: [
-    InscriptionsComponent
+    LoginComponent
   ],
   imports: [
-    RouterModule.forChild(inscriptionsRoutes),
+    RouterModule.forChild(coursesRoutes),
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
@@ -40,4 +40,4 @@ const inscriptionsRoutes: Route[] = [
     // Include MatSortModule
   ]
 })
-export class InscriptionsModule {}
+export class LoginModule {}

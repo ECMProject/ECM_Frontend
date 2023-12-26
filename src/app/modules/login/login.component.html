@@ -1,1 +1,33 @@
-<p>login works!</p>
+<head>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+</head>
+
+<div class="background">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path
+      fill="#fff"
+      fill-opacity="1"
+      d="M350,0 C40,170 500,200 350,320 L0,320 L0,0 Z"
+    ></path>
+  </svg>
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <h1 class="form-title">User Login</h1>
+    <div class="input-container">
+      <input
+        type="text"
+        id="dni"
+        name="dni"
+        placeholder="DNI:"
+        [(ngModel)]="dni"
+        required
+        pattern="[0-9]{8}"
+      />
+      <span class="input-icon bx bx-credit-card"></span>
+    </div>
+    <button type="submit">Iniciar sesión</button>
+  </form>
+</div>

@@ -43,9 +43,16 @@ export class StudentService {
   }
 
   getStudentSeasons(user_id: number): Observable<Student[]> {
-    const url = `${this.basePath}/seasons/${user_id}/`;
+    const url = `${this.basePath}/season/${user_id}`;
     return this.http
       .get<Student[]>(url)
       .pipe(retry(2), catchError(this.handleError));
+  }
+
+  inscribirStudent(data: any): Observable<any> {
+    const url = `${this.basePath}/student/create`;
+    return this.http
+      .post(url, data, this.httpOptions)
+      .pipe(catchError(this.handleError));
   }
 }

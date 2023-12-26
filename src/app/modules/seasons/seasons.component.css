@@ -19,7 +19,7 @@ body::-webkit-scrollbar {
 
 .content {
   margin-left: 11rem;
-  padding: 1rem;
+  padding: 2rem;
   transition: margin-left 0.5s;
 }
 
@@ -78,6 +78,11 @@ body::-webkit-scrollbar {
 .reprobado {
   background-color: #ff0000;
   color: white;
+}
+
+.none {
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .button-detail {

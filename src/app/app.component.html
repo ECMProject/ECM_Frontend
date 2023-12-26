@@ -1,7 +1,13 @@
 <div class="app-container">
+  <ng-container *ngIf="isLoggedIn; else loginComponent">
     <app-sidebar></app-sidebar>
     <div class="content">
       <router-outlet></router-outlet>
     </div>
+  </ng-container>
+  <ng-template #loginComponent>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-template>
 </div>
-  

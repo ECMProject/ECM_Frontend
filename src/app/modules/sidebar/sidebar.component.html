@@ -11,23 +11,34 @@
     <span class="icon" *ngIf="isCollapsed"><i class='bx bx-right-arrow'></i></span>
   </div>
   <ul>
-    <li>
-      <a routerLink="/courses" routerLinkActive="active">
-        <span class="text-sidebar" *ngIf="!isCollapsed"><i class='bx bx-book' style='margin-right:5px'></i>Cursos</span>
-        <span class="icon-sidebar" *ngIf="isCollapsed"><i class='bx bx-book'></i></span>
-      </a>
-    </li>
+
     <li>
       <a routerLink="/seasons" routerLinkActive="active">
-        <span class="text-sidebar" *ngIf="!isCollapsed"><i class='bx bx-calendar' style='margin-right:5px'></i>Ciclos</span>
+        <span class="text-sidebar" *ngIf="!isCollapsed"><i class='bx bx-calendar' style='margin-right:7px'></i>Ciclos</span>
         <span class="icon-sidebar" *ngIf="isCollapsed"><i class='bx bx-calendar'></i></span>
       </a>
     </li>
+    
+    <li>
+      <a routerLink="/courses" routerLinkActive="active">
+        <span class="text-sidebar" *ngIf="!isCollapsed"><i class='bx bx-book' style='margin-right:7px'></i>Cursos</span>
+        <span class="icon-sidebar" *ngIf="isCollapsed"><i class='bx bx-book'></i></span>
+      </a>
+    </li>
+
     <li>
       <a routerLink="/inscriptions" routerLinkActive="active">
-        <span class="text-sidebar" *ngIf="!isCollapsed"><i class='bx bx-pencil' style='margin-right:5px'></i>Inscripciones</span>
+        <span class="text-sidebar" *ngIf="!isCollapsed"><i class='bx bx-pencil' style='margin-right:7px'></i>Inscripciones</span>
         <span class="icon-sidebar" *ngIf="isCollapsed"><i class='bx bx-pencil'></i></span>
       </a>
     </li>
+
+    <li>
+      <a routerLink="/login" routerLinkActive="active">
+        <span class="text-sidebar" *ngIf="!isCollapsed"><i class='bx bx-log-out' style='margin-right:7px'></i>Cerrar Sesion</span>
+        <span class="icon-sidebar" *ngIf="isCollapsed"><i class='bx bx-log-out'></i></span>
+      </a>
+    </li>
+
   </ul>
 </nav>
