@@ -42,8 +42,10 @@ export class SeasonsComponent {
   }
 
   getData() {
-    const userId = 1;
-    this.studentService.getStudentSeasons(userId).subscribe(
+    let userId = localStorage.getItem('userId');
+    userId = userId ?? '1';
+
+    this.studentService.getStudentSeasons(parseInt(userId)).subscribe(
       (data) => {
         this.studentSeasons = data;
         this.dataSource.data = this.studentSeasons;

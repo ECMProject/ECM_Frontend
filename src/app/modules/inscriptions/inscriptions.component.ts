@@ -45,7 +45,9 @@ export class InscriptionsComponent {
   }
 
   getSeasonData() {
-    this.seasonService.getSeasonList().subscribe(
+    let student = localStorage.getItem('userId');
+    student = student ?? '1';
+    this.seasonService.getSeasonList(parseInt(student)).subscribe(
       (data) => {
         this.seasons = data;
         this.seasonsFilter = this.seasons;
@@ -88,10 +90,15 @@ export class InscriptionsComponent {
   }
 
   inscribirme(element: Season) {
-    const studId = 1;
-    const courId = element.seas_course.cour_id ;
 
-    const data = { stud_id: studId, cour_id: courId };
+    let student = localStorage.getItem('userId');
+    student = student ?? '1';
+
+    const studId = student;
+    const seasId = element.seas_id ;
+    //Mandar Season ID
+
+    const data = { stud_id: studId, seas_id: seasId };
 
     this.studentService.inscribirStudent(data).subscribe(
       (response) => {

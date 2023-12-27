@@ -6,25 +6,24 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-
 export class LoginComponent {
   dni: string = '';
 
-  constructor(private authService: AuthService, 
-    private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   login(): void {
     this.authService.login(this.dni).subscribe(
       (response) => {
         if (!response.data) {
+          localStorage.setItem('userId', response[0].memb_id);
           this.authService.setLoggedIn(true);
           this.router.navigate(['/seasons']);
         }
       },
       (error) => {
-        console.log("Bad Credentials:");
+        console.log('Bad Credentials:');
       }
     );
   }

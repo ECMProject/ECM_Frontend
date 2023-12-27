@@ -1,1 +1,137 @@
-<p>courses works!</p>
+<head>
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+</head>
+
+<div class="content">
+  <h1 class="season-title">
+    <i class="bx bx-book" style="margin: 20px"></i>Mis Cursos
+  </h1>
+
+  <!-- <mat-select style="margin-left: 20px">
+    <mat-option *ngFor="let curso of cursos" [value]="curso.value">
+      {{ curso.viewValue }}
+    </mat-option>
+  </mat-select> -->
+
+  <table mat-table [dataSource]="dataSource" class="custom-mat-table">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef class="th-column">Name</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        {{
+          element.stud_member.memb_name + " " + element.stud_member.memb_surname
+        }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_1">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S1</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses01" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_2">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S2</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses02" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_3">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S3</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses03" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_4">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S3</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses03" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_5">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S4</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses04" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_6">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S5</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses05" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_7">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S6</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses06" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_8">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S7</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses07" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_9">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S8</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses08" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_10">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S9</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses09" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_11">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S10</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses10" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="session_12">
+      <th mat-header-cell *matHeaderCellDef class="th-column">S11</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <mat-checkbox [(ngModel)]="element.seas_ses11" disabled></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="promedio">
+      <th mat-header-cell *matHeaderCellDef class="th-column">Promedio</th>
+      <td mat-cell *matCellDef="let element" class="td-column">
+        <div
+          class="nota-circle"
+          [ngClass]="{
+            aprobado: element.seas_final >= 13,
+            reprobado: element.seas_final < 13 && element.seas_final !== null,
+            none: element.seas_final === null
+          }"
+        >
+          {{ element.seas_final !== null ? element.seas_final : "None" }}
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 15, 20]"
+  ></mat-paginator>
+</div>

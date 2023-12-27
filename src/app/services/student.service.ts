@@ -49,6 +49,13 @@ export class StudentService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  getStudentList(): Observable<Student[]> {
+    const url = `${this.basePath}/student/list`;
+    return this.http
+      .get<Student[]>(url)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
   inscribirStudent(data: any): Observable<any> {
     const url = `${this.basePath}/student/create`;
     return this.http

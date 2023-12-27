@@ -5,7 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort'; // Import MatSortModule
 import { MatChipsModule } from '@angular/material/chips';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 
 import { CoursesComponent } from './courses.component';
@@ -36,7 +36,8 @@ const inscriptionsRoutes: Route[] = [
     NgIf,
     CommonModule,
     MatChipsModule,
-    FormsModule
+    FormsModule,
+    MatCheckboxModule
     // Include MatSortModule
   ]
 })

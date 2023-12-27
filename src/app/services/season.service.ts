@@ -37,8 +37,8 @@ export class SeasonService {
     return throwError(() => new Error('Something happened with request, please try again later'));
   }
 
-  getSeasonList(): Observable<Season[]> {
-    const url = `${this.basePath}/list`;
+  getSeasonList(user_id: number): Observable<Season[]> {
+    const url = `${this.basePath}/list/${user_id}`;
     return this.http
       .get<Season[]>(url)
       .pipe(retry(2), catchError(this.handleError));
