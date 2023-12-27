@@ -31,9 +31,7 @@ export class CoursesComponent {
     'promedio',
   ];
 
-  constructor(
-    private studentService: StudentService
-  ) {}
+  constructor(private studentService: StudentService) {}
 
   ngOnInit(): void {
     this.getStudentData();

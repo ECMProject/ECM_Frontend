@@ -9,23 +9,19 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 
 import { CoursesComponent } from './courses.component';
-import { NgClass, NgIf } from "@angular/common";
+import { NgClass, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 const inscriptionsRoutes: Route[] = [
   {
     path: '',
-    component: CoursesComponent
-  }
+    component: CoursesComponent,
+  },
 ];
 
 @NgModule({
-  declarations: [
-    CoursesComponent,
-  ],
-  exports: [
-    CoursesComponent
-  ],
+  declarations: [CoursesComponent],
+  exports: [CoursesComponent],
   imports: [
     RouterModule.forChild(inscriptionsRoutes),
     MatTabsModule,
@@ -37,8 +33,8 @@ const inscriptionsRoutes: Route[] = [
     CommonModule,
     MatChipsModule,
     FormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
     // Include MatSortModule
-  ]
+  ],
 })
 export class CoursesModule {}

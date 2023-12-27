@@ -27,13 +27,19 @@
 }
 
 .sidebar li {
+  display: flex;
   padding: 0.625rem;
   margin: 0.625rem;
 }
 
 .sidebar a {
+  width: 100%;
+  display: flex;
   text-decoration: none;
   color: white;
+}
+
+.sidebar span {
   display: flex;
 }
 
@@ -41,12 +47,12 @@
   cursor: pointer;
   transform: translate(25px);
   color: white;
-  transition: left 0.3s, font-size 0.3s;
+  transition: left 0.2s, font-size 0.3s;
 }
 
 .icon {
   font-size: 1.5rem;
-  transition: left 0.3s, font-size 0.3s;
+  transition: left 0.2s, font-size 0.3s;
 }
 
 .icon-sidebar {
