@@ -56,10 +56,22 @@ export class StudentService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  getTeacherList(teacher_id: number): Observable<Student[]> {
+    const url = `${this.basePath}/teacher/list/${teacher_id}`;
+    return this.http
+      .get<Student[]>(url)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
   inscribirStudent(data: any): Observable<any> {
     const url = `${this.basePath}/student/create`;
     return this.http
       .post(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
+  }
+
+  updateStudent(studentId: number, updatedData: any): Observable<any> {
+    const url = `${this.basePath}/student/update/${studentId}`;
+    return this.http.put(url, updatedData);
   }
 }

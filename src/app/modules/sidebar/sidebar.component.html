@@ -1,44 +1,75 @@
 <head>
   <link
     rel="stylesheet"
-    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"/>
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
+  />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
 </head>
 
-<nav class="sidebar" [ngClass]="{'collapsed': isCollapsed}">
+<nav class="sidebar" [ngClass]="{ collapsed: isCollapsed }">
   <div class="toggle-btn" (click)="toggleSidebar()">
-    <span class="icon" *ngIf="!isCollapsed"><i class='bx bx-x'></i></span>
-    <span class="icon" *ngIf="isCollapsed"><i class='bx bx-right-arrow'></i></span>
+    <span class="icon" *ngIf="!isCollapsed"><i class="bx bx-x"></i></span>
+    <span class="icon" *ngIf="isCollapsed"
+      ><i class="bx bx-right-arrow"></i
+    ></span>
   </div>
-  <ul>
 
+  <ul>
     <li>
       <a routerLink="/seasons" routerLinkActive="active">
-        <span class="text-sidebar" *ngIf="!isCollapsed"><i class='bx bx-calendar' style='margin-right:7px'></i>Ciclos</span>
-        <span class="icon-sidebar" *ngIf="isCollapsed"><i class='bx bx-calendar'></i></span>
+        <span class="text-sidebar" *ngIf="!isCollapsed"
+          ><i class="bx bx-calendar" style="margin-right: 7px"></i>Ciclos</span
+        >
+        <span class="icon-sidebar" *ngIf="isCollapsed"
+          ><i class="bx bx-calendar"></i
+        ></span>
       </a>
     </li>
-    
+
     <li>
       <a routerLink="/courses" routerLinkActive="active">
-        <span class="text-sidebar" *ngIf="!isCollapsed"><i class='bx bx-book' style='margin-right:7px'></i>Cursos</span>
-        <span class="icon-sidebar" *ngIf="isCollapsed"><i class='bx bx-book'></i></span>
+        <span class="text-sidebar" *ngIf="!isCollapsed"
+          ><i class="bx bx-book" style="margin-right: 7px"></i>Cursos</span
+        >
+        <span class="icon-sidebar" *ngIf="isCollapsed"
+          ><i class="bx bx-book"></i
+        ></span>
       </a>
     </li>
 
     <li>
       <a routerLink="/inscriptions" routerLinkActive="active">
-        <span class="text-sidebar" *ngIf="!isCollapsed"><i class='bx bx-pencil' style='margin-right:7px'></i>Inscripciones</span>
-        <span class="icon-sidebar" *ngIf="isCollapsed"><i class='bx bx-pencil'></i></span>
+        <span class="text-sidebar" *ngIf="!isCollapsed"
+          ><i class="bx bx-pencil" style="margin-right: 7px"></i
+          >Inscripciones</span
+        >
+        <span class="icon-sidebar" *ngIf="isCollapsed"
+          ><i class="bx bx-pencil"></i
+        ></span>
       </a>
     </li>
 
     <li>
       <a routerLink="/login" routerLinkActive="active">
-        <span class="text-sidebar" *ngIf="!isCollapsed"><i class='bx bx-log-out' style='margin-right:7px'></i>Salir</span>
-        <span class="icon-sidebar" *ngIf="isCollapsed"><i class='bx bx-log-out'></i></span>
+        <span class="text-sidebar" *ngIf="!isCollapsed"
+          ><i class="bx bx-log-out" style="margin-right: 7px"></i>Salir</span
+        >
+        <span class="icon-sidebar" *ngIf="isCollapsed"
+          ><i class="bx bx-log-out"></i
+        ></span>
       </a>
     </li>
 
+    <li style="position: absolute; bottom: 3rem">
+      <a>
+        <span style="font-size: 20px" class="text-sidebar" *ngIf="!isCollapsed"
+          ><i class="bx bxs-user-circle" style="margin-right: 7px"></i
+          >{{ userName }}</span
+        >
+        <span style="font-size: 20px" class="icon-sidebar" *ngIf="isCollapsed"
+          ><i class="bx bxs-user-circle"></i
+        ></span>
+      </a>
+    </li>
   </ul>
 </nav>
