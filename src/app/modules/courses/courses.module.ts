@@ -12,6 +12,8 @@ import { CoursesComponent } from './courses.component';
 import { NgClass, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { ValuesPipe } from './courses.component';
+
 const inscriptionsRoutes: Route[] = [
   {
     path: '',
@@ -20,7 +22,7 @@ const inscriptionsRoutes: Route[] = [
 ];
 
 @NgModule({
-  declarations: [CoursesComponent],
+  declarations: [CoursesComponent, ValuesPipe],
   exports: [CoursesComponent],
   imports: [
     RouterModule.forChild(inscriptionsRoutes),

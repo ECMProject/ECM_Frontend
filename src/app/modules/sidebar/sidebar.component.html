@@ -7,69 +7,33 @@
 </head>
 
 <nav class="sidebar" [ngClass]="{ collapsed: isCollapsed }">
-  <div class="toggle-btn" (click)="toggleSidebar()">
+  <div style="margin-bottom: 1.5rem; margin-top: 0.6rem;" class="toggle-btn" (click)="toggleSidebar()">
     <span class="icon" *ngIf="!isCollapsed"><i class="bx bx-x"></i></span>
     <span class="icon" *ngIf="isCollapsed"
       ><i class="bx bx-right-arrow"></i
     ></span>
   </div>
 
-  <ul>
-    <li>
-      <a routerLink="/seasons" routerLinkActive="active">
-        <span class="text-sidebar" *ngIf="!isCollapsed"
-          ><i class="bx bx-calendar" style="margin-right: 7px"></i>Ciclos</span
-        >
-        <span class="icon-sidebar" *ngIf="isCollapsed"
-          ><i class="bx bx-calendar"></i
-        ></span>
-      </a>
-    </li>
-
-    <li>
-      <a routerLink="/courses" routerLinkActive="active">
-        <span class="text-sidebar" *ngIf="!isCollapsed"
-          ><i class="bx bx-book" style="margin-right: 7px"></i>Cursos</span
-        >
-        <span class="icon-sidebar" *ngIf="isCollapsed"
-          ><i class="bx bx-book"></i
-        ></span>
-      </a>
-    </li>
-
-    <li>
-      <a routerLink="/inscriptions" routerLinkActive="active">
-        <span class="text-sidebar" *ngIf="!isCollapsed"
-          ><i class="bx bx-pencil" style="margin-right: 7px"></i
-          >Inscripciones</span
-        >
-        <span class="icon-sidebar" *ngIf="isCollapsed"
-          ><i class="bx bx-pencil"></i
-        ></span>
-      </a>
-    </li>
-
-    <li>
-      <a routerLink="/login" routerLinkActive="active">
-        <span class="text-sidebar" *ngIf="!isCollapsed"
-          ><i class="bx bx-log-out" style="margin-right: 7px"></i>Salir</span
-        >
-        <span class="icon-sidebar" *ngIf="isCollapsed"
-          ><i class="bx bx-log-out"></i
-        ></span>
-      </a>
-    </li>
-
-    <li style="position: absolute; bottom: 3rem">
-      <a>
-        <span style="font-size: 20px" class="text-sidebar" *ngIf="!isCollapsed"
-          ><i class="bx bxs-user-circle" style="margin-right: 7px"></i
-          >{{ userName }}</span
-        >
-        <span style="font-size: 20px" class="icon-sidebar" *ngIf="isCollapsed"
-          ><i class="bx bxs-user-circle"></i
-        ></span>
+  <ul class="sidenav-nav">
+    <li class="sidenav-nav-item" *ngFor="let data of filteredNavbarItems">
+      <a class="sidenav-nav-link" [routerLink]="[data.routerLink]">
+        <i class="sidenav-link-icon" [class]="data.icon"></i>
+        <span class="sidenav-link-text" *ngIf="!isCollapsed">{{
+          data.label
+        }}</span>
       </a>
     </li>
   </ul>
+
+  <li style="position: absolute; bottom: 4rem; left: 1.5rem;">
+    <a>
+      <span style="font-size: 20px" class="text-sidebar" *ngIf="!isCollapsed"
+        ><i class="bx bxs-user-circle" style="margin-right: 7px"></i
+        >{{ userName }}</span
+      >
+      <span style="font-size: 20px" class="icon-sidebar" *ngIf="isCollapsed"
+        ><i class="bx bxs-user-circle"></i
+      ></span>
+    </a>
+  </li>
 </nav>

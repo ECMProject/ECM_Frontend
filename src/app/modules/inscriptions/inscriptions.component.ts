@@ -96,7 +96,6 @@ export class InscriptionsComponent {
 
     const studId = student;
     const seasId = element.seas_id ;
-    //Mandar Season ID
 
     const data = { stud_id: studId, seas_id: seasId };
 

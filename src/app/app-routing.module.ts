@@ -32,4 +32,11 @@ export const appRoutes: Route[] = [
         (m) => m.InscriptionsModule
       ),
   },
+  {
+    path: 'search',
+    loadChildren: () =>
+      import('src/app/modules/search/search.module').then(
+        (m) => m.SearchModule
+      ),
+  },
 ];

@@ -8,17 +8,14 @@ import { Student } from 'src/app/models/student';
   styleUrls: ['./season-detail-dialog.component.css']
 })
 export class SeasonDetailDialogComponent {
-
-  // Objeto para almacenar el ciclo
   ciclo: Student;
 
   constructor(
     public dialogRef: MatDialogRef<SeasonDetailDialogComponent>,
-    // Recibe el objeto ciclo desde el componente
     @Inject(MAT_DIALOG_DATA) public data: { ciclo: Student }
   ) {
-     // Asigna el objeto ciclo
     this.ciclo = data.ciclo;
+    console.log(this.ciclo);
   }
 
   onClose(): void {

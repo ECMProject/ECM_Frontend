@@ -6,18 +6,17 @@ import {
 } from '@angular/common/http';
 
 import { catchError, Observable, retry, throwError } from 'rxjs';
-
-import { Course } from './../models/student';
+import { Member } from '../models/student';
 
 @Injectable({
   providedIn: 'root',
 })
 
-export class CourseService {
+export class MemberService {
   // Endpoint Backend
-  //basePath = 'http://127.0.0.1:8000/ecm/courses';
-
-  basePath = 'https://backend-ecm.onrender.com/ecm/courses';
+  //basePath = 'http://127.0.0.1:8000/ecm/members';
+  
+  basePath = 'https://backend-ecm.onrender.com/ecm/members';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -44,10 +43,16 @@ export class CourseService {
     );
   }
 
-  getCoursesList(): Observable<Course[]> {
-    const url = `${this.basePath}/list`;
+  getMembersByName(name: string): Observable<Member[]> {
+    let url = ''
+    if (name.trim() === ''){
+        url = `${this.basePath}/list`;
+    } else {
+        url = `${this.basePath}/list?name=${name}`;
+    }
+
     return this.http
-      .get<Course[]>(url)
+      .get<Member[]>(url)
       .pipe(retry(2), catchError(this.handleError));
   }
 }

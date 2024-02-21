@@ -10,7 +10,9 @@ import { Season } from './../models/student';
 export class SeasonService {
 
   // Endpoint Backend
-  basePath = 'http://127.0.0.1:8000/ecm/season';
+  //basePath = 'http://127.0.0.1:8000/ecm/season';
+
+  basePath = 'https://backend-ecm.onrender.com/ecm/season';
 
   httpOptions = {
     headers: new HttpHeaders({

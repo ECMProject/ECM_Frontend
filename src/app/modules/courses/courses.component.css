@@ -28,6 +28,12 @@ body::-webkit-scrollbar {
   margin-bottom: 0.8rem;
 }
 
+.course-subtitle {
+  margin: 1.5rem;
+  font-size: 17px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .mat-mdc-table .mdc-data-table__header-row {
   background-color: var(--bg-color);
 }
@@ -81,8 +87,8 @@ body::-webkit-scrollbar {
 }
 
 .none {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #c2c0c0;
+  color: white;
 }
 
 .buttons {
@@ -94,17 +100,34 @@ body::-webkit-scrollbar {
 .buttons button {
   font-family: "Ubuntu", sans-serif;
   font-size: 0.9rem;
-  background-color: var(--button-color);
   border: none;
   border-radius: 12px;
-  color: white;
   cursor: pointer;
   padding: 0.5rem 1rem;
   margin-left: 1rem;
 }
 
-.buttons button:hover {
+.buttons button:enabled {
+  background-color: var(--button-color);
+  color: white;
+}
+
+.buttons button:disabled {
+  background-color: #f5f5f5;
+  color: black;
+}
+
+.buttons button:enabled:hover {
   background-color: #0086ff;
+}
+
+.input-field {
+  width: 40px;
+  height: 20px;
+  appearance: none;
+  -moz-appearance: textfield;
+  border-radius: 10px;
+  padding: 0.3rem;
 }
 
 .mat-mdc-checkbox.mat-accent {

@@ -59,4 +59,16 @@ export interface Student {
   stud_member: Member;
   stud_season: Season;
   seas_final: number;
+  seas_ses01: boolean;
+  seas_ses02: boolean;
+  seas_ses03: boolean;
+  seas_ses04: boolean;
+  seas_ses05: boolean;
+  seas_ses06: boolean;
+  seas_ses07: boolean;
+  seas_ses08: boolean;
+  seas_ses09: boolean;
+  seas_ses10: boolean;
+  seas_ses11: boolean;
+  seas_ses12: boolean;
 }

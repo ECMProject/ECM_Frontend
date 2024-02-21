@@ -10,12 +10,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './modules/sidebar/sidebar.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
-import { SeasonDetailDialogComponent } from './modules/season-detail-dialog/season-detail-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
+    SidebarComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -23,7 +22,7 @@ import { SeasonDetailDialogComponent } from './modules/season-detail-dialog/seas
     BrowserAnimationsModule,
     RouterModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

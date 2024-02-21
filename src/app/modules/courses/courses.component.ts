@@ -4,6 +4,17 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Student } from 'src/app/models/student';
+import { Pipe, PipeTransform } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
+@Pipe({
+  name: 'values',
+})
+export class ValuesPipe implements PipeTransform {
+  transform(value: any): any[] {
+    return Object.values(value);
+  }
+}
 
 @Component({
   selector: 'app-courses',
@@ -13,6 +24,9 @@ import { Student } from 'src/app/models/student';
 export class CoursesComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource = new MatTableDataSource<Student>();
+  groupedDataArray: any[] = [];
+
+  isEditing = false;
 
   displayedColumns: string[] = [
     'name',
@@ -31,7 +45,10 @@ export class CoursesComponent {
     'promedio',
   ];
 
-  constructor(private studentService: StudentService) {}
+  constructor(
+    public dialog: MatDialog,
+    private studentService: StudentService
+  ) {}
 
   ngOnInit(): void {
     this.getTeacherData();
@@ -48,6 +65,7 @@ export class CoursesComponent {
     this.studentService.getTeacherList(parseInt(teacher)).subscribe(
       (data) => {
         this.dataSource.data = data;
+        this.groupedDataArray = this.groupDataByCourse(data);
         this.dataSource.paginator = this.paginator;
       },
       (error) => {
@@ -56,36 +74,40 @@ export class CoursesComponent {
     );
   }
 
+  groupDataByCourse(data: any[]): any[] {
+    return data.reduce((acc, student) => {
+      const courseId = student.stud_season.seas_course.cour_id;
+
+      if (!acc[courseId]) {
+        acc[courseId] = {
+          course: student.stud_season.seas_course,
+          teacher: student.stud_season.seas_teacher,
+          students: [],
+        };
+      }
+
+      acc[courseId].students.push(student);
+      return acc;
+    }, {});
+  }
+
   save(): void {
-    const updatedData = this.dataSource.data.filter(element => {
-      // Filtrar solo los elementos modificados
-      return (
-        element.seas_ses01 !== element.original_ses01 ||
-        element.seas_ses02 !== element.original_ses02 ||
-        // ... repetir para otras sesiones ...
-        element.seas_ses12 !== element.original_ses12
-      );
+    this.dataSource.data.forEach((element) => {
+      this.updateStudent(element.stud_id, element);
     });
+  }
 
-    // Llamada al servicio para guardar los datos modificados
-    updatedData.forEach(element => {
-      const studentId = element.stud_id;
-      const updatedStudentData = {
-        seas_ses01: element.seas_ses01,
-        seas_ses02: element.seas_ses02,
-        // ... repetir para otras sesiones ...
-        seas_ses12: element.seas_ses12
-      };
+  updateStudent(element: any, newData: any): void {
+    const updatedData = { ...element, ...newData };
 
-      this.studentService.updateStudent(studentId, updatedStudentData).subscribe(
-        (response) => {
-          console.log('Student updated successfully:', response);
-          // Puedes realizar acciones adicionales después de la actualización
-        },
-        (error) => {
-          console.error('Error updating student:', error);
-        }
-      );
-    });
+    this.studentService.updateStudent(element, updatedData).subscribe(
+      (response) => {
+        console.log('Student updated successfully:', response);
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Error updating student:', error);
+      }
+    );
   }
 }

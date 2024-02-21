@@ -50,8 +50,6 @@ export class SeasonsComponent {
         this.studentSeasons = data;
         this.dataSource.data = this.studentSeasons;
         this.dataSource.paginator = this.paginator;
-        console.log('GET DATA');
-        console.log(this.studentSeasons);
       },
       (error) => {
         console.error('Error al obtener los datos:', error);
@@ -61,7 +59,7 @@ export class SeasonsComponent {
 
   verDetalles(ciclo: Student) {
     const dialogRef = this.dialog.open(SeasonDetailDialogComponent, {
-      data: { ciclo: ciclo }, // Pasa el objeto ciclo al modal
+      data: { ciclo: ciclo },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
