@@ -16,15 +16,21 @@
 
   <ul class="sidenav-nav">
     <li class="sidenav-nav-item" *ngFor="let data of filteredNavbarItems">
-      <a class="sidenav-nav-link" [routerLink]="[data.routerLink]">
-        <i class="sidenav-link-icon" [class]="data.icon"></i>
-        <span class="sidenav-link-text" *ngIf="!isCollapsed">{{
-          data.label
-        }}</span>
-      </a>
+      <ng-container *ngIf="data.label !== 'Salir'; else salirBlock">
+        <a class="sidenav-nav-link" [routerLink]="[data.routerLink]">
+          <i class="sidenav-link-icon" [class]="data.icon"></i>
+          <span class="sidenav-link-text" *ngIf="!isCollapsed">{{ data.label }}</span>
+        </a>
+      </ng-container>
+      <ng-template #salirBlock>
+        <a class="sidenav-nav-link" [routerLink]="[data.routerLink]" (click)="setLoginFalse()">
+          <i class="sidenav-link-icon" [class]="data.icon"></i>
+          <span class="sidenav-link-text" *ngIf="!isCollapsed">{{ data.label }}</span>
+        </a>
+      </ng-template>
     </li>
   </ul>
-
+  
   <li style="position: absolute; bottom: 4rem; left: 1.5rem;">
     <a>
       <span style="font-size: 20px" class="text-sidebar" *ngIf="!isCollapsed"

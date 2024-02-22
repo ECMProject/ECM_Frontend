@@ -13,7 +13,6 @@ export class LoginComponent {
   dni: string = '';
 
   constructor(private authService: AuthService, private router: Router) {
-    
   }
 
   login(): void {
@@ -21,6 +20,7 @@ export class LoginComponent {
       (response) => {
         if (!response.data) {
           localStorage.setItem('userId', response[0].memb_id);
+          localStorage.setItem('name', response[0].memb_name);
           localStorage.setItem('userRole', response[0].memb_role);
           this.authService.setLoggedIn(true);
           this.router.navigate(['/seasons']);
