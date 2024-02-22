@@ -18,10 +18,19 @@
   />
   <button
     class="button-detail"
-    style="margin-bottom: 1rem"
+    style="margin-bottom: 1rem;"
+    [disabled]="buttonSearchDisabled"
     (click)="searchUsers()"
   >
     Buscar
+  </button>
+  <button
+    style="margin-left: 0.8rem; background-color: red"
+    class="button-detail"
+    [disabled]="!buttonSearchDisabled"
+    (click)="clear()"
+  >
+    Limpiar
   </button>
 
   <div class="spinner-container" *ngIf="loading">
@@ -47,7 +56,13 @@
     </div>
   </div>
 
-  <div *ngIf="dataSource && loadingTable == true || dataSource && loadingTable == false && dataSource.data.length > 0; else noDataMessage">
+  <div
+    *ngIf="
+      (dataSource && loadingTable == true) ||
+        (dataSource && loadingTable == false && dataSource.data.length > 0);
+      else noDataMessage
+    "
+  >
     <table mat-table [dataSource]="dataSource" class="custom-mat-table">
       <ng-container matColumnDef="period">
         <th mat-header-cell *matHeaderCellDef class="th-column">Periodo</th>
@@ -136,5 +151,4 @@
   <ng-template #noDataMessage>
     <p class="no-data-message">No hay datos seleccionados.</p>
   </ng-template>
-
 </div>

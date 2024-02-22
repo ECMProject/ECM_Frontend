@@ -28,6 +28,8 @@ export class SeasonsComponent {
 
   dataSource = new MatTableDataSource<Student>();
 
+  loading: boolean = false;
+
   constructor(
     public dialog: MatDialog,
     private studentService: StudentService
@@ -42,6 +44,7 @@ export class SeasonsComponent {
   }
 
   getData() {
+    this.loading = true;
     let userId = localStorage.getItem('userId');
     userId = userId ?? '1';
 
@@ -50,6 +53,7 @@ export class SeasonsComponent {
         this.studentSeasons = data;
         this.dataSource.data = this.studentSeasons;
         this.dataSource.paginator = this.paginator;
+        this.loading = false;
       },
       (error) => {
         console.error('Error al obtener los datos:', error);

@@ -17,6 +17,7 @@
     [(ngModel)]="searchTerm"
     (input)="filterSeasons()"
   />
+
   <div class="filtro-categorias">
     <mat-chip-listbox #chipList>
       <mat-chip-option
@@ -134,6 +135,11 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
+  <div class="spinner-container" *ngIf="loading">
+    <div class="spinner"></div>
+  </div>
+
   <mat-paginator
     [pageSize]="5"
     [pageSizeOptions]="[5, 10, 15, 20]"

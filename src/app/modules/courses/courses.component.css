@@ -139,3 +139,9 @@ body::-webkit-scrollbar {
   --mdc-checkbox-unselected-focus-icon-color: var(--button-color);
   --mdc-checkbox-unselected-hover-icon-color: var(--button-color);
 }
+
+.no-data-message {
+  margin-top: 1rem;
+  margin-left: 2rem;
+  font-style: italic;
+}

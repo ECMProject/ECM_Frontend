@@ -27,6 +27,7 @@ export class InscriptionsComponent {
   selectedCategories: Set<string> = new Set<string>(['All']);
 
   searchTerm: string = '';
+  loading: boolean = false;
 
   dataSource = new MatTableDataSource<Season>();
 
@@ -47,6 +48,7 @@ export class InscriptionsComponent {
   getSeasonData() {
     let student = localStorage.getItem('userId');
     student = student ?? '1';
+    this.loading = true;
     this.seasonService.getSeasonList(parseInt(student)).subscribe(
       (data) => {
         this.seasons = data;
@@ -66,6 +68,7 @@ export class InscriptionsComponent {
 
     this.dataSource.data = this.seasonsFilter;
     this.dataSource.paginator = this.paginator;
+    this.loading = false;
   }
 
   filtrarPorCategoria(categoria: string) {

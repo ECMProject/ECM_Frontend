@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -20,16 +20,11 @@ export class SearchComponent {
   loadingTable: boolean = false;
   selectedPersonId: any = null;
   buttonsDisabled = false;
+  buttonSearchDisabled = false;
 
   dataSource = new MatTableDataSource<Student>();
 
-  displayedColumns: string[] = [
-    'period',
-    'course',
-    'teacher',
-    'mode',
-    'note',
-  ];
+  displayedColumns: string[] = ['period', 'course', 'teacher', 'mode', 'note'];
 
   constructor(
     private memberService: MemberService,
@@ -41,12 +36,20 @@ export class SearchComponent {
   }
 
   enableButtonsExceptSelected() {
-    this.buttonsDisabled = false; // Habilitar todos los botones
+    this.buttonsDisabled = false;
+  }
+
+  clear() {
+    this.buttonSearchDisabled = false;
+    this.persons = [];
+    this.dataSource.data = [];
+    this.enableButtonsExceptSelected();
   }
 
   verCursos(userId: number) {
     this.selectedPersonId = userId;
     this.buttonsDisabled = true;
+    this.buttonSearchDisabled = true;
     this.loadingTable = true;
 
     this.studentService.getStudentSeasons(userId).subscribe(
@@ -54,7 +57,6 @@ export class SearchComponent {
         this.studentSeasons = data;
         this.dataSource.data = this.studentSeasons;
         this.dataSource.paginator = this.paginator;
-
         this.loadingTable = false;
         this.enableButtonsExceptSelected();
       },
@@ -63,14 +65,13 @@ export class SearchComponent {
         this.loadingTable = false;
       }
     );
-
   }
 
-  searchUsers(){
+  searchUsers() {
     this.loading = true;
     this.persons = [];
     this.dataSource = new MatTableDataSource();
-    if (this.searchTerm.trim() === ''){
+    if (this.searchTerm.trim() === '') {
       return;
     }
 
@@ -87,5 +88,4 @@ export class SearchComponent {
       }
     );
   }
-
 }
