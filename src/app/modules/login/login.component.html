@@ -4,31 +4,63 @@
     href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet"
+  />
 </head>
 
-<div class="background">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-    <path
-      fill="#fff"
-      fill-opacity="1"
-      d="M350,0 C40,170 500,200 350,320 L0,320 L0,0 Z"
-    ></path>
-  </svg>
-  <form (ngSubmit)="login()" #loginForm="ngForm">
-    <h1 class="form-title">Inicio</h1>
-    <div class="input-container">
-      <input
-        type="text"
-        id="dni"
-        name="dni"
-        placeholder="DNI:"
-        [(ngModel)]="dni"
-        required
-        pattern="[0-9]{8}"
-        autocomplete="off"
-      />
-      <span class="input-icon bx bx-credit-card"></span>
+<div class="container">
+  <div class="left-side">
+    <div class="welcome-text">
+      <h3>Bienvenido</h3>
     </div>
-    <button type="submit">Iniciar sesión</button>
-  </form>
+    <div class="school-text">
+      <h1>Escuela de<br>Capacitación Ministerial</h1>
+    </div>
+  </div>
+
+  <div class="right-side">
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <h2 class="subtitle-text">Welcome back!</h2>
+      <h2 class="subtitle-text">Login to your Account</h2>
+      <div class="input-container">
+        <input
+          type="number"
+          id="dni"
+          name="dni"
+          placeholder="DNI:"
+          [(ngModel)]="dni"
+          required
+          pattern="[0-9]{8}"
+          autocomplete="off"
+        />
+      </div>
+      <button class="submit-button" type="submit">Sign In</button>
+    </form>
+
+    <div class="line"></div>
+
+    <div class="social-container">
+      <button class="social-button">
+        <img class="social-image" src="./assets/search.png" alt="" />
+      </button>
+      <button class="social-button">
+        <img class="social-image" src="./assets/facebook.png" alt="" />
+      </button>
+      <button class="social-button">
+        <img class="social-image" src="./assets/instagram.png" alt="" />
+      </button>
+    </div>
+    <div class="account-container">
+      <h3 class="no-account-text">
+        Aun no tienes una cuenta? <span class="register-link">Regístrate</span>
+      </h3>
+    </div>
+  </div>
 </div>
