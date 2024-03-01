@@ -1,6 +1,6 @@
 ::ng-deep :root {
-  --bg-color: #30303d;
-  --bg-color-alternative: #303064;
+  --bg-color: #303949;
+  --bg-color-alternative: #000000;
   --button-color: #007bff;
 }
 
@@ -13,12 +13,13 @@
   top: 0;
   left: 0;
   padding-top: 1.25rem;
-  background-color: var(--bg-color);
+  background-color: #303949;
+  border-top-right-radius: 10px;
   transition: width 0.8s;
 }
 
 .collapsed {
-  width: 5rem;
+  width: 5.5rem;
 }
 
 .sidebar ul {
