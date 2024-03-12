@@ -2,11 +2,20 @@ import { Route } from '@angular/router';
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  animations: [
+    trigger('slideRight', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('700ms ease-in-out', style({ transform: 'translateX(0)' }))
+      ])
+    ])
+  ]
 })
 
 export class LoginComponent {
@@ -16,6 +25,7 @@ export class LoginComponent {
   }
 
   login(): void {
+    console.log(this.dni);
     this.authService.login(this.dni).subscribe(
       (response) => {
         if (!response.data) {

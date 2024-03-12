@@ -17,6 +17,9 @@ export class SidebarComponent {
 
   constructor(private authService: AuthService) {
     this.filteredNavbarItems = this.getFilteredNavbarItems();
+    if (this.userName) {
+      this.userName = this.capitalizeFirstLetter(this.userName);
+    }
   }
 
   toggleSidebar() {
@@ -45,6 +48,10 @@ export class SidebarComponent {
 
   setLoginFalse(){
     this.authService.setLoggedIn(false);
+  }
+
+  capitalizeFirstLetter(name: string): string {
+    return name.toUpperCase();
   }
 
 }

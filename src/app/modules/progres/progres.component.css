@@ -1,0 +1,70 @@
+::ng-deep :root {
+  --bg-color: #30303d;
+  --bg-color-alternative: #303064;
+  --button-color: #007bff;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+body {
+  font-family: "Ubuntu", sans-serif;
+  scrollbar-width: thin;
+}
+
+body::-webkit-scrollbar {
+  width: thin;
+}
+
+.content {
+  margin-left: 11rem;
+  padding: 2rem;
+  transition: margin-left 0.5s;
+}
+
+.progress-title {
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+/* progres.component.css */
+ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+/* progres.component.css */
+.curso {
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  padding: 10px;
+  margin: 0 20px;
+}
+
+.curso::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #ccc;
+}
+
+.curso:first-child::before {
+  top: 50%;
+}
+
+.curso:last-child::before {
+  height: 50%;
+}
+
+.curso > .contenido {
+  margin-left: 10px;
+}
+
+.completado {
+  text-decoration: line-through;
+}

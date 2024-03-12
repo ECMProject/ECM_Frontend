@@ -1,5 +1,5 @@
 ::ng-deep :root {
-  --bg-color: #303949;
+  --bg-color: #363b4c;
   --bg-color-alternative: #000000;
   --button-color: #007bff;
 }
@@ -13,7 +13,7 @@
   top: 0;
   left: 0;
   padding-top: 1.25rem;
-  background-color: #303949;
+  background-color: #323747;
   border-top-right-radius: 10px;
   transition: width 0.8s;
 }

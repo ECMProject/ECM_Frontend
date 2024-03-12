@@ -12,6 +12,13 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: 'register',
+    loadChildren: () =>
+      import('src/app/modules/register/register.module').then(
+        (m) => m.RegisterModule
+      ),
+  },
+  {
     path: 'courses',
     loadChildren: () =>
       import('src/app/modules/courses/courses.module').then(
@@ -37,6 +44,13 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('src/app/modules/search/search.module').then(
         (m) => m.SearchModule
+      ),
+  },
+  {
+    path: 'progress',
+    loadChildren: () =>
+      import('src/app/modules/progres/progres.module').then(
+        (m) => m.ProgresModule
       ),
   },
 ];

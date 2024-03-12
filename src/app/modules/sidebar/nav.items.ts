@@ -20,6 +20,11 @@ export const navbarItems = [
     label: 'Buscador',
   },
   {
+    routerLink: 'progress',
+    icon: 'bx bx-bar-chart-alt-2',
+    label: 'Silabo',
+  },
+  {
     routerLink: 'login',
     icon: 'bx bx-log-out',
     label: 'Salir',

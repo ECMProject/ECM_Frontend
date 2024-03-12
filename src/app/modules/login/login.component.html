@@ -25,13 +25,13 @@
     </div>
   </div>
 
-  <div class="right-side">
+  <div class="right-side" [@slideRight]>
     <form (ngSubmit)="login()" #loginForm="ngForm">
       <h2 class="subtitle-text">Welcome back!</h2>
       <h2 class="subtitle-text">Login to your Account</h2>
       <div class="input-container">
         <input
-          type="number"
+          type="text"
           id="dni"
           name="dni"
           placeholder="DNI:"
@@ -59,7 +59,7 @@
     </div>
     <div class="account-container">
       <h3 class="no-account-text">
-        Aun no tienes una cuenta? <span class="register-link">Regístrate</span>
+        Aun no tienes una cuenta? <span class="register-link" routerLink='/register'>Regístrate</span>
       </h3>
     </div>
   </div>
