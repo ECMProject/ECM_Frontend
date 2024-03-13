@@ -36,6 +36,12 @@ export class RegisterComponent {
     this.numeroCelular = '';
   }
 
+  showContent: boolean = false;
+
+  replaceContent() {
+    this.showContent = !this.showContent;
+  }
+
   login(): void {
     console.log("mami");
   }
