@@ -16,8 +16,9 @@ import { Course } from './../models/student';
 export class CourseService {
   // Endpoint Backend
   //basePath = 'http://127.0.0.1:8000/ecm/courses';
+  //basePath = 'https://backend-ecm.onrender.com/ecm/courses';
 
-  basePath = 'https://backend-ecm.onrender.com/ecm/courses';
+  basePath = 'http://209.38.192.175/ecm/courses';
 
   httpOptions = {
     headers: new HttpHeaders({

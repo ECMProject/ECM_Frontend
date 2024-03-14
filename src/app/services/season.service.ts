@@ -11,8 +11,9 @@ export class SeasonService {
 
   // Endpoint Backend
   //basePath = 'http://127.0.0.1:8000/ecm/season';
+  //basePath = 'https://backend-ecm.onrender.com/ecm/season';
 
-  basePath = 'https://backend-ecm.onrender.com/ecm/season';
+  basePath = 'http://209.38.192.175/ecm/season';
 
   httpOptions = {
     headers: new HttpHeaders({
