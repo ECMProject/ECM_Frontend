@@ -17,7 +17,7 @@ export class MemberService {
   //basePath = 'http://127.0.0.1:8000/ecm/members';
   //basePath = 'https://backend-ecm.onrender.com/ecm/members';
 
-  basePath = 'http://209.38.192.175/ecm/members';
+  basePath = 'http://209.38.192.175/backend/ecm/members';
 
   httpOptions = {
     headers: new HttpHeaders({

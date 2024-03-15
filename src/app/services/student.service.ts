@@ -18,7 +18,7 @@ export class StudentService {
   //basePath = 'http://127.0.0.1:8000/ecm';
   //basePath = 'https://backend-ecm.onrender.com/ecm';
 
-  basePath = 'http://209.38.192.175/ecm';
+  basePath = 'http://209.38.192.175/backend/ecm';
 
   httpOptions = {
     headers: new HttpHeaders({
