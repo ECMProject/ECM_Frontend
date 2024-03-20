@@ -34,16 +34,10 @@
   </div>
 
   <table mat-table [dataSource]="dataSource" class="custom-mat-table">
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef class="th-column">ID</th>
-      <td mat-cell *matCellDef="let element" class="td-column">
-        {{ element.seas_id }}
-      </td>
-    </ng-container>
 
     <ng-container matColumnDef="course">
       <th mat-header-cell *matHeaderCellDef class="th-column">Curso</th>
-      <td mat-cell *matCellDef="let element" class="td-column">
+      <td mat-cell *matCellDef="let element" class="td-column" style="text-align:justify">
         {{ element.seas_course.cour_description }}
       </td>
     </ng-container>
@@ -78,7 +72,7 @@
           <span class="icon-with-text">
             <i
               class="bx bxs-up-arrow icon"
-              style="color: green; margin-right: 5px"
+              style="color: rgb(3, 172, 3); margin-right: 5px"
             ></i>
             Nivel 1
           </span>
@@ -87,7 +81,7 @@
           <span class="icon-with-text">
             <i
               class="bx bxs-up-arrow icon"
-              style="color: yellow; margin-right: 5px"
+              style="color: rgb(228, 228, 17); margin-right: 5px"
             ></i>
             Nivel 2
           </span>
@@ -96,9 +90,18 @@
           <span class="icon-with-text">
             <i
               class="bx bxs-up-arrow icon"
-              style="color: red; margin-right: 5px"
+              style="color: rgb(246, 13, 13); margin-right: 5px"
             ></i>
             Nivel 3
+          </span>
+        </ng-container>
+        <ng-container *ngIf="element.seas_course.cour_level === 4">
+          <span class="icon-with-text">
+            <i
+              class="bx bxs-up-arrow icon"
+              style="color: rgb(74, 101, 220); margin-right: 5px"
+            ></i>
+            Basico
           </span>
         </ng-container>
       </td>

@@ -39,11 +39,9 @@
   </div>
 
   <div *ngFor="let group of groupedDataArray | values">
-    <h2 class="course-subtitle">
+    <h2 class="course-subtitle" style="font-size: 20px;">
       {{
-        group.course.cour_description +
-          " - " +
-          group.students[0].stud_season.seas_schedule.sche_description
+        group.course.cour_description
       }}
     </h2>
 

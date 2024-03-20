@@ -1,111 +1,73 @@
-import {Component} from '@angular/core';
-import {ArrayDataSource} from '@angular/cdk/collections';
-import {FlatTreeControl, CdkTreeModule} from '@angular/cdk/tree';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-
-export interface CourseNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-  isExpanded?: boolean;
-}
-
-const TREE_DATA: CourseNode[] = [
-  {
-    name: 'Fruit',
-    expandable: true,
-    level: 0,
-  },
-  {
-    name: 'Apple',
-    expandable: false,
-    level: 1,
-  },
-  {
-    name: 'Banana',
-    expandable: false,
-    level: 1,
-  },
-  {
-    name: 'Fruit loops',
-    expandable: false,
-    level: 1,
-  },
-  {
-    name: 'Vegetables',
-    expandable: true,
-    level: 0,
-  },
-  {
-    name: 'Green',
-    expandable: true,
-    level: 1,
-  },
-  {
-    name: 'Broccoli',
-    expandable: false,
-    level: 2,
-  },
-  {
-    name: 'Brussels sprouts',
-    expandable: false,
-    level: 2,
-  },
-  {
-    name: 'Orange',
-    expandable: true,
-    level: 1,
-  },
-  {
-    name: 'Pumpkins',
-    expandable: false,
-    level: 2,
-  },
-  {
-    name: 'Carrots',
-    expandable: false,
-    level: 2,
-  },
-];
+import { Component } from '@angular/core';
+import { Course } from 'src/app/models/student';
+import { CourseService } from 'src/app/services/courses.service';
+import { ChartData, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-progres',
   templateUrl: './progres.component.html',
   styleUrls: ['./progres.component.css'],
 })
-
 export class ProgresComponent {
+  courses: Course[] = [];
 
-  treeControl = new FlatTreeControl<CourseNode>(
-    node => node.level,
-    node => node.expandable,
-  );
+  openPanelLevel: number | null = null;
 
-  dataSource = new ArrayDataSource(TREE_DATA);
+  constructor(private courseService: CourseService) {}
 
-  hasChild = (_: number, node: CourseNode) => node.expandable;
+  ngOnInit(): void {
+    this.getCoursesList();
+  }
+  
+  public chartType: ChartType = 'doughnut';
 
-  getParentNode(node: CourseNode) {
-    const nodeIndex = TREE_DATA.indexOf(node);
+  public chartOptions: any = {
+    responsive: true,
+  };
 
-    for (let i = nodeIndex - 1; i >= 0; i--) {
-      if (TREE_DATA[i].level === node.level - 1) {
-        return TREE_DATA[i];
+  public chartData: ChartData = {
+    labels: ['Blue','Red'],
+    datasets: [
+      {
+        data: [8, 10],
+        backgroundColor: [
+          'rgb(36, 79, 243)', //AZUL
+          'rgb(234, 52, 26)', //ROJO
+        ], // Colores para las secciones del donut
+      },
+    ],
+  };
+
+  getCoursesList() {
+    this.courseService.getCoursesList().subscribe(
+      (data) => {
+        this.courses = data;
+      },
+      (error) => {
+        console.error('Error al obtener los datos:', error);
       }
-    }
-
-    return null;
+    );
   }
 
-  shouldRender(node: CourseNode) {
-    let parent = this.getParentNode(node);
-    while (parent) {
-      if (!parent.isExpanded) {
-        return false;
-      }
-      parent = this.getParentNode(parent);
-    }
-    return true;
+  getUniqueLevels(): number[] {
+    return this.courses
+      .map((course) => course.cour_level)
+      .filter((value, index, self) => self.indexOf(value) === index);
+  }
+
+  getLevelCourses(level: number): Course[] {
+    return this.courses.filter((course) => course.cour_level === level);
+  }
+
+  calcularProgreso(nivel: number) {
+    return nivel;
+  }
+
+  isPanelOpen(level: number): boolean {
+    return this.openPanelLevel === level;
+  }
+
+  onPanelOpened(level: number): void {
+    this.openPanelLevel = level;
   }
 }

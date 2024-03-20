@@ -8,9 +8,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgClass, NgIf } from "@angular/common";
-import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
-import { CdkTreeModule } from '@angular/cdk/tree';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { NgChartsModule } from 'ng2-charts'
 
 const progresRoutes: Route[] = [
   {
@@ -36,10 +38,11 @@ const progresRoutes: Route[] = [
     NgIf,
     CommonModule,
     FormsModule,
-    MatTreeModule,
     MatIconModule,
-    CdkTreeModule
-    // Include MatSortModule
+    MatExpansionModule,
+    MatListModule,
+    MatProgressBarModule,
+    NgChartsModule
   ]
 })
 export class ProgresModule {}

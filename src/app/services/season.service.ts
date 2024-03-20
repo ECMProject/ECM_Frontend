@@ -46,5 +46,4 @@ export class SeasonService {
       .get<Season[]>(url)
       .pipe(retry(2), catchError(this.handleError));
   }
-
 }

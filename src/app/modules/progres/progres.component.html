@@ -4,35 +4,52 @@
     href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet"
+  />
 </head>
 
 <div class="content">
-    <h1 class="progress-title">
-      <i class="bx bx-bar-chart-alt-2" style="margin: 20px"></i>Mi progreso
-    </h1>
-  
-    <cdk-tree [dataSource]="dataSource" [treeControl]="treeControl">
-        <!-- This is the tree node template for leaf nodes -->
-        <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodePadding
-                       [style.display]="shouldRender(node) ? 'flex' : 'none'"
-                       class="example-tree-node">
-          <!-- use a disabled button to provide padding for tree leaf -->
-          <button mat-icon-button disabled></button>
-          {{node.name}}
-        </cdk-tree-node>
-        <!-- This is the tree node template for expandable nodes -->
-        <cdk-tree-node *cdkTreeNodeDef="let node; when: hasChild" cdkTreeNodePadding
-                       [style.display]="shouldRender(node) ? 'flex' : 'none'"
-                       class="example-tree-node">
-          <button mat-icon-button cdkTreeNodeToggle
-                  [attr.aria-label]="'Toggle ' + node.name"
-                  (click)="node.isExpanded = !node.isExpanded"
-                  [style.visibility]="node.expandable ? 'visible' : 'hidden'">
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-            </mat-icon>
-          </button>
-          {{node.name}}
-        </cdk-tree-node>
-      </cdk-tree>
+  <h1 class="progress-title">
+    <i class="bx bx-bar-chart-alt-2" style="margin: 20px"></i>Mi progreso
+  </h1>
+
+  <div class="grid-container">
+    <ng-container *ngFor="let level of getUniqueLevels()">
+      <div class="grid-item white-container">
+        <div class="chart-container">
+          <canvas
+            baseChart
+            [datasets]="chartData.datasets"
+            [type]="chartType"
+            [options]="chartOptions"
+            style="max-height: 100%; overflow: hidden"
+          >
+          </canvas>
+        </div>
+        <div
+          class="content-container"
+          *ngIf="getLevelCourses(level).length > 0"
+        >
+          <h2 class="main-text">Nivel {{ level }}</h2>
+          <div class="scrollable-content">
+            <ul class="main-list">
+              <li
+                class="item-list"
+                *ngFor="let course of getLevelCourses(level)"
+              >
+                {{ course.cour_description }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
+</div>
