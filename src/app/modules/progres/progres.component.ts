@@ -18,7 +18,7 @@ export class ProgresComponent {
   ngOnInit(): void {
     this.getCoursesList();
   }
-  
+
   public chartType: ChartType = 'doughnut';
 
   public chartOptions: any = {
@@ -26,7 +26,7 @@ export class ProgresComponent {
   };
 
   public chartData: ChartData = {
-    labels: ['Blue','Red'],
+    labels: ['Completados', 'Falta'],
     datasets: [
       {
         data: [8, 10],
@@ -55,19 +55,21 @@ export class ProgresComponent {
       .filter((value, index, self) => self.indexOf(value) === index);
   }
 
-  getLevelCourses(level: number): Course[] {
-    return this.courses.filter((course) => course.cour_level === level);
+  getLevelCourses(
+    level: number,
+    filter?: (course: Course) => boolean
+  ): Course[] {
+    let filteredCourses = filter ? this.courses.filter(filter) : this.courses;
+    let levelCourses = filteredCourses.filter(
+      (course) => course.cour_level === level
+    );
+    levelCourses.sort((a, b) =>
+      a.cour_description.localeCompare(b.cour_description)
+    );
+    return levelCourses;
   }
 
   calcularProgreso(nivel: number) {
     return nivel;
-  }
-
-  isPanelOpen(level: number): boolean {
-    return this.openPanelLevel === level;
-  }
-
-  onPanelOpened(level: number): void {
-    this.openPanelLevel = level;
   }
 }
