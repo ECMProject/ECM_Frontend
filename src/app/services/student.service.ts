@@ -52,6 +52,13 @@ export class StudentService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
+  getCoursesCompleted(user_id: number): Observable<Student[]> {
+    const url = `${this.basePath}/season/course/${user_id}`;
+    return this.http
+      .get<Student[]>(url)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
   getStudentList(): Observable<Student[]> {
     const url = `${this.basePath}/student/list`;
     return this.http

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Course } from 'src/app/models/student';
+import { Course, Student } from 'src/app/models/student';
 import { CourseService } from 'src/app/services/courses.service';
 import { ChartData, ChartType } from 'chart.js';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-progres',
@@ -10,10 +11,11 @@ import { ChartData, ChartType } from 'chart.js';
 })
 export class ProgresComponent {
   courses: Course[] = [];
+  completedCourses: Student[] = [];
 
   openPanelLevel: number | null = null;
 
-  constructor(private courseService: CourseService) {}
+  constructor(private courseService: CourseService, private studentService: StudentService) {}
 
   ngOnInit(): void {
     this.getCoursesList();
@@ -42,6 +44,19 @@ export class ProgresComponent {
     this.courseService.getCoursesList().subscribe(
       (data) => {
         this.courses = data;
+      },
+      (error) => {
+        console.error('Error al obtener los datos:', error);
+      }
+    );
+  }
+
+  getCoursesCompleted() {
+    let userId = localStorage.getItem('userId');
+    userId = userId ?? '1';
+    this.studentService.getCoursesCompleted(parseInt(userId)).subscribe(
+      (data) => {
+        this.completedCourses = data;
       },
       (error) => {
         console.error('Error al obtener los datos:', error);
