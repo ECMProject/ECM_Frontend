@@ -48,13 +48,15 @@
 }
 
 .scrollable-content {
-  background-color: #f9f9f9;
-  border-radius: 10px;
+  background-color: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 0.7rem;
   margin: 0.5rem;
-  padding: 0.3rem 1.5rem;
+  padding: 0.1rem 1.5rem;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 500;
   max-height: 200px;
+  max-width: 510px;
   overflow-y: auto;
 }
 
@@ -65,4 +67,20 @@
 
 .item-list {
   margin-bottom: 0.5rem;
+}
+
+.material-icons {
+  font-size: 24px;
+  color: rgb(255,20,26);
+  margin-left: 0.2rem;
+}
+
+.completed {
+  color: rgb(70,110,240);
+}
+
+.main-list .item-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

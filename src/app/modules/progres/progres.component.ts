@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Course, Student } from 'src/app/models/student';
 import { CourseService } from 'src/app/services/courses.service';
 import { ChartData, ChartType } from 'chart.js';
@@ -7,37 +7,24 @@ import { StudentService } from 'src/app/services/student.service';
 @Component({
   selector: 'app-progres',
   templateUrl: './progres.component.html',
-  styleUrls: ['./progres.component.css'],
+  styleUrls: ['./progres.component.css']
 })
-export class ProgresComponent {
+export class ProgresComponent implements OnInit {
   courses: Course[] = [];
   completedCourses: Student[] = [];
-
-  openPanelLevel: number | null = null;
+  pieChartData: ChartData[] = [];
 
   constructor(private courseService: CourseService, private studentService: StudentService) {}
 
   ngOnInit(): void {
     this.getCoursesList();
+    this.getCoursesCompleted();
   }
 
   public chartType: ChartType = 'doughnut';
 
   public chartOptions: any = {
     responsive: true,
-  };
-
-  public chartData: ChartData = {
-    labels: ['Completados', 'Falta'],
-    datasets: [
-      {
-        data: [8, 10],
-        backgroundColor: [
-          'rgb(36, 79, 243)', //AZUL
-          'rgb(234, 52, 26)', //ROJO
-        ], // Colores para las secciones del donut
-      },
-    ],
   };
 
   getCoursesList() {
@@ -57,6 +44,7 @@ export class ProgresComponent {
     this.studentService.getCoursesCompleted(parseInt(userId)).subscribe(
       (data) => {
         this.completedCourses = data;
+        this.updatePieChartData();
       },
       (error) => {
         console.error('Error al obtener los datos:', error);
@@ -87,4 +75,32 @@ export class ProgresComponent {
   calcularProgreso(nivel: number) {
     return nivel;
   }
+
+  updatePieChartData() {
+    const uniqueLevels = this.getUniqueLevels();
+    this.pieChartData = uniqueLevels.map(level => {
+      const levelCourses = this.getLevelCourses(level);
+      const completedCount = levelCourses.filter(course => 
+        this.completedCourses.some(completedCourse => completedCourse.stud_season.seas_course.cour_id === course.cour_id)
+      ).length;
+      const notCompletedCount = levelCourses.length - completedCount;
+      return {
+        level: `Nivel ${level}`,
+        datasets: [
+          {
+            data: [completedCount, notCompletedCount],
+            backgroundColor: [
+              'rgb(70,110,240)', //AZUL
+              'rgb(255,20,26)', //ROJO
+            ], // Colores para las secciones del donut
+          },
+        ],
+      };
+    });
+  }
+  
+  isCourseCompleted(course: Course): boolean {
+    return this.completedCourses.some(completedCourse => completedCourse.stud_season.seas_course.cour_id === course.cour_id);
+  }
+  
 }

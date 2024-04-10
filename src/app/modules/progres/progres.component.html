@@ -14,38 +14,42 @@
     rel="stylesheet"
   />
 </head>
-
 <div class="content">
   <h1 class="progress-title">
     <i class="bx bx-bar-chart-alt-2" style="margin: 20px"></i>Mi progreso
   </h1>
 
   <div class="grid-container">
-    <ng-container *ngFor="let level of getUniqueLevels()">
+    <ng-container *ngFor="let data of pieChartData; let i = index">
       <div class="grid-item white-container">
         <div class="chart-container">
           <canvas
             baseChart
-            [datasets]="chartData.datasets"
-            [labels]="chartData.labels"
+            [datasets]="data.datasets"
+            [labels]="['Completados', 'Falta']"
             [type]="chartType"
             [options]="chartOptions"
             style="max-height: 100%; overflow: hidden"
           >
           </canvas>
         </div>
-        <div
-          class="content-container"
-          *ngIf="getLevelCourses(level).length > 0"
-        >
-          <h2 class="main-text">Nivel {{ level }}</h2>
+        <div class="content-container">
+          <h2 class="main-text">Nivel {{ i + 1 === 4 ? 'Básico' : i + 1 }}</h2>
           <div class="scrollable-content">
             <ul class="main-list">
               <li
                 class="item-list"
-                *ngFor="let course of getLevelCourses(level)"
+                *ngFor="let course of getLevelCourses(getUniqueLevels()[i])"
               >
-                {{ course.cour_description }}
+              <span class="course-description">{{ course.cour_description }}</span>
+              <span class="completion-status">
+                <ng-container *ngIf="isCourseCompleted(course)">
+                  <i class="material-icons completed">check_circle</i>
+                </ng-container>
+                <ng-container *ngIf="!isCourseCompleted(course)">
+                  <i class="material-icons">radio_button_unchecked</i>
+                </ng-container>
+              </span>              
               </li>
             </ul>
           </div>
@@ -54,3 +58,4 @@
     </ng-container>
   </div>
 </div>
+
