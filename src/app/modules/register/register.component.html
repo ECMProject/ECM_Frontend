@@ -25,8 +25,8 @@
     </div>
   </div>
 
-  <div class="right-side" [ngClass]="{ hide: showContent }" [@slideRight]>
-    <form (ngSubmit)="login()" #loginForm="ngForm">
+  <div class="right-side" [@slideRight]>
+    <form (ngSubmit)="register()" #loginForm="ngForm">
       <h2 class="subtitle-text">New in our church?</h2>
       <h2 class="subtitle-text">Register your information</h2>
       <div class="input-container">
@@ -127,7 +127,7 @@
         />
       </div>
 
-      <button class="submit-button" type="submit" (click)="replaceContent()">
+      <button class="submit-button" type="submit" (click)="getCoursesList()">
         Register
       </button>
     </form>
@@ -140,13 +140,4 @@
     </div>
   </div>
 
-  <div
-    class="new-content"
-    [ngClass]="{ show: showContent, hide: !showContent }"
-  >
-    <div class="new-content-container">
-      <h2 class="subtitle-text">HOLAAAA</h2>
-      <h2 class="subtitle-text">Register your information</h2>
-    </div>
-  </div>
 </div>

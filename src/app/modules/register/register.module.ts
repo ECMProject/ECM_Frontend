@@ -8,6 +8,7 @@ import { MatSortModule } from '@angular/material/sort'; // Import MatSortModule
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { CommonModule } from '@angular/common';
 
@@ -40,7 +41,8 @@ const registerRoutes: Route[] = [
     MatChipsModule,
     FormsModule,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatCheckboxModule
     // Include MatSortModule
   ]
 })

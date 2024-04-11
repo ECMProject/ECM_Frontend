@@ -10,11 +10,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidebarComponent } from './modules/sidebar/sidebar.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { RegisterDialogComponent } from './modules/register-dialog/register-dialog.component';
+import { InscriptionsDialogComponent } from './modules/inscriptions-dialog/inscriptions-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
+    RegisterDialogComponent,
+    InscriptionsDialogComponent,
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

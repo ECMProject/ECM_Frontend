@@ -1,0 +1,28 @@
+.title {
+  margin: 0.5rem;
+  padding: 0;
+}
+
+.subtitle {
+  margin: 1rem 0.5rem;
+  padding: 0;
+}
+
+.button-detail {
+  font-family: "Lato", sans-serif;
+  background-color: var(--button-color);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  padding: 0.8rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.mat-dialog-actions {
+  display: flex;
+}
+
+.mat-mdc-dialog-actions {
+  justify-content: space-evenly;
+}

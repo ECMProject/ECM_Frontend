@@ -11,17 +11,7 @@
     <i class="bx bx-book" style="margin: 20px"></i>Mis Cursos
   </h1>
 
-  <!-- <mat-select style="margin-left: 20px">
-    <mat-option *ngFor="let curso of cursos" [value]="curso.value">
-      {{ curso.viewValue }}
-    </mat-option>
-  </mat-select> -->
-
   <div class="buttons">
-    <!-- <button (click)="save()">
-      <i class="bx bxs-save" style="margin-right: 5px; margin-top: 2px"></i>Grabar
-    </button> -->
-
     <button (click)="save()" [disabled]="isEditing">
       <i class="bx bxs-save" style="margin-right: 5px; margin-top: 2px"></i
       >Grabar
@@ -38,15 +28,18 @@
     </button>
   </div>
 
+  <div class="spinner-container" *ngIf="loading">
+    <div class="spinner"></div>
+  </div>
+
   <div *ngFor="let group of groupedDataArray | values">
-    <h2 class="course-subtitle" style="font-size: 20px;">
-      {{
-        group.course.cour_description
-      }}
+    <h2 class="course-subtitle" style="font-size: 20px">
+      {{ group.course.cour_description }}
     </h2>
 
     <div *ngIf="dataSource.data.length > 0; else noDataMessage">
       <table mat-table [dataSource]="group.students" class="custom-mat-table">
+        <!-- Definiciones de las columnas de la tabla -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef class="th-column">Nombre</th>
           <td mat-cell *matCellDef="let element" class="td-column">
@@ -170,12 +163,11 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
+      <mat-paginator
+        [pageSize]="5"
+        [pageSizeOptions]="[5, 10, 15, 20]"
+      ></mat-paginator>
     </div>
-
-    <mat-paginator
-      [pageSize]="5"
-      [pageSizeOptions]="[5, 10, 15, 20]"
-    ></mat-paginator>
   </div>
 
   <ng-template #noDataMessage>

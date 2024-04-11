@@ -4,7 +4,11 @@
   <p class="modal-info"><b class="info-label">Fecha de Inicio:</b> {{ ciclo.stud_season.seas_period.peri_start }}</p>
   <p class="modal-info"><b class="info-label">Fecha de Finalizacion:</b> {{ ciclo.stud_season.seas_period.peri_end }}</p>
   <p class="modal-info"><b class="info-label">Curso:</b> {{ ciclo.stud_season.seas_course.cour_description }}</p>
-  <p class="modal-info"><b class="info-label">Nivel del Curso:</b> {{ ciclo.stud_season.seas_course.cour_level }}</p>
+  <p class="modal-info">
+    <b class="info-label">Nivel del Curso:</b>
+    {{ ciclo.stud_season.seas_course.cour_level == 4 ? 'Básico' : ciclo.stud_season.seas_course.cour_level }}
+</p>
+
   <p class="modal-info"><b class="info-label">Turno:</b> {{ ciclo.stud_season.seas_schedule.sche_description }}</p>
   <p class="modal-info"><b class="info-label">Profesor:</b> {{ ciclo.stud_season.seas_teacher.memb_name + ' ' + ciclo.stud_season.seas_teacher.memb_surname }}</p>
 </div>

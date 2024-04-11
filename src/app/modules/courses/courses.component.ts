@@ -27,6 +27,7 @@ export class CoursesComponent {
   groupedDataArray: any[] = [];
 
   isEditing = false;
+  loading: boolean = false;
 
   displayedColumns: string[] = [
     'name',
@@ -59,14 +60,15 @@ export class CoursesComponent {
   }
 
   getTeacherData() {
+    this.loading = true;
     let teacher = localStorage.getItem('userId');
     teacher = teacher ?? '1';
 
     this.studentService.getTeacherList(parseInt(teacher)).subscribe(
       (data) => {
+        this.loading = false;
         this.dataSource.data = data;
         this.groupedDataArray = this.groupDataByCourse(data);
-        this.dataSource.paginator = this.paginator;
       },
       (error) => {
         console.error('Error al obtener los datos:', error);

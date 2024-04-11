@@ -19,6 +19,10 @@
     <i class="bx bx-bar-chart-alt-2" style="margin: 20px"></i>Mi progreso
   </h1>
 
+  <div class="spinner-container" *ngIf="loading">
+    <div class="spinner"></div>
+  </div>
+
   <div class="grid-container">
     <ng-container *ngFor="let data of pieChartData; let i = index">
       <div class="grid-item white-container">

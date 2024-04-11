@@ -186,38 +186,6 @@ input[type="date"] {
   border-radius: 4px;
 }
 
-.right-side,
-.new-content {
-  transition: transform 0.5s ease-in-out;
-}
-
-.new-content {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  transition: transform 0.5s ease-in-out;
-  z-index: 1;
-  transform: translateY(100%);
-}
-
-.hide {
-  transform: translateY(-100%);
-}
-
-.show {
-  transform: translateY(0%);
-}
-
-.new-content-container {
-  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
-}
-
-.new-content.show .new-content-container {
-  opacity: 1;
-  visibility: visible;
-}
-
 @media screen and (max-width: 1200px) {
   .left-side {
     width: 50%;

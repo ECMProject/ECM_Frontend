@@ -9,10 +9,12 @@ import { StudentService } from 'src/app/services/student.service';
   templateUrl: './progres.component.html',
   styleUrls: ['./progres.component.css']
 })
+
 export class ProgresComponent implements OnInit {
   courses: Course[] = [];
   completedCourses: Student[] = [];
   pieChartData: ChartData[] = [];
+  loading: boolean = false;
 
   constructor(private courseService: CourseService, private studentService: StudentService) {}
 
@@ -39,6 +41,7 @@ export class ProgresComponent implements OnInit {
   }
 
   getCoursesCompleted() {
+    this.loading= true;
     let userId = localStorage.getItem('userId');
     userId = userId ?? '1';
     this.studentService.getCoursesCompleted(parseInt(userId)).subscribe(
@@ -97,6 +100,7 @@ export class ProgresComponent implements OnInit {
         ],
       };
     });
+    this.loading= false;
   }
   
   isCourseCompleted(course: Course): boolean {

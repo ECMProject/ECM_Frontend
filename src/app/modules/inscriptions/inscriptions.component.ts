@@ -7,6 +7,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { StudentService } from 'src/app/services/student.service';
+import { MatDialog } from '@angular/material/dialog';
+import { InscriptionsDialogComponent } from '../inscriptions-dialog/inscriptions-dialog.component';
 
 @Component({
   selector: 'app-inscription',
@@ -35,6 +37,7 @@ export class InscriptionsComponent {
     private courseService: CourseService,
     private seasonService: SeasonService,
     private studentService: StudentService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -93,24 +96,26 @@ export class InscriptionsComponent {
   }
 
   inscribirme(element: Season) {
-
-    let student = localStorage.getItem('userId');
-    student = student ?? '1';
-
-    const studId = student;
-    const seasId = element.seas_id ;
-
-    const data = { stud_id: studId, seas_id: seasId };
-
-    this.studentService.inscribirStudent(data).subscribe(
-      (response) => {
-        alert("Exitoso");
-        console.log('Inscripción exitosa', data);
-      },
-      (error) => {
-        console.error('Error al inscribir al estudiante', error);
+    const dialogRef = this.dialog.open(InscriptionsDialogComponent);
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        let student = localStorage.getItem('userId') ?? '1';
+        const studId = student;
+        const seasId = element.seas_id ;
+        const data = { stud_id: studId, seas_id: seasId };
+  
+        this.studentService.inscribirStudent(data).subscribe(
+          (response) => {
+            alert("Exitoso");
+            console.log('Inscripción exitosa', data);
+          },
+          (error) => {
+            console.error('Error al inscribir al estudiante', error);
+          }
+        );
       }
-    );
+    });
   }
   
 }

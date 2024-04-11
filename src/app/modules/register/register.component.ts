@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { Course} from 'src/app/models/student';
+import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
+import { CourseService } from 'src/app/services/courses.service';
 import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -18,6 +22,8 @@ import { trigger, style, animate, transition } from '@angular/animations';
 })
 
 export class RegisterComponent {
+  courses: Course[] = [];
+
   nombres: string;
   apellidos: string;
   tipoDocumento: string;
@@ -26,7 +32,8 @@ export class RegisterComponent {
   zona: string;
   numeroCelular: string;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, 
+    private dialog:MatDialog, private courseService: CourseService) {
     this.nombres = '';
     this.apellidos = '';
     this.tipoDocumento = '';
@@ -36,13 +43,22 @@ export class RegisterComponent {
     this.numeroCelular = '';
   }
 
-  showContent: boolean = false;
-
-  replaceContent() {
-    this.showContent = !this.showContent;
+  register(): void {
+    console.log("mami");
   }
 
-  login(): void {
-    console.log("mami");
+  getCoursesList() {
+    this.courseService.getCoursesList().subscribe(
+      (data) => {
+        const dialogRef = this.dialog.open(RegisterDialogComponent, {
+          width: '400px',
+          height: '400px',
+          data: { cursos: data}
+        });
+      },
+      (error) => {
+        console.error('Error al obtener los datos:', error);
+      }
+    );
   }
 }
