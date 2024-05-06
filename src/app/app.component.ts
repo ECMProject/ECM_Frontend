@@ -15,7 +15,7 @@ interface SidenavToggle{
 
 export class AppComponent {
   isLoggedIn: boolean = false;
-  isSideNavCollapsed = false;
+  isSideNavCollapsed = true;
   screenWidth = 0;
 
   constructor(private authService: AuthService) {}

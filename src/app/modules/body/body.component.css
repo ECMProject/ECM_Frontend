@@ -13,23 +13,27 @@
   margin-left: 0rem;
 }
 
+.body-md-screen {
+  width: 100%;
+  margin-left: 0rem;
+}
+
+.body-sm-screen {
+  width: 100%;
+  margin-left: 0;
+}
+
 ::ng-deep body > app-root > app-body > .body-trimmed > app-seasons > .content {
   margin-left: 6rem;
 }
 
 @media (max-width: 1250px) {
   ::ng-deep body > app-root > app-body > .body-trimmed > app-seasons > .content {
-    margin-left: 3rem;
+    margin-left: 4rem;
+  }
+
+  .body-md-screen {
+    width: 90%;
+    margin-left: 4rem;
   }
 }
-
-.body-md-screen {
-  width: 100%;
-  margin-left: 0rem;
-}
-
-/* 
-.body-sm-screen {
-  width: 100%;
-  margin-left: 0;
-} */
