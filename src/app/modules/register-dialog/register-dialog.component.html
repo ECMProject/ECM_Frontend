@@ -1,12 +1,17 @@
-<ul class="course-list">
+<div class="modal-content scroll-container">
+  <ul class="course-list">
     <h2 class="welcome-heading">Bienvenido</h2>
-    <h3 class="course-heading">Selecciona los cursos que has llevado en la ECM:</h3>
+    <h3 class="course-heading">
+      Selecciona los cursos que has llevado en la ECM:
+    </h3>
     <li *ngFor="let curso of cursos">
       <label>
         <span class="course-description">{{ curso.cour_description }}</span>
-        <input type="checkbox" [value]="curso" class="checkbox-input">
+        <input type="checkbox" [value]="curso" class="checkbox-input" />
       </label>
     </li>
-    <button class="button-detail">Submit</button>
-</ul>
-  
+    <div class="button-div">
+      <button class="button-detail">Submit</button>
+    </div>
+  </ul>
+</div>

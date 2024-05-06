@@ -40,6 +40,7 @@ export class SearchComponent {
   }
 
   clear() {
+    this.searchTerm= '';
     this.buttonSearchDisabled = false;
     this.persons = [];
     this.dataSource.data = [];

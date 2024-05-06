@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { Component} from '@angular/core';
+
+interface SidenavToggle{
+  screenWidth: number;
+  collapse: boolean;
+  smallScreen: boolean;
+}
 
 @Component({
   selector: 'app-root',
@@ -7,8 +13,10 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
   isLoggedIn: boolean = false;
+  isSideNavCollapsed = false;
+  screenWidth = 0;
 
   constructor(private authService: AuthService) {}
 
@@ -16,5 +24,10 @@ export class AppComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
+  }
+
+  onToggleSidenav(data: SidenavToggle): void {
+    this.screenWidth = data.screenWidth;
+    this.isSideNavCollapsed = data.collapse;
   }
 }

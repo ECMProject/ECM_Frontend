@@ -20,6 +20,7 @@
     class="button-detail"
     style="margin-bottom: 1rem;"
     [disabled]="buttonSearchDisabled"
+    [ngClass]="{'disabled-button': buttonSearchDisabled}"
     (click)="searchUsers()"
   >
     Buscar

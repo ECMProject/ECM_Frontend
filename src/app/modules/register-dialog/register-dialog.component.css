@@ -1,6 +1,11 @@
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .course-list {
   list-style-type: none;
-  overflow-y: scroll;
   max-height: 350px;
   padding: 0.5rem;
 }
@@ -30,9 +35,31 @@
   margin-left: 1rem;
 }
 
+.scroll-container {
+  overflow-y: scroll;
+  max-height: 360px;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #9f9f9f;
+  border-radius: 4px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+}
 
 .button-detail {
-  width: 30%;
+  width: 95%;
   padding: 10px 0;
   margin-top: 0.7rem;
   background-color: var(--button-color);
@@ -41,4 +68,5 @@
   cursor: pointer;
   font-weight: bold;
   border-radius: 7px;
+  text-align: center;
 }

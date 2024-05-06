@@ -12,6 +12,9 @@ import { SidebarComponent } from './modules/sidebar/sidebar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RegisterDialogComponent } from './modules/register-dialog/register-dialog.component';
 import { InscriptionsDialogComponent } from './modules/inscriptions-dialog/inscriptions-dialog.component';
+import { BodyComponent } from './modules/body/body.component';
+import { LoginComponent } from './modules/login/login.component';
+import { LoginModule } from './modules/login/login.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,8 @@ import { InscriptionsDialogComponent } from './modules/inscriptions-dialog/inscr
     SidebarComponent,
     RegisterDialogComponent,
     InscriptionsDialogComponent,
+    BodyComponent,
+
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -27,6 +32,7 @@ import { InscriptionsDialogComponent } from './modules/inscriptions-dialog/inscr
     RouterModule,
     HttpClientModule,
     MatDialogModule,
+    LoginModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

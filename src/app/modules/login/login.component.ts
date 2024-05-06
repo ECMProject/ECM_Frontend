@@ -25,7 +25,6 @@ export class LoginComponent {
   }
 
   login(): void {
-    console.log(this.dni);
     this.authService.login(this.dni).subscribe(
       (response) => {
         if (!response.data) {

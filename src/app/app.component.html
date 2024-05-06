@@ -1,13 +1,4 @@
-<div class="app-container">
-  <ng-container *ngIf="isLoggedIn; else loginComponent">
-    <app-sidebar></app-sidebar>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </ng-container>
-  <ng-template #loginComponent>
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </ng-template>
-</div>
+<app-sidebar *ngIf="isLoggedIn" (onToggleSidenav)="onToggleSidenav($event)"></app-sidebar>
+<app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth">
+</app-body>
+<router-outlet></router-outlet>

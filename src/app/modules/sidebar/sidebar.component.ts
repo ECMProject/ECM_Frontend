@@ -1,6 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { navbarItems } from './nav.items';
+
+interface SidenavToggle{
+  screenWidth: number;
+  collapse: boolean;
+  smallScreen: boolean;
+}
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +14,11 @@ import { navbarItems } from './nav.items';
   styleUrls: ['./sidebar.component.css']
 })
 
-export class SidebarComponent {
+export class SidebarComponent implements OnInit{
+  @Input() smallScreen = false;
+  @Output() onToggleSidenav: EventEmitter<SidenavToggle>=new EventEmitter();
+  screenWidth = 0;
+
   isCollapsed = false;
   userName = localStorage.getItem('name');
   userRole = localStorage.getItem('userRole');
@@ -22,8 +32,13 @@ export class SidebarComponent {
     }
   }
 
+  ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
+  }
+
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
+    this.onToggleSidenav.emit({screenWidth: this.screenWidth, collapse: this.isCollapsed, smallScreen: this.smallScreen});
   }
 
   getFilteredNavbarItems() {

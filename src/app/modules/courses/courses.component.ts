@@ -69,6 +69,7 @@ export class CoursesComponent {
         this.loading = false;
         this.dataSource.data = data;
         this.groupedDataArray = this.groupDataByCourse(data);
+        console.log(this.groupedDataArray);
       },
       (error) => {
         console.error('Error al obtener los datos:', error);

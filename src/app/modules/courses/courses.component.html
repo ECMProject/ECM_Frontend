@@ -34,10 +34,10 @@
 
   <div *ngFor="let group of groupedDataArray | values">
     <h2 class="course-subtitle" style="font-size: 20px">
-      {{ group.course.cour_description }}
+      <i class="bx bxs-book-alt"></i> {{ group.course.cour_description }}
     </h2>
 
-    <div *ngIf="dataSource.data.length > 0; else noDataMessage">
+    <div *ngIf="groupedDataArray; else noDataMessage">
       <table mat-table [dataSource]="group.students" class="custom-mat-table">
         <!-- Definiciones de las columnas de la tabla -->
         <ng-container matColumnDef="name">

@@ -44,7 +44,23 @@ export class RegisterComponent {
   }
 
   register(): void {
-    console.log("mami");
+    //Register process
+    // .......... REGISTER LOGIC .............. //
+    //Login to the account after registration
+    this.authService.login(this.documento).subscribe(
+      (response) => {
+        if (!response.data) {
+          localStorage.setItem('userId', response[0].memb_id);
+          localStorage.setItem('name', response[0].memb_name);
+          localStorage.setItem('userRole', response[0].memb_role);
+          this.authService.setLoggedIn(true);
+          this.router.navigate(['/seasons']);
+        }
+      },
+      (error) => {
+        console.log('Bad Credentials');
+      }
+    );
   }
 
   getCoursesList() {
