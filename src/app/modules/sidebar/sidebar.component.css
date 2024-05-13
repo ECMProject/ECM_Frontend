@@ -132,16 +132,7 @@
   background-color: var(--bg-color-alternative);
 }
 
-/* @media (max-width: 1024px) {
-  .sidebar {
-    width: 5.5rem;
-  }
-  .collapsed {
-    width: 3rem;
-  }
-} */
-
-@media (max-width: 766px) {
+@media (max-width: 765px) {
   .sidebar {
     width: 100%;
     height: auto;
@@ -166,5 +157,29 @@
   }
   .sidenav-link-text {
     margin-left: 0;
+  }
+}
+
+@media (max-width: 415px) {
+  .sidebar {
+    display: none;
+  }
+
+  .floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 60px;
+    font-size: 24px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   }
 }

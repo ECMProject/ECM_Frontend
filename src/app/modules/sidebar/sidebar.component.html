@@ -42,8 +42,20 @@
       ></span>
     </a>
   </li>
-
-  <div class="mobile-menu-toggle" (click)="toggleSidebar()">
-    <i class="bx bx-menu"></i>
-  </div>
 </nav>
+
+<button class="floating-button">
+  <i class="bx bx-menu"></i>
+</button>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    console.log("click");
+    const sidebar = document.querySelector(".sidebar");
+    const floatingButton = document.querySelector(".floating-button");
+
+    floatingButton.addEventListener("click", function() {
+      sidebar.classList.toggle("collapsed");
+    });
+  });
+</script>

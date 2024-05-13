@@ -10,7 +10,7 @@ export class BodyComponent {
   @Input() screenWidth = 0;
 
   getBodyClass(): string {
-    let styleClass = '';
+    let styleClass = 'body-md-screen';
     //when collapsed is true
     if (this.collapsed) {
       styleClass = 'body-trimmed';

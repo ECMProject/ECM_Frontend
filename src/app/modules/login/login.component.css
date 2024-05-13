@@ -238,7 +238,7 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
-@media screen and (max-width: 787px) {
+@media screen and (max-width: 765px) {
   .container {
     flex-direction: column;
     align-items: center;
@@ -254,13 +254,33 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 
   .school-text h1 {
-    font-size: 36px;
+    font-size: 33px;
   }
 
   .welcome-text h3 {
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .right-side .subtitle-text {
+    font-size: 25px;
+    margin: 0.4rem 1rem;
+  }
+
+  .right-side .input-container input,
+  .right-side .submit-button {
+    margin: 0.4rem 1rem;
+  }
+
+  .right-side .submit-button {
+    width: 90%;
+  }
+
+  .right-side .input-container input {
+    width: 90%;
   }
 }

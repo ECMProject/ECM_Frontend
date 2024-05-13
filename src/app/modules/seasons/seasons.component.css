@@ -33,10 +33,11 @@ body::-webkit-scrollbar {
 }
 
 .mdc-data-table__table {
-  min-width: 97%;
+  min-width: 0;
 }
 
 .custom-mat-table {
+  width: 97%;
   border-radius: 20px;
   margin: 1rem;
   overflow: hidden;
@@ -45,7 +46,7 @@ body::-webkit-scrollbar {
 
 .th-column,
 .td-column {
-  padding: 1rem;
+  padding: 0.9rem;
   text-align: left;
   border-collapse: collapse;
 }
@@ -149,7 +150,6 @@ body::-webkit-scrollbar {
     font-size: 10px;
   }
   .custom-mat-table {
-    margin-right: 16px;
     margin-top: 16px;
     margin-left: 0px;
     margin-bottom: 16px;
@@ -161,6 +161,39 @@ body::-webkit-scrollbar {
   }
   .button-detail i {
     font-size: 18px;
+    margin-left: 4px;
+  }
+  .button-detail span {
+    display: none;
+  }
+}
+
+@media (max-width: 415px) { 
+  .content {
+    margin-left: 0;
+  }
+  .td-column {
+    font-size: 12px;
+  }
+  .custom-mat-table {
+    width: 100%;
+    margin-right: 0px;
+    margin-top: 16px;
+    margin-left: 0px;
+    margin-bottom: 16px;
+  }
+
+  .mat-mdc-table {
+    table-layout: fixed;
+  }
+
+  .button-detail {
+    align-items: center;
+    border-radius: 10px;
+    padding: 0.3rem;
+  }
+  .button-detail i {
+    font-size: 16px;
     margin-left: 4px;
   }
   .button-detail span {

@@ -23,13 +23,33 @@
   margin-left: 0;
 }
 
-::ng-deep body > app-root > app-body > .body-trimmed > app-seasons > .content {
+::ng-deep body > app-root > app-body > .body-trimmed > app-seasons > .content,
+::ng-deep body > app-root > app-body > .body-trimmed > app-courses > .content,
+::ng-deep body > app-root > app-body > .body-trimmed > app-inscription > .content,
+::ng-deep body > app-root > app-body > .body-trimmed > app-progres > .content  {
   margin-left: 6rem;
 }
 
 @media (max-width: 1250px) {
-  ::ng-deep body > app-root > app-body > .body-trimmed > app-seasons > .content {
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-seasons > .content,
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-courses > .content,
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-inscription > .content,
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-progres > .content {
     margin-left: 4rem;
+  }
+
+  .body-md-screen {
+    width: 90%;
+    margin-left: 4rem;
+  }
+}
+
+@media (max-width: 414px) {
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-seasons > .content,
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-courses > .content,
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-inscription > .content,
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-progres > .content {
+    margin-left: 0.2rem;
   }
 
   .body-md-screen {
