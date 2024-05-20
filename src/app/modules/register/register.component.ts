@@ -6,6 +6,7 @@ import { Course} from 'src/app/models/student';
 import { RegisterDialogComponent } from '../register-dialog/register-dialog.component';
 import { CourseService } from 'src/app/services/courses.service';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { MemberService } from 'src/app/services/members.service';
 
 @Component({
   selector: 'app-register',
@@ -33,7 +34,7 @@ export class RegisterComponent {
   numeroCelular: string;
 
   constructor(private authService: AuthService, private router: Router, 
-    private dialog:MatDialog, private courseService: CourseService) {
+    private dialog:MatDialog, private courseService: CourseService, private memberService: MemberService) {
     this.nombres = '';
     this.apellidos = '';
     this.tipoDocumento = '';
@@ -43,34 +44,29 @@ export class RegisterComponent {
     this.numeroCelular = '';
   }
 
-  register(): void {
-    //Register process
-    // .......... REGISTER LOGIC .............. //
-    //Login to the account after registration
-    this.authService.login(this.documento).subscribe(
-      (response) => {
-        if (!response.data) {
-          localStorage.setItem('userId', response[0].memb_id);
-          localStorage.setItem('name', response[0].memb_name);
-          localStorage.setItem('userRole', response[0].memb_role);
-          this.authService.setLoggedIn(true);
-          this.router.navigate(['/seasons']);
-        }
-      },
-      (error) => {
-        console.log('Bad Credentials');
-      }
-    );
-  }
+  openDialog() {
+    const formData = {
+      memb_name: this.nombres,
+      memb_surname: this.apellidos,
+      memb_typedni: this.tipoDocumento,
+      memb_dni: this.documento,
+      birthdate: this.fechaCumpleanos,
+      memb_zone: this.zona,
+      memb_mobil: this.numeroCelular
+    };
 
-  getCoursesList() {
     this.courseService.getCoursesList().subscribe(
       (data) => {
         const dialogRef = this.dialog.open(RegisterDialogComponent, {
           width: '400px',
           height: '400px',
-          data: { cursos: data}
+          data: {cursos: data, personalData: formData},
         });
+      
+        dialogRef.afterClosed().subscribe(() => {
+          this.router.navigate(['/login']);
+        });
+        
       },
       (error) => {
         console.error('Error al obtener los datos:', error);

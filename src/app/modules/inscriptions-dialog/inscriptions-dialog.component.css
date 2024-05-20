@@ -8,6 +8,11 @@
   padding: 0;
 }
 
+.main-content {
+  background: linear-gradient(to bottom, var(--bg-color) 7%, white 7%);
+  width: 350px;
+}
+
 .button-detail {
   font-family: "Lato", sans-serif;
   background-color: var(--button-color);

@@ -9,6 +9,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { CommonModule } from '@angular/common';
 
@@ -42,7 +43,8 @@ const registerRoutes: Route[] = [
     FormsModule,
     MatSelectModule,
     MatOptionModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSlideToggleModule,
     // Include MatSortModule
   ]
 })

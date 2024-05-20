@@ -107,8 +107,7 @@ export class InscriptionsComponent {
   
         this.studentService.inscribirStudent(data).subscribe(
           (response) => {
-            alert("Exitoso");
-            console.log('Inscripción exitosa', data);
+            alert("Inscripción exitosa");
           },
           (error) => {
             console.error('Error al inscribir al estudiante', error);

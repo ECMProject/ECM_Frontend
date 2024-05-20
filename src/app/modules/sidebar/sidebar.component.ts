@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit{
   @Output() onToggleSidenav: EventEmitter<SidenavToggle>=new EventEmitter();
   screenWidth = 0;
 
-  isCollapsed = true;
+  isCollapsed = false;
   userName = localStorage.getItem('name');
   userRole = localStorage.getItem('userRole');
   navItems = navbarItems;

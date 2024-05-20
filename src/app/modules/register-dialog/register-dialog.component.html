@@ -7,11 +7,20 @@
     <li *ngFor="let curso of cursos">
       <label>
         <span class="course-description">{{ curso.cour_description }}</span>
-        <input type="checkbox" [value]="curso" class="checkbox-input" />
+        <input
+          type="checkbox"
+          [checked]="cursosSeleccionados.includes(curso)"
+          class="checkbox-input"
+          (change)="toggleCurso(curso)"
+        />
       </label>
     </li>
+    <div class="checkbox-container">
+      <input type="checkbox" [value]="false" class="checkbox-input" />
+      <span class="course-description">No he llevado cursos</span>
+    </div>
     <div class="button-div">
-      <button class="button-detail">Submit</button>
+      <button class="button-detail" (click)="register()">Submit</button>
     </div>
   </ul>
 </div>
