@@ -112,6 +112,31 @@ body::-webkit-scrollbar {
   animation: spin 0.7s linear infinite;
 }
 
+.mobile-view {
+  display: none;
+}
+
+.list-item {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.list-item p {
+  margin: 5px 0;
+}
+
+.icon-with-text {
+  display: flex;
+  align-items: center;
+}
+
+.icon-season {
+  margin: 1rem;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -121,9 +146,24 @@ body::-webkit-scrollbar {
   }
 }
 
+@media (max-width: 1200px) {
+  .button-detail {
+    align-items: center;
+    border-radius: 10px;
+    padding: 0.3rem;
+  }
+  .button-detail i {
+    font-size: 18px;
+    margin-left: 4px;
+  }
+  .button-detail span {
+    display: none;
+  }
+}
+
 @media (max-width: 1124px) {
   .content {
-    margin-left: 5rem;
+    margin-left: 8rem;
   }
   .td-column {
     font-size: 13px;
@@ -139,6 +179,18 @@ body::-webkit-scrollbar {
   }
   .button-detail span {
     display: none;
+  }
+}
+
+@media (max-width: 1050px) {
+  .content {
+    margin-left: 6rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .content {
+    margin-left: 5rem;
   }
 }
 
@@ -166,27 +218,18 @@ body::-webkit-scrollbar {
   .button-detail span {
     display: none;
   }
+  .desktop-view {
+    display: none;
+  }
+  .mobile-view {
+    display: block;
+  }
 }
 
-@media (max-width: 415px) { 
+@media (max-width: 415px) {
   .content {
     margin-left: 0;
   }
-  .td-column {
-    font-size: 12px;
-  }
-  .custom-mat-table {
-    width: 100%;
-    margin-right: 0px;
-    margin-top: 16px;
-    margin-left: 0px;
-    margin-bottom: 16px;
-  }
-
-  .mat-mdc-table {
-    table-layout: fixed;
-  }
-
   .button-detail {
     align-items: center;
     border-radius: 10px;
@@ -198,5 +241,14 @@ body::-webkit-scrollbar {
   }
   .button-detail span {
     display: none;
+  }
+  .season-title {
+    margin-bottom: 0.5rem;
+  }
+  .desktop-view {
+    display: none;
+  }
+  .mobile-view {
+    display: block;
   }
 }

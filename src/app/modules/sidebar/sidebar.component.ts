@@ -20,6 +20,7 @@ export class SidebarComponent implements OnInit{
   screenWidth = 0;
 
   isCollapsed = false;
+  isMobileSidebarVisible = false;
   userName = localStorage.getItem('name');
   userRole = localStorage.getItem('userRole');
   navItems = navbarItems;
@@ -39,6 +40,11 @@ export class SidebarComponent implements OnInit{
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
     this.onToggleSidenav.emit({screenWidth: this.screenWidth, collapse: this.isCollapsed, smallScreen: this.smallScreen});
+  }
+
+  toggleMobileSidebar() {
+    this.isMobileSidebarVisible = !this.isMobileSidebarVisible;
+    console.log(this.isMobileSidebarVisible);
   }
 
   getFilteredNavbarItems() {

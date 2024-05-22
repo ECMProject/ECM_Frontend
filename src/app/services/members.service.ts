@@ -11,11 +11,9 @@ import { Member } from '../models/student';
 @Injectable({
   providedIn: 'root',
 })
-
 export class MemberService {
   // Endpoint Backend
   //basePath = 'http://127.0.0.1:8000/ecm/members';
-  //basePath = 'https://backend-ecm.onrender.com/ecm/members';
 
   basePath = 'http://209.38.192.175/backend/ecm/members';
 
@@ -45,15 +43,21 @@ export class MemberService {
   }
 
   getMembersByName(name: string): Observable<Member[]> {
-    let url = ''
-    if (name.trim() === ''){
-        url = `${this.basePath}/list`;
+    let url = '';
+    if (name.trim() === '') {
+      url = `${this.basePath}/list`;
     } else {
-        url = `${this.basePath}/list?name=${name}`;
+      url = `${this.basePath}/list?name=${name}`;
     }
 
     return this.http
       .get<Member[]>(url)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  registerMember(personalData: any): Observable<any> {
+    return this.http
+      .post<any>(this.basePath, personalData)
       .pipe(retry(2), catchError(this.handleError));
   }
 }

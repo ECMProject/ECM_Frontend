@@ -44,6 +44,20 @@
   }
 }
 
+@media (max-width: 766px) {
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-seasons > .content,
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-courses > .content,
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-inscription > .content,
+  ::ng-deep body > app-root > app-body > .body-trimmed > app-progres > .content {
+    margin-left: 4rem;
+  }
+
+  .body-md-screen {
+    width: 90%;
+    margin-left: 2rem;
+  }
+}
+
 @media (max-width: 414px) {
   ::ng-deep body > app-root > app-body > .body-trimmed > app-seasons > .content,
   ::ng-deep body > app-root > app-body > .body-trimmed > app-courses > .content,
@@ -54,6 +68,6 @@
 
   .body-md-screen {
     width: 90%;
-    margin-left: 4rem;
+    margin-left: 1.5rem;
   }
 }

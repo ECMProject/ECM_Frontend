@@ -16,8 +16,7 @@ import { Course } from './../models/student';
 export class CourseService {
   // Endpoint Backend
   //basePath = 'http://127.0.0.1:8000/ecm/courses';
-  //basePath = 'https://backend-ecm.onrender.com/ecm/courses';
-
+  
   basePath = 'http://209.38.192.175/backend/ecm/courses';
 
   httpOptions = {
@@ -49,6 +48,12 @@ export class CourseService {
     const url = `${this.basePath}/list`;
     return this.http
       .get<Course[]>(url)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  createSeason(cursoslist: any, member_id: number): Observable<any> {
+    return this.http
+      .post<any>(this.basePath, cursoslist)
       .pipe(retry(2), catchError(this.handleError));
   }
 }

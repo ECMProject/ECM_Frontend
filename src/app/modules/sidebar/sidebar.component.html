@@ -6,7 +6,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
 </head>
 
-<nav class="sidebar" [ngClass]="{ collapsed: isCollapsed }">
+<!-- Botón flotante -->
+<button class="floating-btn" (click)="toggleMobileSidebar()">
+  <i class="bx bx-menu"></i>
+</button>
+
+<nav class="sidebar" [ngClass]="{ collapsed: isCollapsed, 'mobile-visible': isMobileSidebarVisible}">
   <div style="margin-bottom: 1.5rem; margin-top: 0.6rem;" class="toggle-btn" (click)="toggleSidebar()">
     <span class="icon" *ngIf="!isCollapsed"><i class="bx bx-x"></i></span>
     <span class="icon" *ngIf="isCollapsed"
@@ -43,19 +48,3 @@
     </a>
   </li>
 </nav>
-
-<button class="floating-button">
-  <i class="bx bx-menu"></i>
-</button>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    console.log("click");
-    const sidebar = document.querySelector(".sidebar");
-    const floatingButton = document.querySelector(".floating-button");
-
-    floatingButton.addEventListener("click", function() {
-      sidebar.classList.toggle("collapsed");
-    });
-  });
-</script>

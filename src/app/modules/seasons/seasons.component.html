@@ -8,10 +8,10 @@
 
 <div class="content">
   <h1 class="season-title">
-    <i class="bx bx-calendar" style="margin: 20px"></i>Mis Ciclos
+    <i class="bx bx-calendar icon-season"></i>Mis Ciclos
   </h1>
 
-  <table mat-table [dataSource]="dataSource" class="custom-mat-table">
+  <table mat-table [dataSource]="dataSource" class="custom-mat-table desktop-view">
     <ng-container matColumnDef="period">
       <th mat-header-cell *matHeaderCellDef class="th-column">Periodo</th>
       <td mat-cell *matCellDef="let element" class="td-column">
@@ -104,7 +104,50 @@
   </div>
 
   <mat-paginator
+  class="desktop-view"
     [pageSize]="5"
     [pageSizeOptions]="[5, 10, 15, 20]"
   ></mat-paginator>
+
+    <!-- Lista para vista en móvil -->
+    <div class="mobile-view">
+      <div *ngFor="let element of studentSeasons" class="list-item">
+        <p><strong>Periodo:</strong> {{ element.stud_season.seas_period.peri_description }}</p>
+        <p><strong>Curso:</strong> {{ element.stud_season.seas_course.cour_description }}</p>
+        <p><strong>Profesor:</strong> {{ element.stud_season.seas_teacher.memb_name + " " + element.stud_season.seas_teacher.memb_surname }}</p>
+        <p><strong>Modo:</strong>
+          <ng-container *ngIf="element.stud_season.seas_mode.mode_name === 'Virtual'">
+            <span class="icon-with-text">
+              <i class="bx bxl-zoom icon" style="margin-right: 5px"></i> Virtual
+            </span>
+          </ng-container>
+          <ng-container *ngIf="element.stud_season.seas_mode.mode_name === 'Online'">
+            <span class="icon-with-text">
+              <i class="bx bx-desktop icon" style="margin-right: 5px"></i> Online
+            </span>
+          </ng-container>
+          <ng-container *ngIf="element.stud_season.seas_mode.mode_name === 'Presencial'">
+            <span class="icon-with-text">
+              <i class="bx bx-user icon" style="margin-right: 5px"></i> Presencial
+            </span>
+          </ng-container>
+        </p>
+        <p><strong>Nota:</strong>
+          <div class="nota-circle"
+            [ngClass]="{
+              aprobado: element.seas_final >= 13,
+              reprobado: element.seas_final < 13 && element.seas_final !== null,
+              none: element.seas_final === null
+            }">
+            {{ element.seas_final !== null ? element.seas_final : "None" }}
+          </div>
+        <p><strong>Acciones:</strong>
+          <button class="button-detail" (click)="verDetalles(element)">
+            <i class="bx bx-show bx-show-icon" style="margin-right: 5px; margin-top: 2px"></i>
+            <span class="button-text">Detalles</span>
+          </button>
+        </p>
+      </div>
+    </div>
+
 </div>
