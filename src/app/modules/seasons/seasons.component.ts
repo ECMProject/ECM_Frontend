@@ -7,6 +7,12 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
+interface LevelColors {
+    [level: number]: {
+        backgroundColor: string;
+    };
+}
+
 @Component({
   selector: 'app-seasons',
   templateUrl: './seasons.component.html',
@@ -30,6 +36,23 @@ export class SeasonsComponent {
 
   loading: boolean = false;
 
+  levelColors: LevelColors = {
+    1: {
+        backgroundColor: '#46F06B',
+    },
+    2: {
+        backgroundColor: '#F0E946',
+    },
+    3: {
+        backgroundColor: '#F04646',
+    },
+    0: {
+        backgroundColor: '#F04646',
+    }
+
+    // Add more levels here
+};
+
   constructor(
     public dialog: MatDialog,
     private studentService: StudentService
@@ -41,6 +64,16 @@ export class SeasonsComponent {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  getLevelColor(level: number | string, colorType: 'backgroundColor'): string {
+      // Ensure level is a number before accessing levelColors
+      if (typeof level === 'number') {
+          return this.levelColors[level] ? this.levelColors[level][colorType] : '#468AF0';
+      } else {
+          // Handle the case where level is not a number
+          return '#468AF0'; // or any default value
+      } 
   }
 
   getData() {

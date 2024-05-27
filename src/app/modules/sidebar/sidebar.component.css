@@ -160,6 +160,7 @@
     border-radius: 0;
     transform: translateX(-100%);
     transition: width 0.8s;
+    
   }
 
   .sidebar.mobile-visible {

@@ -86,7 +86,7 @@ body::-webkit-scrollbar {
 }
 
 .button-detail {
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: var(--button-color);
   border: none;
   border-radius: 15px;
@@ -114,27 +114,86 @@ body::-webkit-scrollbar {
 
 .mobile-view {
   display: none;
+  padding: 0.6rem;
 }
 
-.list-item {
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-}
-
-.list-item p {
-  margin: 5px 0;
-}
-
-.icon-with-text {
+.list-season {
+  width: calc(100% - 1rem);
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 2px 9px 34px -40px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 2px 34px 49px -40px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 2px 9px 34px -40px rgba(0, 0, 0, 0.25);
+}
+
+.icon-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  background-color: #468af0;
+  border-radius: 10px;
+  margin-right: 0.6rem;
+  flex-shrink: 0;
+}
+
+.icon-list-center {
+  font-size: 45px;
+  color: white;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.icon-season {
-  margin: 1rem;
+.text-container {
+  flex: 1;
+}
+
+.item-course {
+  font-size: 3.5vw;
+  font-weight: 500;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  word-break: break-word;
+}
+
+.item-mode {
+  font-size: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+}
+
+.progress {
+  height: 8px;
+  background-color: #468af0;
+  border-radius: 5px;
+}
+
+.button-text {
+  font-size: 14px;
+}
+
+.button-container {
+  width: 80px;
+  height: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes spin {
@@ -229,21 +288,28 @@ body::-webkit-scrollbar {
 @media (max-width: 415px) {
   .content {
     margin-left: 0;
+    padding: 0;
   }
   .button-detail {
     align-items: center;
-    border-radius: 10px;
-    padding: 0.3rem;
+    border-radius: 9px;
+    background-color: #466ef0;
   }
   .button-detail i {
-    font-size: 16px;
-    margin-left: 4px;
+    font-size: 25px;
+    margin-left: 0;
+    transform: translateY(1px);
   }
   .button-detail span {
     display: none;
   }
   .season-title {
-    margin-bottom: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 0.3rem;
+    margin-left: 0.8rem;
+  }
+  .icon-season {
+    margin-right: 0.5rem;
   }
   .desktop-view {
     display: none;
