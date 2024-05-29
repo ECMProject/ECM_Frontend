@@ -292,6 +292,14 @@ body::-webkit-scrollbar {
   }
 }
 
+@media (max-width: 766px) {
+  .button-detail i {
+    font-size: 25px;
+    margin-left: 0;
+    transform: translateY(1px);
+  }
+}
+
 @media (max-width: 415px) {
   .content {
     padding: 0;
@@ -300,11 +308,6 @@ body::-webkit-scrollbar {
     align-items: center;
     border-radius: 9px;
     background-color: #466ef0;
-  }
-  .button-detail i {
-    font-size: 25px;
-    margin-left: 0;
-    transform: translateY(1px);
   }
   .button-detail span {
     display: none;
