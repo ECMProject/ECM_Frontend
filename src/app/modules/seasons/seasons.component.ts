@@ -38,19 +38,14 @@ export class SeasonsComponent {
 
   levelColors: LevelColors = {
     1: {
-        backgroundColor: '#46F06B',
+        backgroundColor: '#42D663',
     },
     2: {
-        backgroundColor: '#F0E946',
+        backgroundColor: '#E5DF42',
     },
     3: {
         backgroundColor: '#F04646',
     },
-    0: {
-        backgroundColor: '#F04646',
-    }
-
-    // Add more levels here
 };
 
   constructor(
@@ -67,12 +62,10 @@ export class SeasonsComponent {
   }
 
   getLevelColor(level: number | string, colorType: 'backgroundColor'): string {
-      // Ensure level is a number before accessing levelColors
       if (typeof level === 'number') {
           return this.levelColors[level] ? this.levelColors[level][colorType] : '#468AF0';
       } else {
-          // Handle the case where level is not a number
-          return '#468AF0'; // or any default value
+          return '#468AF0';
       } 
   }
 

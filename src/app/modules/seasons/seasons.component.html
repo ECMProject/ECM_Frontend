@@ -116,7 +116,15 @@
   <!-- Lista para vista en móvil -->
   <div class="mobile-view">
     <div *ngFor="let element of studentSeasons" class="list-season">
-      <div class="icon-list" [ngStyle]="{'background-color': getLevelColor(element.stud_season.seas_course.cour_level, 'backgroundColor')}">
+      <div
+        class="icon-list"
+        [ngStyle]="{
+          'background-color': getLevelColor(
+            element.stud_season.seas_course.cour_level,
+            'backgroundColor'
+          )
+        }"
+      >
         <i class="bx bx-shape-square icon-list-center"></i>
       </div>
       <div class="text-container">
@@ -127,36 +135,45 @@
           <ng-container
             *ngIf="element.stud_season.seas_mode.mode_name === 'Virtual'"
           >
-          <span class="icon-with-text">
-            <i class="bx bxl-zoom icon" style="margin-right: 5px"></i> Virtual
-          </span>
+            <span class="icon-with-text">
+              <i class="bx bxl-zoom icon" style="margin-right: 5px"></i> Virtual
+            </span>
           </ng-container>
           <ng-container
             *ngIf="element.stud_season.seas_mode.mode_name === 'Online'"
           >
-          <span class="icon-with-text">
-            <i class="bx bx-desktop icon" style="margin-right: 5px"></i> Online
-          </span>
-
+            <span class="icon-with-text">
+              <i class="bx bx-desktop icon" style="margin-right: 5px"></i>
+              Online
+            </span>
           </ng-container>
           <ng-container
             *ngIf="element.stud_season.seas_mode.mode_name === 'Presencial'"
           >
-          <span class="icon-with-text">
-            <i class="bx bx-user icon" style="margin-right: 5px"></i> Presencial
-          </span>
+            <span class="icon-with-text">
+              <i class="bx bx-user icon" style="margin-right: 5px"></i>
+              Presencial
+            </span>
           </ng-container>
         </p>
         <div class="progress-bar">
-          <div class="progress" [ngStyle]="{'background-color': getLevelColor(element.stud_season.seas_course.cour_level, 'backgroundColor')}">
+          <div
+            class="progress"
+            [ngStyle]="{
+              'background-color': getLevelColor(
+                element.stud_season.seas_course.cour_level,
+                'backgroundColor'
+              )
+            }"
+          ></div>
         </div>
       </div>
-    </div>
-    <div class="button-container">
-      <button class="button-detail" (click)="verDetalles(element)">
-        <i class='bx bx-log-in-circle' ></i>
-        <span class="button-text">Detalles</span>
-      </button>
+      <div class="button-container">
+        <button class="button-detail" (click)="verDetalles(element)">
+          <i class="bx bx-log-in-circle"></i>
+          <span class="button-text">Detalles</span>
+        </button>
+      </div>
     </div>
   </div>
 </div>

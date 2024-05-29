@@ -58,7 +58,7 @@
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 415px) {
   ::ng-deep body > app-root > app-body > .body-trimmed > app-seasons > .content,
   ::ng-deep body > app-root > app-body > .body-trimmed > app-courses > .content,
   ::ng-deep body > app-root > app-body > .body-trimmed > app-inscription > .content,

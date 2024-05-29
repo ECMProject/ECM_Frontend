@@ -126,9 +126,16 @@ body::-webkit-scrollbar {
   padding: 0.6rem;
   border-radius: 8px;
   background-color: #f9f9f9;
-  box-shadow: 2px 9px 34px -40px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 2px 34px 49px -40px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 2px 9px 34px -40px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
+}
+
+.list-season:hover {
+  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
 }
 
 .icon-list {
@@ -287,7 +294,6 @@ body::-webkit-scrollbar {
 
 @media (max-width: 415px) {
   .content {
-    margin-left: 0;
     padding: 0;
   }
   .button-detail {
