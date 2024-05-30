@@ -3,12 +3,19 @@
     rel="stylesheet"
     href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
   />
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
 </head>
 
 <div class="content">
   <h1 class="courses-title">
-    <i class="bx bx-pencil" style="margin: 10px"></i>Inscripciones
+    <i class="bx bx-pencil icon-inscription" style="margin-right: 7px"></i
+    >Inscripciones
   </h1>
   <input
     type="text"
@@ -18,7 +25,7 @@
     (input)="filterSeasons()"
   />
 
-  <div class="filtro-categorias">
+  <div class="filtro-categorias" class="desktop-view">
     <mat-chip-listbox #chipList>
       <mat-chip-option
         style="padding: 0.1rem 0.3rem"
@@ -33,11 +40,19 @@
     </mat-chip-listbox>
   </div>
 
-  <table mat-table [dataSource]="dataSource" class="custom-mat-table">
-
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="custom-mat-table desktop-view"
+  >
     <ng-container matColumnDef="course">
       <th mat-header-cell *matHeaderCellDef class="th-column">Curso</th>
-      <td mat-cell *matCellDef="let element" class="td-column" style="text-align:justify">
+      <td
+        mat-cell
+        *matCellDef="let element"
+        class="td-column"
+        style="text-align: justify"
+      >
         {{ element.seas_course.cour_description }}
       </td>
     </ng-container>
@@ -121,7 +136,9 @@
     <ng-container matColumnDef="shift">
       <th mat-header-cell *matHeaderCellDef class="th-column">Turno</th>
       <td mat-cell *matCellDef="let element" class="td-column">
-        <ng-container *ngIf="element.seas_schedule.sche_starttime; else onlineText">
+        <ng-container
+          *ngIf="element.seas_schedule.sche_starttime; else onlineText"
+        >
           {{ element.seas_schedule.sche_starttime }}
         </ng-container>
         <ng-template #onlineText>Online</ng-template>
@@ -132,22 +149,150 @@
       <th mat-header-cell *matHeaderCellDef class="th-column">Acciones</th>
       <td mat-cell *matCellDef="let element" class="td-column">
         <button class="button-detail" (click)="inscribirme(element)">
-          <i class="bx bx-pencil" style="margin-right: 5px; margin-top: 2px"></i
-          >Inscribirme
+          <i
+            class="bx bx-pencil"
+            style="margin-right: 5px; margin-top: 2px"
+          ></i>
+          <span class="button-text">Inscribirse</span>
         </button>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <mat-paginator
+      [pageSize]="5"
+      [pageSizeOptions]="[5, 10, 15, 20]"
+    ></mat-paginator>
   </table>
 
   <div class="spinner-container" *ngIf="loading">
     <div class="spinner"></div>
   </div>
 
-  <mat-paginator
-    [pageSize]="5"
-    [pageSizeOptions]="[5, 10, 15, 20]"
-  ></mat-paginator>
+  <div class="mobile-view">
+    <div class="custom-select">
+      <select [(ngModel)]="selectedCategory" (ngModelChange)="filtrarPorCategoria($event)">
+        <option *ngFor="let categoria of categorias" [value]="categoria">
+          {{ categoria }}
+        </option>
+      </select>
+    </div>
+    <div *ngFor="let element of seasonsFilter" class="card">
+      <h1 class="course-title-mobile">
+        {{ element.seas_course.cour_description }}
+      </h1>
+      <p class="professor-name">
+        {{
+          element.seas_teacher.memb_name +
+            " " +
+            element.seas_teacher.memb_surname
+        }}
+      </p>
+      <hr class="separator" />
+
+      <div class="course-details">
+        <div class="column">
+          <div class="course-feature">
+            <ng-container *ngIf="element.seas_course.cour_level === 1">
+              <span class="icon-with-text" style="transform: translateY(-6px)">
+                <i
+                  class="bx bxs-up-arrow icon"
+                  style="
+                    color: rgb(3, 172, 3);
+                    margin-right: 5px;
+                    transform: translateY(4px);
+                  "
+                ></i>
+                Nivel 1
+              </span>
+            </ng-container>
+            <ng-container *ngIf="element.seas_course.cour_level === 2">
+              <span class="icon-with-text" style="transform: translateY(-6px)">
+                <i
+                  class="bx bxs-up-arrow icon"
+                  style="
+                    color: rgb(228, 228, 17);
+                    margin-right: 5px;
+                    transform: translateY(4px);
+                  "
+                ></i>
+                Nivel 2
+              </span>
+            </ng-container>
+            <ng-container *ngIf="element.seas_course.cour_level === 3">
+              <span class="icon-with-text" style="transform: translateY(-6px)">
+                <i
+                  class="bx bxs-up-arrow icon"
+                  style="
+                    color: rgb(246, 13, 13);
+                    margin-right: 5px;
+                    transform: translateY(4px);
+                  "
+                ></i>
+                Nivel 3
+              </span>
+            </ng-container>
+            <ng-container *ngIf="element.seas_course.cour_level === 4">
+              <span class="icon-with-text" style="transform: translateY(-6px)">
+                <i
+                  class="bx bxs-up-arrow icon"
+                  style="
+                    color: rgb(74, 101, 220);
+                    margin-right: 5px;
+                    transform: translateY(4px);
+                  "
+                ></i>
+                Basico
+              </span>
+            </ng-container>
+          </div>
+          <div class="course-feature">
+            <ng-container *ngIf="element.seas_mode.mode_name === 'Virtual'">
+              <span class="icon-with-text">
+                <i
+                  class="bx bxl-zoom icon"
+                  style="margin-right: 5px; transform: translateY(5px)"
+                ></i>
+                Virtual
+              </span>
+            </ng-container>
+            <ng-container *ngIf="element.seas_mode.mode_name === 'Online'">
+              <span class="icon-with-text">
+                <i
+                  class="bx bx-desktop icon"
+                  style="margin-right: 5px; transform: translateY(5px)"
+                ></i>
+                Online
+              </span>
+            </ng-container>
+            <ng-container *ngIf="element.seas_mode.mode_name === 'Presencial'">
+              <span class="icon-with-text">
+                <i
+                  class="bx bx-user icon"
+                  style="margin-right: 5px; transform: translateY(3px)"
+                ></i>
+                Presencial
+              </span>
+            </ng-container>
+          </div>
+        </div>
+        <div class="column">
+          <div class="course-feature" style="margin-bottom: 0.4rem">
+            <i class="bx bx-alarm icon"></i>
+            {{ element.seas_schedule.sche_starttime }}
+          </div>
+          <div class="course-feature" style="transform: translateY(4px)">
+            <i
+              class="bx bx-lock-alt icon"
+              style="transform: translateY(-1px)"
+            ></i>
+            Troncal
+          </div>
+        </div>
+      </div>
+      <button class="enroll-button" (click)="inscribirme(element)">Inscribirse</button>
+    </div>
+  </div>
 </div>
