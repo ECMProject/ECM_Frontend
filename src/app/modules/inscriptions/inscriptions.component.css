@@ -324,9 +324,6 @@ body::-webkit-scrollbar {
     margin-left: 0;
     transform: translateY(1px);
   }
-}
-
-@media (max-width: 500px) {
   .courses-title {
     margin-top: 0.5rem;
     margin-bottom: 0.3rem;
@@ -338,7 +335,19 @@ body::-webkit-scrollbar {
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 0.7rem;
-    width: 90%;
+    width: 93%;
+  }
+}
+
+@media (max-width: 600px) {
+  .search-bar {
+    width: 92%;
+  }
+}
+
+@media (max-width: 500px) {
+  .search-bar {
+    width: 91%;
   }
 }
 
