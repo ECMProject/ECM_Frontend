@@ -53,7 +53,7 @@
   border-radius: 0.7rem;
   margin: 0.5rem;
   padding: 0.1rem 1.5rem;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 500;
   max-height: 200px;
   max-width: 510px;
@@ -71,12 +71,12 @@
 
 .material-icons {
   font-size: 24px;
-  color: rgb(255,20,26);
+  color: rgb(255, 20, 26);
   margin-left: 0.2rem;
 }
 
 .completed {
-  color: rgb(70,110,240);
+  color: rgb(70, 110, 240);
 }
 
 .main-list .item-list {
@@ -89,7 +89,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px; /* Ajusta la altura según sea necesario */
+  height: 100px;
 }
 
 .spinner {
@@ -108,5 +108,96 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 1124px) {
+  .content {
+    margin-left: 8rem;
+  }
+}
+
+@media (max-width: 1050px) {
+  .content {
+    margin-left: 6rem;
+  }
+  .course-description {
+    font-size: 11px;
+  }
+  .material-icons {
+    font-size: 20px;
+    margin-left: 0.3rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .content {
+    margin-left: 5rem;
+  }
+  .course-description {
+    font-size: 11px;
+  }
+  .material-icons {
+    font-size: 20px;
+    margin-left: 0.3rem;
+  }
+}
+
+@media (max-width: 766px) {
+  .content {
+    margin-left: 0;
+  }
+  .course-description {
+    font-size: 11px;
+  }
+  .material-icons {
+    font-size: 20px;
+    margin-left: 0.3rem;
+  }
+}
+
+@media (max-width: 415px) {
+  .content {
+    padding: 0;
+    margin-left: 0;
+  }
+  .course-description {
+    font-size: 12px;
+  }
+  .material-icons {
+    font-size: 22px;
+    margin-left: 0.3rem;
+  }
+  .scrollable-content {
+    min-width: 200px;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 4rem;
+    margin: 0.5rem;
+  }
+  .grid-item {
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 380px) {
+  .course-description {
+    font-size: 11px;
+  }
+  .material-icons {
+    font-size: 20px;
+    margin-left: 0.3rem;
+  }
+  .scrollable-content {
+    min-width: 160px;
+  }
+  .grid-item {
+    word-break: break-word;
   }
 }
