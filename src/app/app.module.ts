@@ -23,7 +23,6 @@ import { LoginModule } from './modules/login/login.module';
     RegisterDialogComponent,
     InscriptionsDialogComponent,
     BodyComponent,
-
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

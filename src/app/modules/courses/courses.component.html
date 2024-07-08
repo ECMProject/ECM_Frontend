@@ -32,14 +32,13 @@
     <div class="spinner"></div>
   </div>
 
-  <div *ngFor="let group of groupedDataArray | values">
+  <div *ngFor="let group of groupedDataArray; let i = index">
     <h2 class="course-subtitle" style="font-size: 20px">
       <i class="bx bxs-book-alt"></i> {{ group.course.cour_description }}
     </h2>
 
-    <div *ngIf="groupedDataArray; else noDataMessage">
-      <table mat-table [dataSource]="group.students" class="custom-mat-table">
-        <!-- Definiciones de las columnas de la tabla -->
+    <div *ngIf="group.students.length; else noDataMessage">
+      <table mat-table [dataSource]="group.dataSource" class="custom-mat-table">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef class="th-column">Nombre</th>
           <td mat-cell *matCellDef="let element" class="td-column">
@@ -166,6 +165,7 @@
       <mat-paginator
         [pageSize]="5"
         [pageSizeOptions]="[5, 10, 15, 20]"
+        [length]="group.students.length"
       ></mat-paginator>
     </div>
   </div>

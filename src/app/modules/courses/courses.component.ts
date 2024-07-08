@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, QueryList, ViewChildren } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { ViewChild } from '@angular/core';
@@ -22,7 +22,7 @@ export class ValuesPipe implements PipeTransform {
   styleUrls: ['./courses.component.css'],
 })
 export class CoursesComponent {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChildren(MatPaginator) paginators!: QueryList<MatPaginator>;
   dataSource = new MatTableDataSource<Student>();
   groupedDataArray: any[] = [];
 
@@ -56,7 +56,9 @@ export class CoursesComponent {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    this.paginators.forEach((paginator, index) => {
+      this.groupedDataArray[index].dataSource.paginator = paginator;
+    });
   }
 
   getTeacherData() {
@@ -67,8 +69,16 @@ export class CoursesComponent {
     this.studentService.getTeacherList(parseInt(teacher)).subscribe(
       (data) => {
         this.loading = false;
-        this.dataSource.data = data;
-        this.groupedDataArray = this.groupDataByCourse(data);
+        this.groupedDataArray = this.groupDataByCourse(data).map(group => ({
+          course: group.course,
+          students: group.students,
+          dataSource: new MatTableDataSource(group.students)
+        }));
+        setTimeout(() => {
+          this.paginators.forEach((paginator, index) => {
+            this.groupedDataArray[index].dataSource.paginator = paginator;
+          });
+        });
         console.log(this.groupedDataArray);
       },
       (error) => {
@@ -78,9 +88,9 @@ export class CoursesComponent {
   }
 
   groupDataByCourse(data: any[]): any[] {
-    return data.reduce((acc, student) => {
+    const groupedData = data.reduce((acc, student) => {
       const courseId = student.stud_season.seas_course.cour_id;
-
+  
       if (!acc[courseId]) {
         acc[courseId] = {
           course: student.stud_season.seas_course,
@@ -88,11 +98,14 @@ export class CoursesComponent {
           students: [],
         };
       }
-
+  
       acc[courseId].students.push(student);
       return acc;
     }, {});
+  
+    return Object.values(groupedData);
   }
+  
 
   save(): void {
     this.dataSource.data.forEach((element) => {

@@ -45,6 +45,7 @@ body::-webkit-scrollbar {
 
 .custom-mat-table {
   margin: 0 1rem;
+  margin-bottom: 1rem;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(6, 6, 6, 0.2);
