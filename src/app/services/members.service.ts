@@ -13,9 +13,9 @@ import { Member } from '../models/student';
 })
 export class MemberService {
   // Endpoint Backend
-  basePath = 'http://127.0.0.1:8000/ecm/members';
+  //basePath = 'http://127.0.0.1:8000/ecm/members';
 
-  //basePath = 'http://209.38.192.175/backend/ecm/members';
+  basePath = 'http://209.38.192.175/backend/ecm/members';
 
   httpOptions = {
     headers: new HttpHeaders({
