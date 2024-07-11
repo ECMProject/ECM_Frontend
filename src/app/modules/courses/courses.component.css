@@ -47,7 +47,6 @@ body::-webkit-scrollbar {
   margin: 0 1rem;
   margin-bottom: 1rem;
   border-radius: 20px;
-  overflow: hidden;
   box-shadow: 0 0 10px rgba(6, 6, 6, 0.2);
 }
 
@@ -131,6 +130,10 @@ body::-webkit-scrollbar {
   padding: 0.3rem;
 }
 
+.icon-season {
+  margin: 1.1rem;
+}
+
 .mat-mdc-checkbox.mat-accent {
   --mdc-checkbox-selected-icon-color: var(--button-color);
   --mdc-checkbox-selected-checkmark-color: #fff;
@@ -172,3 +175,83 @@ body::-webkit-scrollbar {
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 1124px) {
+  .content {
+    margin-left: 8rem;
+  }
+  .td-column {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .content {
+    margin-left: 6rem;
+  }
+  .table-responsive {
+    margin-left: 0.6rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .custom-mat-table {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 1rem;
+    width: 100%;
+    display: block;
+  }
+}
+
+@media (max-width: 800px) {
+  .content {
+    margin-left: 5rem;
+  }
+}
+
+@media (max-width: 766px) {
+  .content {
+    margin-left: 0;
+  }
+  .td-column {
+    font-size: 10px;
+  }
+  .season-title {
+    margin-left: 0;
+  }
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .custom-mat-table {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 1rem;
+    width: 100%;
+    display: block;
+  }
+}
+
+@media (max-width: 415px) {
+  .content {
+    padding: 0;
+  }
+  .icon-season {
+    margin-left: 1.3rem;
+    margin-right: 0.8rem;
+  }
+  .season-title {
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+  }
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .custom-mat-table {
+    width: 100%;
+    display: block;
+    margin-left: 1rem;
+  }
+}
+

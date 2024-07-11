@@ -187,6 +187,13 @@ input[type="date"] {
   border-radius: 4px;
 }
 
+.error-telefono {
+  color: red;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 14px;
+}
+
 @media screen and (max-width: 1200px) {
   .left-side {
     width: 50%;

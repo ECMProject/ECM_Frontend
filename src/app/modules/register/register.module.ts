@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { CommonModule } from '@angular/common';
 
@@ -45,6 +46,7 @@ const registerRoutes: Route[] = [
     MatOptionModule,
     MatCheckboxModule,
     MatSlideToggleModule,
+    MatSnackBarModule
     // Include MatSortModule
   ]
 })

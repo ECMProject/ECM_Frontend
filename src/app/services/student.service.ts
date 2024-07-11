@@ -12,13 +12,12 @@ import { Student } from './../models/student';
 @Injectable({
   providedIn: 'root',
 })
-
 export class StudentService {
   // Endpoint Backend
-  //basePath = 'http://127.0.0.1:8000/ecm';
+  basePath = 'http://127.0.0.1:8000/ecm';
   //basePath = 'https://backend-ecm.onrender.com/ecm';
 
-  basePath = 'http://209.38.192.175/backend/ecm';
+  //basePath = 'http://209.38.192.175/backend/ecm';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -78,6 +77,14 @@ export class StudentService {
     return this.http
       .post(url, data, this.httpOptions)
       .pipe(catchError(this.handleError));
+  }
+
+  createDeclarativaStudent(cursoslist: any, member_id: number): Observable<any> {
+    console.log(member_id);
+    const url = `${this.basePath}/student/declarativa`;
+    return this.http
+      .post<any>(url, { cursos: cursoslist, member_id: member_id })
+      .pipe(retry(2), catchError(this.handleError));
   }
 
   updateStudent(studentId: number, updatedData: any): Observable<any> {

@@ -8,7 +8,7 @@
 
 <div class="content">
   <h1 class="season-title">
-    <i class="bx bx-book" style="margin: 20px"></i>Mis Cursos
+    <i class="bx bx-book icon-season"></i>Mis Cursos
   </h1>
 
   <div class="buttons">
@@ -37,7 +37,7 @@
       <i class="bx bxs-book-alt"></i> {{ group.course.cour_description }}
     </h2>
 
-    <div *ngIf="group.students.length; else noDataMessage">
+    <div *ngIf="group.students.length; else noDataMessage" class="table-responsive">
       <table mat-table [dataSource]="group.dataSource" class="custom-mat-table">
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef class="th-column">Nombre</th>
@@ -168,6 +168,10 @@
         [length]="group.students.length"
       ></mat-paginator>
     </div>
+  </div>
+
+  <div class="mobile-view">
+
   </div>
 
   <ng-template #noDataMessage>

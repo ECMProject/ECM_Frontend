@@ -6,7 +6,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
 </head>
 
-<!-- Botón flotante -->
 <button class="floating-btn" (click)="toggleMobileSidebar()">
   <i class="bx bx-menu" style="font-size: 25px;"></i>
 </button>
@@ -14,21 +13,19 @@
 <nav class="sidebar" [ngClass]="{ collapsed: isCollapsed, 'mobile-visible': isMobileSidebarVisible}">
   <div style="margin-bottom: 1.5rem; margin-top: 0.6rem;" class="toggle-btn" (click)="toggleSidebar()">
     <span class="icon" *ngIf="!isCollapsed"><i class="bx bx-x"></i></span>
-    <span class="icon" *ngIf="isCollapsed"
-      ><i class="bx bx-right-arrow"></i
-    ></span>
+    <span class="icon" *ngIf="isCollapsed"><i class="bx bx-right-arrow"></i></span>
   </div>
 
   <ul class="sidenav-nav">
     <li class="sidenav-nav-item" *ngFor="let data of filteredNavbarItems">
       <ng-container *ngIf="data.label !== 'Salir'; else salirBlock">
-        <a class="sidenav-nav-link" [routerLink]="[data.routerLink]">
+        <a class="sidenav-nav-link" [routerLink]="[data.routerLink]" (click)="onNavItemClick()">
           <i class="sidenav-link-icon" [class]="data.icon"></i>
           <span class="sidenav-link-text" *ngIf="!isCollapsed">{{ data.label }}</span>
         </a>
       </ng-container>
       <ng-template #salirBlock>
-        <a class="sidenav-nav-link" [routerLink]="[data.routerLink]" (click)="setLoginFalse()">
+        <a class="sidenav-nav-link" [routerLink]="[data.routerLink]" (click)="onNavItemClick(); setLoginFalse()">
           <i class="sidenav-link-icon" [class]="data.icon"></i>
           <span class="sidenav-link-text" *ngIf="!isCollapsed">{{ data.label }}</span>
         </a>
@@ -38,13 +35,13 @@
   
   <li style="position: absolute; bottom: 4rem; left: 1.2rem;">
     <a>
-      <span style="font-size: 16px" class="text-sidebar" *ngIf="!isCollapsed"
-        ><i class="bx bxs-user-circle" style="margin-right: 7px"></i
-        >{{ userName }}</span
-      >
-      <span style="font-size: 20px" class="icon-sidebar" *ngIf="isCollapsed"
-        ><i class="bx bxs-user-circle"></i
-      ></span>
+      <span style="font-size: 16px" class="text-sidebar" *ngIf="!isCollapsed">
+        <i class="bx bxs-user-circle" style="margin-right: 7px"></i>
+        {{ userName }}
+      </span>
+      <span style="font-size: 20px" class="icon-sidebar" *ngIf="isCollapsed">
+        <i class="bx bxs-user-circle"></i>
+      </span>
     </a>
   </li>
 </nav>

@@ -50,10 +50,4 @@ export class CourseService {
       .get<Course[]>(url)
       .pipe(retry(2), catchError(this.handleError));
   }
-
-  createSeason(cursoslist: any, member_id: number): Observable<any> {
-    return this.http
-      .post<any>(this.basePath, cursoslist)
-      .pipe(retry(2), catchError(this.handleError));
-  }
 }

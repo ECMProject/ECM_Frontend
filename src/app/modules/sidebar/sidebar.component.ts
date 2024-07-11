@@ -47,9 +47,13 @@ export class SidebarComponent implements OnInit{
     console.log(this.isMobileSidebarVisible);
   }
 
+  onNavItemClick() {
+    if (window.innerWidth <= 768) {
+      this.isMobileSidebarVisible = false;
+    }
+  }
+
   getFilteredNavbarItems() {
-    // console.log("Role: ", this.userRole);
-    // console.log("Name: ", this.userName);
     if (this.userRole == '3') {
       // Si es Administrador, mostrar todos los elementos
       return navbarItems;

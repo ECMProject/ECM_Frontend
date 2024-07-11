@@ -75,6 +75,7 @@
             name="documento"
             placeholder="Documento"
             [(ngModel)]="documento"
+            pattern="[0-9]{8}"
             required
             autocomplete="off"
           />
@@ -125,7 +126,16 @@
           required
           pattern="[0-9]{9}"
           autocomplete="off"
+          #numeroCelularInput="ngModel"
         />
+      </div>
+      <div *ngIf="numeroCelularInput.invalid && (numeroCelularInput.dirty || numeroCelularInput.touched)">
+        <div class="error-telefono" *ngIf="numeroCelularInput.errors?.['required']">
+          El número de celular es obligatorio.
+        </div>
+        <div class="error-telefono" *ngIf="numeroCelularInput.errors?.['pattern']">
+          El número de celular debe contener exactamente 9 dígitos y solo números.
+        </div>
       </div>
 
       <button class="submit-button" type="submit" (click)="openDialog()">

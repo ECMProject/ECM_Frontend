@@ -132,7 +132,6 @@
   background-color: var(--bg-color-alternative);
 }
 
-/* Botón flotante */
 .floating-btn {
   position: fixed;
   bottom: 1rem;
@@ -190,5 +189,11 @@
 
   .sidenav-link-text {
     margin-left: 0;
+  }
+}
+
+@media (min-width: 765px) {
+  .floating-btn {
+    display: none;
   }
 }
