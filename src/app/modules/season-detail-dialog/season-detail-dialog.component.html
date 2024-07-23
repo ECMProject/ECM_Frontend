@@ -11,6 +11,7 @@
 
   <p class="modal-info"><b class="info-label">Turno:</b> {{ ciclo.stud_season.seas_schedule.sche_description }}</p>
   <p class="modal-info"><b class="info-label">Profesor:</b> {{ ciclo.stud_season.seas_teacher.memb_name + ' ' + ciclo.stud_season.seas_teacher.memb_surname }}</p>
+  <p class="modal-info"><b class="info-label">Nota:</b> {{ ciclo.seas_final}}</p>
 </div>
 <div mat-dialog-actions class="modal-actions">
   <button mat-button (click)="onClose()">Cerrar</button>
