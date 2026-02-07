@@ -22,7 +22,7 @@ export const navbarItems = [
   {
     routerLink: 'progress',
     icon: 'bx bx-bar-chart-alt-2',
-    label: 'Silabo',
+    label: 'Progreso',
   },
   {
     routerLink: 'login',
