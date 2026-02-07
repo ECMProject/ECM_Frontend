@@ -8,6 +8,7 @@ import { CourseService } from 'src/app/services/courses.service';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { MemberService } from 'src/app/services/members.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-register',
@@ -57,6 +58,7 @@ export class RegisterComponent implements OnInit {
     private dialog: MatDialog,
     private courseService: CourseService,
     private memberService: MemberService,
+    private studentService: StudentService,
     private snackBar: MatSnackBar,
   ) {
     this.nombres = '';
@@ -221,7 +223,6 @@ export class RegisterComponent implements OnInit {
     return this.selectedCourses.includes(courseId);
   }
 
-  // Complete registration
   completeRegistration() {
     const formData = {
       memb_name: this.nombres.toUpperCase(),
@@ -231,23 +232,68 @@ export class RegisterComponent implements OnInit {
       birthdate: this.fechaCumpleanos,
       memb_zone: this.zona,
       memb_mobil: this.numeroCelular,
-      is_new_student: this.studentType === 'nuevo',
-      completed_courses: this.selectedCourses
     };
 
     // For mobile, directly process the registration
     if (this.isMobileView) {
-      
-      this.snackBar.open('Registro completado exitosamente', 'Cerrar', {
-        duration: 3000,
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-      });
+      // Step 1: Register the member
+      this.memberService.registerMember(formData).subscribe(
+        (response) => {
+          const memberId = response.memb_id;
 
-      setTimeout(() => {
-        this.router.navigate(['/login']);
-      }, 1500);
+          // Step 2: If student is recurrent and has selected courses, register them
+          if (this.studentType === 'recurrente' && this.selectedCourses.length > 0) {
+            this.registerCoursesForMember(memberId);
+          } else {
+            // If new student or no courses selected, just show success and redirect
+            this.showSuccessAndRedirect();
+          }
+        },
+        (error) => {
+          console.error('Error en el registro:', error);
+          this.snackBar.open('Error al registrar. Por favor, intenta de nuevo.', 'Cerrar', {
+            duration: 5000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        }
+      );
     }
+  }
+
+  // Register courses for the member
+  registerCoursesForMember(memberId: number) {
+    this.studentService.createDeclarativaStudent(this.selectedCourses, memberId).subscribe(
+      (response) => {
+        console.log('Cursos registrados exitosamente', response);
+        this.showSuccessAndRedirect();
+      },
+      (error) => {
+        console.error('Error al registrar cursos:', error);
+        // Even if course registration fails, we still redirect (member was created)
+        this.snackBar.open('Miembro registrado, pero hubo un error al registrar los cursos.', 'Cerrar', {
+          duration: 5000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 2000);
+      }
+    );
+  }
+
+  // Show success message and redirect to login
+  showSuccessAndRedirect() {
+    this.snackBar.open('Registro completado exitosamente', 'Cerrar', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 1500);
   }
 
   // Desktop registration (original method)

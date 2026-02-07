@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.home-container {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 0;
+}
+
+/* ------ Header ------ */
+.header {
+  padding: 1rem 1rem 1rem 1rem;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: #000;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ------ Welcome Section ------ */
+.welcome-section {
+  padding: 1rem 1rem 0.5rem;
+}
+
+.greeting {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 1.2rem 0;
+}
+
+.welcome-message {
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ------ Start Section ------ */
+.start-section {
+  padding: 1rem 1rem 1rem;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #000;
+  margin: 0;
+}
+
+/* ------ Cards Container ------*/
+.cards-container {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ------ Navigation Card ------ */
+.nav-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1rem 1rem 0.5rem;
+  background-color: #f8f9fa;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: 2px solid #d3e0ef;
+}
+
+.nav-card:hover {
+  background-color: #f0f0f0;
+  border-color: #e0e0e0;
+  transform: translateX(4px);
+}
+
+.nav-card:active {
+  transform: scale(0.98);
+}
+
+/* ------ Card Icon ------ */
+.card-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+.card-icon img {
+  width: 100px;  /* Controla el tamaño directamente aquí */
+  height: 100px;
+  object-fit: contain;
+}
+
+/* ------ Card Content ------ */
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 0.3rem 0;
+}
+
+.card-description {
+  font-size: 16px;
+  font-weight: 400;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ------ Card Arrow ------ */
+.card-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 28px;
+  margin-left: 0.5rem;
+}
+
+.nav-card:hover .card-arrow {
+  color: #007bff;
+}
+
+/* ------ Responsive ------*/
+@media screen and (min-width: 1024px) {
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .nav-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+  .card-icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .card-arrow {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .home-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .greeting {
+    font-size: 36px;
+  }
+
+  .welcome-message {
+    font-size: 18px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .card-title {
+    font-size: 20px;
+  }
+
+  .card-description {
+    font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 415px) {
+  .home-container {
+    max-width: 600px;
+    margin: 0.5rem;
+  }
+
+  .greeting {
+    font-size: 36px;
+  }
+
+  .welcome-message {
+    font-size: 18px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .card-title {
+    font-size: 20px;
+  }
+
+  .card-description {
+    font-size: 15px;
+  }
+}

@@ -3,30 +3,31 @@ import { Route, RouterModule } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort'; // Import MatSortModule
+import { MatChipsModule } from '@angular/material/chips';
 
 import { CommonModule } from '@angular/common';
 
-import { SeasonsComponent } from './seasons.component';
 import { NgClass, NgIf } from "@angular/common";
 import { FormsModule } from '@angular/forms';
+import { MenuComponent } from './menu.component';
 
-const seasonRoutes: Route[] = [
+const coursesRoutes: Route[] = [
   {
     path: '',
-    component: SeasonsComponent
+    component: MenuComponent
   }
 ];
 
 @NgModule({
   declarations: [
-    SeasonsComponent,
+    MenuComponent,
   ],
   exports: [
-    SeasonsComponent
+    MenuComponent
   ],
   imports: [
-    RouterModule.forChild(seasonRoutes),
+    RouterModule.forChild(coursesRoutes),
     MatTabsModule,
     MatTableModule,
     MatPaginatorModule,
@@ -34,8 +35,9 @@ const seasonRoutes: Route[] = [
     NgClass,
     NgIf,
     CommonModule,
+    MatChipsModule,
     FormsModule
     // Include MatSortModule
   ]
 })
-export class SeasonsModule {}
+export class MenuModule {}

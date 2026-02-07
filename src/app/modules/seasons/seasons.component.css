@@ -9,12 +9,8 @@
 }
 
 body {
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Poppins", sans-serif;
   scrollbar-width: thin;
-}
-
-body::-webkit-scrollbar {
-  width: thin;
 }
 
 .content {
@@ -119,99 +115,13 @@ body::-webkit-scrollbar {
 
 .mobile-view {
   display: none;
-  padding: 0.6rem;
-}
-
-.list-season {
-  width: calc(100% - 1rem);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 0.6rem;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  transition: 0.3s;
-  box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
-  -webkit-box-shadow: 2px 4px 6px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.15);
-}
-
-.list-season:hover {
-  box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
-  -webkit-box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0px 6px 6px 0px rgba(0, 0, 0, 0.25);
-}
-
-.icon-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80px;
-  height: 80px;
-  background-color: #468af0;
-  border-radius: 10px;
-  margin-right: 0.6rem;
-  flex-shrink: 0;
-}
-
-.icon-list-center {
-  font-size: 45px;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.text-container {
-  flex: 1;
-}
-
-.item-course {
-  font-size: 3.5vw;
-  font-weight: 500;
-  margin-top: 0.3rem;
-  margin-bottom: 0.3rem;
-  word-break: break-word;
-}
-
-.item-mode {
-  font-size: 12px;
-  margin-bottom: 0.5rem;
-}
-
-.progress-bar {
-  width: 100%;
-  background-color: #e0e0e0;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-bottom: 0.6rem;
-}
-
-.progress {
-  height: 8px;
-  background-color: #468af0;
-  border-radius: 5px;
-}
-
-.button-text {
-  font-size: 14px;
-}
-
-.button-container {
-  width: 80px;
-  height: 70px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
 }
 
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -223,10 +133,12 @@ body::-webkit-scrollbar {
     border-radius: 10px;
     padding: 0.3rem;
   }
+
   .button-detail i {
     font-size: 18px;
     margin-left: 4px;
   }
+
   .button-detail span {
     display: none;
   }
@@ -236,20 +148,9 @@ body::-webkit-scrollbar {
   .content {
     margin-left: 8rem;
   }
+
   .td-column {
     font-size: 13px;
-  }
-  .button-detail {
-    align-items: center;
-    border-radius: 10px;
-    padding: 0.3rem;
-  }
-  .button-detail i {
-    font-size: 18px;
-    margin-left: 4px;
-  }
-  .button-detail span {
-    display: none;
   }
 }
 
@@ -265,70 +166,259 @@ body::-webkit-scrollbar {
   }
 }
 
-@media (max-width: 766px) {
+@media (max-width: 765px) {
   .content {
     margin-left: 0;
+    padding: 0;
   }
-  .td-column {
-    font-size: 10px;
-  }
-  .custom-mat-table {
-    margin-top: 16px;
-    margin-left: 0px;
-    margin-bottom: 16px;
-  }
-  .button-detail {
-    align-items: center;
-    border-radius: 10px;
-    padding: 0.3rem;
-  }
-  .button-detail i {
-    font-size: 18px;
-    margin-left: 4px;
-  }
-  .button-detail span {
-    display: none;
-  }
+
   .desktop-view {
     display: none;
   }
+
   .mobile-view {
     display: block;
+    min-height: 100vh;
+    background-color: #ffffff;
   }
-}
 
-@media (max-width: 766px) {
-  .button-detail i {
-    font-size: 25px;
-    margin-left: 0;
-    transform: translateY(1px);
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 1rem 1.5rem 1rem;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .back-button {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 0.5rem;
+    color: #000;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0;
+    color: #000;
+  }
+
+  .search-container {
+    position: relative;
+    margin: 0 1.5rem 0.5rem;
+    background-color: white;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.9rem 3rem 0.9rem 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    background-color: #f8f9fa;
+    box-sizing: border-box;
+  }
+
+  .search-input::placeholder {
+    color: #999;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    background-color: white;
+  }
+
+  .search-icon {
+    position: absolute;
+    right: 1.5rem;
+    top: 40%;
+    transform: translateY(-20%);
+    font-size: 24px;
+    color: #666;
+    pointer-events: none;
+  }
+
+  /* ---- Filter Chips ---- */
+  .filter-chips {
+    display: flex;
+    gap: 0.7rem;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+    justify-content: center;
+  }
+
+  .chip {
+    flex-shrink: 0;
+    padding: 0.6rem 1.2rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    background-color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .chip.active {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+  }
+
+  /* Courses List */
+  .courses-list {
+    margin: 1rem;
+  }
+
+  .course-card {
+    position: relative;
+    background-color: white;
+    border-radius: 16px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e8e8e8;
+  }
+
+  /* Card Header */
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+  }
+
+  .card-level-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .level-badge {
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #999;
+  }
+
+  .course-code {
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+  }
+
+  .status-badge {
+    padding: 0.4rem 0.9rem;
+    border-radius: 12px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .status-truncal {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+
+  .status-electivo {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  /* Course Title */
+  .course-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+  }
+
+  /* Teacher Name */
+  .teacher-name {
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #7c8db0;
+    margin: 0 0 1rem 0;
+  }
+
+  /* Course Info Grid */
+  .course-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    color: #666;
+  }
+
+  .info-item i {
+    font-size: 18px;
+    color: #999;
+  }
+
+  /* Spinner */
+  .spinner-container {
+    padding: 2rem;
   }
 }
 
 @media (max-width: 415px) {
-  .content {
-    padding: 0;
+  .filter-chips {
+    display: flex;
+    gap: 0.4rem;
+    padding: 1rem 1.5rem;
+    background-color: white;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
-  .button-detail {
-    align-items: center;
-    border-radius: 9px;
-    background-color: #466ef0;
-  }
-  .button-detail span {
+
+  .filter-chips::-webkit-scrollbar {
     display: none;
   }
-  .season-title {
-    margin-top: 2rem;
-    margin-bottom: 0.3rem;
-    margin-left: 0.8rem;
+
+  .chip {
+    flex-shrink: 0;
+    padding: 0.5rem 0.9rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    background-color: white;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
   }
-  .icon-season {
-    margin-right: 0.5rem;
-  }
-  .desktop-view {
-    display: none;
-  }
-  .mobile-view {
-    display: block;
+
+  .chip.active {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
   }
 }

@@ -53,4 +53,11 @@ export const appRoutes: Route[] = [
         (m) => m.ProgresModule
       ),
   },
+  {
+    path: 'menu',
+    loadChildren: () =>
+      import('src/app/modules/menu/menu.module').then(
+        (m) => m.MenuModule
+      ),
+  },
 ];

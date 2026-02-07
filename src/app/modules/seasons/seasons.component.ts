@@ -21,6 +21,7 @@ interface LevelColors {
 export class SeasonsComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   studentSeasons: Student[] = [];
+  filteredStudentSeasons: Student[] = []; // Para la vista móvil
 
   displayedColumns: string[] = [
     'period',
@@ -35,18 +36,25 @@ export class SeasonsComponent {
   dataSource = new MatTableDataSource<Student>();
 
   loading: boolean = false;
+  
+  // Mobile filter properties
+  searchTerm: string = '';
+  selectedFilter: string | number = 'all';
 
   levelColors: LevelColors = {
+    0: {
+      backgroundColor: '#9c27b0', // Púrpura para Básico
+    },
     1: {
-        backgroundColor: '#42D663',
+      backgroundColor: '#42D663',
     },
     2: {
-        backgroundColor: '#E5DF42',
+      backgroundColor: '#E5DF42',
     },
     3: {
-        backgroundColor: '#F04646',
+      backgroundColor: '#F04646',
     },
-};
+  };
 
   constructor(
     public dialog: MatDialog,
@@ -62,11 +70,11 @@ export class SeasonsComponent {
   }
 
   getLevelColor(level: number | string, colorType: 'backgroundColor'): string {
-      if (typeof level === 'number') {
-          return this.levelColors[level] ? this.levelColors[level][colorType] : '#468AF0';
-      } else {
-          return '#468AF0';
-      } 
+    if (typeof level === 'number') {
+      return this.levelColors[level] ? this.levelColors[level][colorType] : '#468AF0';
+    } else {
+      return '#468AF0';
+    } 
   }
 
   getData() {
@@ -77,12 +85,14 @@ export class SeasonsComponent {
     this.studentService.getStudentSeasons(parseInt(userId)).subscribe(
       (data) => {
         this.studentSeasons = data;
+        this.filteredStudentSeasons = [...data];
         this.dataSource.data = this.studentSeasons;
         this.dataSource.paginator = this.paginator;
         this.loading = false;
       },
       (error) => {
         console.error('Error al obtener los datos:', error);
+        this.loading = false;
       }
     );
   }
@@ -95,5 +105,69 @@ export class SeasonsComponent {
     dialogRef.afterClosed().subscribe((result) => {
       console.log('El modal se cerró');
     });
+  }
+
+  // ========== MOBILE FILTER METHODS ==========
+
+  filterByLevel(level: string | number): void {
+    this.selectedFilter = level;
+    this.applyFilters();
+  }
+
+  filterCourses(): void {
+    this.applyFilters();
+  }
+
+  applyFilters(): void {
+    let filtered = [...this.studentSeasons];
+
+    // Filter by level
+    if (this.selectedFilter !== 'all') {
+      filtered = filtered.filter(
+        season => season.stud_season.seas_course.cour_level === this.selectedFilter
+      );
+    }
+
+    // Filter by search term
+    if (this.searchTerm.trim()) {
+      const searchLower = this.searchTerm.toLowerCase();
+      filtered = filtered.filter(season => {
+        const courseName = season.stud_season.seas_course.cour_description.toLowerCase();
+        const teacherName = (
+          season.stud_season.seas_teacher.memb_name + ' ' + 
+          season.stud_season.seas_teacher.memb_surname
+        ).toLowerCase();
+        
+        return courseName.includes(searchLower) || teacherName.includes(searchLower);
+      });
+    }
+
+    this.filteredStudentSeasons = filtered;
+  }
+
+  // ========== HELPER METHODS FOR MOBILE VIEW ==========
+
+  getLevelText(level: number): string {
+    if (level === 4) return 'Básico';
+    return `Nivel ${level}`;
+  }
+
+  getStatusText(element: Student): string {
+    const level = element.stud_season.seas_course.cour_level;
+    if (level === 0 || level === 1) {
+      return 'Troncal';
+    }
+    return 'Electivo';
+  }
+
+  getCourseSchedule(element: Student): string {
+    // Si tienes el horario en tu modelo, úsalo
+    // return element.stud_season.seas_schedule || '20:30';
+  
+    return '20:30'; // Placeholder
+  }
+
+  getCourseStartDate(element: Student): string {
+    return element.stud_season.seas_period.peri_description || '-';
   }
 }
