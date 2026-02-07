@@ -1,58 +1,36 @@
 <head>
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet"
-  />
+    href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+    rel="stylesheet">
 </head>
 
 <div class="content">
-  <h1 class="courses-title">
-    <i class="bx bx-pencil icon-inscription" style="margin-right: 7px"></i
-    >Inscripciones
+  <h1 class="courses-title" class="desktop-view">
+    <i class="bx bx-pencil icon-inscription" style="margin-right: 7px"></i>Inscripciones
   </h1>
-  <input
-    type="text"
-    class="search-bar"
-    placeholder="Buscar..."
-    [(ngModel)]="searchTerm"
-    (input)="filterSeasons()"
-  />
+  <input type="text" class="search-bar desktop-view" placeholder="Buscar..." [(ngModel)]="searchTerm"
+    (input)="filterSeasons()" />
 
   <div class="filtro-categorias" class="desktop-view">
     <mat-chip-listbox #chipList>
-      <mat-chip-option
-        style="padding: 0.1rem 0.3rem"
-        class="chip-selected"
-        *ngFor="let categoria of categorias"
-        [selected]="categoria === 'All'"
-        [disabled]="selectedCategory !== null && selectedCategory === categoria"
-        (click)="filtrarPorCategoria(categoria)"
-      >
+      <mat-chip-option style="padding: 0.1rem 0.3rem" class="chip-selected" *ngFor="let categoria of categorias"
+        [selected]="categoria === 'All'" [disabled]="selectedCategory !== null && selectedCategory === categoria"
+        (click)="filtrarPorCategoria(categoria)">
         {{ categoria }}
       </mat-chip-option>
     </mat-chip-listbox>
   </div>
 
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    class="custom-mat-table desktop-view"
-  >
+  <table mat-table [dataSource]="dataSource" class="custom-mat-table desktop-view">
     <ng-container matColumnDef="course">
       <th mat-header-cell *matHeaderCellDef class="th-column">Curso</th>
-      <td
-        mat-cell
-        *matCellDef="let element"
-        class="td-column"
-        style="text-align: justify"
-      >
+      <td mat-cell *matCellDef="let element" class="td-column" style="text-align: justify">
         {{ element.seas_course.cour_description }}
       </td>
     </ng-container>
@@ -85,37 +63,25 @@
       <td mat-cell *matCellDef="let element" class="td-column">
         <ng-container *ngIf="element.seas_course.cour_level === 1">
           <span class="icon-with-text">
-            <i
-              class="bx bxs-up-arrow icon"
-              style="color: rgb(3, 172, 3); margin-right: 5px"
-            ></i>
+            <i class="bx bxs-up-arrow icon" style="color: rgb(3, 172, 3); margin-right: 5px"></i>
             Nivel 1
           </span>
         </ng-container>
         <ng-container *ngIf="element.seas_course.cour_level === 2">
           <span class="icon-with-text">
-            <i
-              class="bx bxs-up-arrow icon"
-              style="color: rgb(228, 228, 17); margin-right: 5px"
-            ></i>
+            <i class="bx bxs-up-arrow icon" style="color: rgb(228, 228, 17); margin-right: 5px"></i>
             Nivel 2
           </span>
         </ng-container>
         <ng-container *ngIf="element.seas_course.cour_level === 3">
           <span class="icon-with-text">
-            <i
-              class="bx bxs-up-arrow icon"
-              style="color: rgb(246, 13, 13); margin-right: 5px"
-            ></i>
+            <i class="bx bxs-up-arrow icon" style="color: rgb(246, 13, 13); margin-right: 5px"></i>
             Nivel 3
           </span>
         </ng-container>
         <ng-container *ngIf="element.seas_course.cour_level === 4">
           <span class="icon-with-text">
-            <i
-              class="bx bxs-up-arrow icon"
-              style="color: rgb(74, 101, 220); margin-right: 5px"
-            ></i>
+            <i class="bx bxs-up-arrow icon" style="color: rgb(74, 101, 220); margin-right: 5px"></i>
             Basico
           </span>
         </ng-container>
@@ -126,9 +92,9 @@
       <th mat-header-cell *matHeaderCellDef class="th-column">Profesor</th>
       <td mat-cell *matCellDef="let element" class="td-column">
         {{
-          element.seas_teacher.memb_name +
-            " " +
-            element.seas_teacher.memb_surname
+        element.seas_teacher.memb_name +
+        " " +
+        element.seas_teacher.memb_surname
         }}
       </td>
     </ng-container>
@@ -136,9 +102,7 @@
     <ng-container matColumnDef="shift">
       <th mat-header-cell *matHeaderCellDef class="th-column">Turno</th>
       <td mat-cell *matCellDef="let element" class="td-column">
-        <ng-container
-          *ngIf="element.seas_schedule.sche_starttime; else onlineText"
-        >
+        <ng-container *ngIf="element.seas_schedule.sche_starttime; else onlineText">
           {{ element.seas_schedule.sche_starttime }}
         </ng-container>
         <ng-template #onlineText>Online</ng-template>
@@ -149,10 +113,7 @@
       <th mat-header-cell *matHeaderCellDef class="th-column">Acciones</th>
       <td mat-cell *matCellDef="let element" class="td-column">
         <button class="button-detail" (click)="inscribirme(element)">
-          <i
-            class="bx bx-pencil"
-            style="margin-right: 5px; margin-top: 2px"
-          ></i>
+          <i class="bx bx-pencil" style="margin-right: 5px; margin-top: 2px"></i>
           <span class="button-text">Inscribirse</span>
         </button>
       </td>
@@ -161,137 +122,202 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
-    <mat-paginator
-      [pageSize]="5"
-      [pageSizeOptions]="[5, 10, 15, 20]"
-    ></mat-paginator>
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
   </table>
 
-  <div class="spinner-container" *ngIf="loading">
+  <div class="spinner-container desktop-view" *ngIf="loading">
     <div class="spinner"></div>
   </div>
 
   <div class="mobile-view">
-    <div class="custom-select">
-      <select [(ngModel)]="selectedCategory" (ngModelChange)="filtrarPorCategoria($event)">
-        <option *ngFor="let categoria of categorias" [value]="categoria">
-          {{ categoria }}
-        </option>
-      </select>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+      <button class="back-button" (click)="handleBackButton()">
+        <i class='bx bx-chevron-left'></i>
+      </button>
+      <h1 class="mobile-title">{{ getStepTitle() }}</h1>
     </div>
-    <div *ngFor="let element of seasonsFilter" class="card">
-      <h1 class="course-title-mobile">
-        {{ element.seas_course.cour_description }}
-      </h1>
-      <p class="professor-name">
-        {{
-          element.seas_teacher.memb_name +
-            " " +
-            element.seas_teacher.memb_surname
-        }}
-      </p>
-      <hr class="separator" />
 
-      <div class="course-details">
-        <div class="column">
-          <div class="course-feature">
-            <ng-container *ngIf="element.seas_course.cour_level === 1">
-              <span class="icon-with-text" style="transform: translateY(-6px)">
-                <i
-                  class="bx bxs-up-arrow icon"
-                  style="
-                    color: rgb(3, 172, 3);
-                    margin-right: 5px;
-                    transform: translateY(4px);
-                  "
-                ></i>
-                Nivel 1
-              </span>
-            </ng-container>
-            <ng-container *ngIf="element.seas_course.cour_level === 2">
-              <span class="icon-with-text" style="transform: translateY(-6px)">
-                <i
-                  class="bx bxs-up-arrow icon"
-                  style="
-                    color: rgb(228, 228, 17);
-                    margin-right: 5px;
-                    transform: translateY(4px);
-                  "
-                ></i>
-                Nivel 2
-              </span>
-            </ng-container>
-            <ng-container *ngIf="element.seas_course.cour_level === 3">
-              <span class="icon-with-text" style="transform: translateY(-6px)">
-                <i
-                  class="bx bxs-up-arrow icon"
-                  style="
-                    color: rgb(246, 13, 13);
-                    margin-right: 5px;
-                    transform: translateY(4px);
-                  "
-                ></i>
-                Nivel 3
-              </span>
-            </ng-container>
-            <ng-container *ngIf="element.seas_course.cour_level === 4">
-              <span class="icon-with-text" style="transform: translateY(-6px)">
-                <i
-                  class="bx bxs-up-arrow icon"
-                  style="
-                    color: rgb(74, 101, 220);
-                    margin-right: 5px;
-                    transform: translateY(4px);
-                  "
-                ></i>
-                Basico
-              </span>
-            </ng-container>
+    <!-- STEP 1: Course List -->
+    <div class="step-content" *ngIf="currentStep === 1" [@stepTransition]>
+      <!-- Search Bar -->
+      <div class="search-container-mobile">
+        <input type="text" class="search-input-mobile" placeholder="Buscar" [(ngModel)]="searchTerm"
+          (input)="filterSeasons()" />
+        <i class='bx bx-search search-icon-mobile'></i>
+      </div>
+
+      <!-- Filter Chips -->
+      <div class="filter-chips-mobile">
+        <button class="chip-mobile" [class.active]="selectedCategory === 'All'" (click)="filtrarPorCategoria('All')">
+          Todos
+        </button>
+        <button class="chip-mobile" [class.active]="selectedCategory === 'Nivel 1'"
+          (click)="filtrarPorCategoria('Nivel 1')">
+          Nivel 1
+        </button>
+        <button class="chip-mobile" [class.active]="selectedCategory === 'Nivel 2'"
+          (click)="filtrarPorCategoria('Nivel 2')">
+          Nivel 2
+        </button>
+        <button class="chip-mobile" [class.active]="selectedCategory === 'Nivel 3'"
+          (click)="filtrarPorCategoria('Nivel 3')">
+          Nivel 3
+        </button>
+      </div>
+
+      <!-- Courses List -->
+      <div class="courses-list-mobile">
+        <div *ngFor="let element of seasonsFilter" class="course-card-mobile" (click)="selectCourse(element)">
+          <!-- Card Header -->
+          <div class="card-header-mobile">
+            <span class="level-badge-mobile">{{ getLevelText(element.seas_course.cour_level) }}</span>
+            <span class="status-badge-mobile" [ngClass]="{
+                'status-truncal': true,
+                'status-electivo': false
+              }">
+              Troncal
+            </span>
           </div>
-          <div class="course-feature">
-            <ng-container *ngIf="element.seas_mode.mode_name === 'Virtual'">
-              <span class="icon-with-text">
-                <i
-                  class="bx bxl-zoom icon"
-                  style="margin-right: 5px; transform: translateY(5px)"
-                ></i>
-                Virtual
-              </span>
-            </ng-container>
-            <ng-container *ngIf="element.seas_mode.mode_name === 'Online'">
-              <span class="icon-with-text">
-                <i
-                  class="bx bx-desktop icon"
-                  style="margin-right: 5px; transform: translateY(5px)"
-                ></i>
-                Online
-              </span>
-            </ng-container>
-            <ng-container *ngIf="element.seas_mode.mode_name === 'Presencial'">
-              <span class="icon-with-text">
-                <i
-                  class="bx bx-user icon"
-                  style="margin-right: 5px; transform: translateY(3px)"
-                ></i>
-                Presencial
-              </span>
-            </ng-container>
-          </div>
-        </div>
-        <div class="column">
-          <div class="course-feature" style="margin-bottom: 0.4rem">
-            <i class="bx bx-alarm icon"></i>
-            {{ element.seas_schedule.sche_starttime }}
-          </div>
-          <div class="course-feature" style="transform: translateY(4px)">
-            <i
-              class="bx bx-lock-alt icon"
-            ></i>
-            Troncal
-          </div>
+
+          <!-- Course Title -->
+          <h3 class="course-title-inscription">{{ element.seas_course.cour_description }}</h3>
+
+          <!-- Inscribirse Button -->
+          <button class="inscribirse-button-mobile">Inscribirse</button>
         </div>
       </div>
-      <button class="enroll-button" (click)="inscribirme(element)">Inscribirse</button>
+    </div>
+
+    <!-- STEP 2: Modality Selection -->
+    <div class="step-content" *ngIf="currentStep === 2" [@stepTransition]>
+      <div class="selection-container-mobile">
+        <h3 class="selection-question">¿Qué modalidad prefieres para la clase?</h3>
+
+        <div class="modality-card" (click)="selectModality('Presencial')"
+          [class.selected]="selectedModality === 'Presencial'">
+          <div class="modality-icon">
+            <img src="assets/inscripciones-presencial.png" alt="Presencial" />
+          </div>
+          <div class="modality-content">
+            <h4>Presencial</h4>
+            <p>Llevar clases en la Iglesia Alianza Cristiana y Misionera CNC</p>
+          </div>
+        </div>
+
+        <div class="modality-card" (click)="selectModality('Virtual')"
+          [class.selected]="selectedModality === 'Virtual'">
+          <div class="modality-icon">
+            <img src="assets/inscripciones-virtual.png" alt="Virtual" />
+          </div>
+          <div class="modality-content">
+            <h4>Virtual</h4>
+            <p>Conectarse a las clases mediante Zoom.</p>
+          </div>
+        </div>
+
+        <button class="continue-button-mobile" (click)="nextStep()" [disabled]="!selectedModality">
+          Continuar
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Shift Selection -->
+    <div class="step-content" *ngIf="currentStep === 3" [@stepTransition]>
+      <div class="selection-container-mobile">
+        <h3 class="selection-question">¿Qué horario prefieres para la clase?</h3>
+
+        <h4 class="shift-label">Primer turno</h4>
+        <div class="shift-card" (click)="selectShift('primer_turno')"
+          [class.selected]="selectedShift === 'primer_turno'">
+          <i class='bx bx-time'></i>
+          <div class="shift-info">
+            <span class="shift-time">19:00 a 20:30</span>
+            <span class="shift-duration">1h 30min</span>
+          </div>
+        </div>
+
+        <h4 class="shift-label">Segundo turno</h4>
+        <div class="shift-card" (click)="selectShift('segundo_turno')"
+          [class.selected]="selectedShift === 'segundo_turno'">
+          <i class='bx bx-time'></i>
+          <div class="shift-info">
+            <span class="shift-time">20:30 a 22:00</span>
+            <span class="shift-duration">1h 30min</span>
+          </div>
+        </div>
+
+        <button class="continue-button-mobile" (click)="nextStep()" [disabled]="!selectedShift">
+          Continuar
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Teacher Selection -->
+    <div class="step-content" *ngIf="currentStep === 4" [@stepTransition]>
+      <div class="selection-container-mobile">
+        <h3 class="selection-question">Selecciona al profesor que dictará la clase.</h3>
+
+        <h4 class="shift-label">Profesores disponibles</h4>
+
+        <div *ngFor="let teacher of availableTeachers" class="teacher-card" (click)="selectTeacher(teacher)"
+          [class.selected]="selectedTeacher?.memb_id === teacher.memb_id">
+          <i class='bx bx-user-circle'></i>
+          <span class="teacher-name">{{ teacher.memb_name + ' ' + teacher.memb_surname }}</span>
+        </div>
+
+        <button class="continue-button-mobile" (click)="nextStep()" [disabled]="!selectedTeacher">
+          Continuar
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 5: Confirmation -->
+    <div class="step-content" *ngIf="currentStep === 5" [@stepTransition]>
+      <div class="confirmation-container-mobile">
+        <!-- Illustration -->
+        <div class="confirmation-illustration">
+          <img src="assets/inscripciones-confirmacion.png" alt="Confirmación" />
+        </div>
+
+        <!-- Course Title -->
+        <h2 class="confirmation-title">{{ selectedCourse?.seas_course.cour_description }}</h2>
+
+        <!-- Details Grid -->
+        <div class="confirmation-details">
+          <div class="detail-row">
+            <i class='bx bx-building'></i>
+            <span class="detail-label">Modalidad:</span>
+            <span class="detail-value">{{ selectedModality }}</span>
+          </div>
+
+          <div class="detail-row">
+            <i class='bx bx-time'></i>
+            <span class="detail-label">Turno:</span>
+            <span class="detail-value">{{ getShiftTime() }}</span>
+          </div>
+
+          <div class="detail-row">
+            <i class='bx bx-user-circle'></i>
+            <span class="detail-label">Profesor:</span>
+            <span class="detail-value">{{ selectedTeacher?.memb_name + ' ' + selectedTeacher?.memb_surname }}</span>
+          </div>
+
+          <div class="detail-row">
+            <i class='bx bx-barcode'></i>
+            <span class="detail-label">Código:</span>
+            <span class="detail-value">{{ selectedCourse?.seas_code || '1012.202601' }}</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <button class="confirm-button-mobile" (click)="confirmInscription()">
+          Confirmar inscripción
+        </button>
+        <button class="cancel-button-mobile" (click)="cancelInscription()">
+          Cancelar
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -32,7 +32,7 @@ export class LoginComponent {
           localStorage.setItem('name', response[0].memb_name);
           localStorage.setItem('userRole', response[0].memb_role);
           this.authService.setLoggedIn(true);
-          this.router.navigate(['/seasons']);
+          this.router.navigate(['/menu']);
         }
       },
       (error) => {

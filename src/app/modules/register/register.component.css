@@ -24,7 +24,7 @@
 }
 
 .welcome-text h3 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   font-size: 24px;
   text-align: start;
   transform: translate(105px);
@@ -32,7 +32,7 @@
 }
 
 .school-text h1 {
-  font-family: "Lato", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   font-size: 55px;
   line-height: 1.3;
   transform: translate(100px);
@@ -65,7 +65,7 @@
 }
 
 .subtitle-text {
-  font-family: "Lato", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   font-size: 28px;
   font-weight: 600;
 }
@@ -133,6 +133,13 @@ mat-select {
   cursor: pointer;
   font-weight: bold;
   border-radius: 7px;
+  transition: opacity 0.2s;
+  font-size: 16px;
+}
+
+.submit-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .submit-button:focus {
@@ -152,7 +159,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .no-account-text {
-  font-family: "Poppins", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   font-size: 16px;
   font-style: italic;
   font-weight: 500;
@@ -193,6 +200,258 @@ input[type="date"] {
   font-weight: 500;
   font-size: 14px;
 }
+
+/* ========== MOBILE STEPPER STYLES ========== */
+
+.mobile-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0.5rem;
+  background-color: white;
+  border-bottom: 1px solid #f0f0f0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 0.5rem;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.step-title {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 1rem 0;
+}
+
+.step-content {
+  width: 100%;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.mobile-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.form-description {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* Step 2: Confirmation */
+.confirmation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  min-height: 60vh;
+}
+
+.icon-container {
+  width: 80px;
+  height: 80px;
+  background-color: #e3f2fd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.icon-container i {
+  font-size: 40px;
+  color: var(--button-color);
+}
+
+.confirmation-title {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.confirmation-document {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 2rem;
+}
+
+.confirm-button {
+  margin-bottom: 0.8rem;
+}
+
+.cancel-button {
+  background-color: white;
+  color: var(--button-color);
+  border: 2px solid var(--button-color);
+}
+
+/* Step 3: Selection Cards */
+.selection-container {
+  padding: 1rem;
+}
+
+.selection-title {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.selection-card {
+  display: flex;
+  align-items: center;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.selection-card:hover {
+  border-color: var(--button-color);
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.1);
+}
+
+.selection-card.selected {
+  border-color: var(--button-color);
+  background-color: #f0f7ff;
+}
+
+.card-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #e3f2fd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.card-icon i {
+  font-size: 24px;
+  color: var(--button-color);
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-content h4 {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 0.3rem 0;
+}
+
+.card-content p {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.card-arrow {
+  font-size: 24px;
+  color: #ccc;
+  margin-left: 0.5rem;
+}
+
+.selection-card.selected .card-arrow {
+  color: var(--button-color);
+}
+
+/* Step 4: Courses */
+.courses-container {
+  padding: 0.5rem;
+}
+
+.courses-title {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.courses-section {
+  margin-bottom: 1.5rem;
+}
+
+.nivel-title {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.course-chip {
+  padding: 0.8rem 1rem;
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 20px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.course-chip:hover {
+  border-color: var(--button-color);
+}
+
+.course-chip.selected {
+  background-color: var(--button-color);
+  border-color: var(--button-color);
+  color: white;
+}
+
+/* ========== RESPONSIVE ========== */
 
 @media screen and (max-width: 1200px) {
   .left-side {
@@ -251,22 +510,91 @@ input[type="date"] {
   }
 }
 
-@media screen and (max-width: 414px) {
-  .right-side .subtitle-text {
+@media screen and (max-width: 415px) {
+  .container {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .right-side {
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  .step-content {
+    width: 100%;
+    padding: 1rem 0.5rem;
+    overflow-y: auto;
+  }
+
+  .mobile-form {
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .form-description {
+    font-family: "Nunito Sans", sans-serif;
+    font-size: 18px;
+    margin-left: 0.3rem;
+  }
+
+  .mobile-form .input-container {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+
+  .mobile-form .input-container input,
+  .mobile-form .input-container mat-select {
+    width: 100%;
+    margin: 0;
+    padding: 0.9rem;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  .mobile-form .submit-button {
+    width: 100%;
+    margin: 1.5rem 0 0.5rem 0;
+    padding: 13px 20px;
+    box-sizing: border-box;
+  }
+
+  .mobile-form mat-select {
+    display: block;
+    width: 100%;
+  }
+
+  form:not(.mobile-form) .subtitle-text {
     font-size: 25px;
     margin: 0.4rem 1rem;
   }
 
-  .right-side .input-container input,
-  input:not(#documento),
-  .right-side .input-container mat-select,
-  .right-side .submit-button {
+  form:not(.mobile-form) .input-container input,
+  form:not(.mobile-form) input:not(#documento),
+  form:not(.mobile-form) .input-container mat-select,
+  form:not(.mobile-form) .submit-button {
     width: 90%;
     margin: 0.4rem 1rem;
   }
 
-  #documento {
+  form:not(.mobile-form) #documento {
     width: 85%;
     margin: 0.4rem 0.2rem;
+  }
+
+  .confirmation-container {
+    padding: 2rem 0.5rem;
+  }
+
+  .selection-container {
+    padding: 0.5rem;
+  }
+
+  .courses-container {
+    padding: 0.5rem;
   }
 }

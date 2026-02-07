@@ -1,0 +1,79 @@
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+</head>
+
+<div class="home-container">
+    <!-- Header with menu button (placeholder for now) -->
+    <div class="header">
+        <button class="menu-button">
+            <i class='bx bx-menu'></i>
+        </button>
+    </div>
+
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+        <h1 class="greeting">Hola, {{ userName }}</h1>
+        <p class="welcome-message">Bienvenido a la Escuela de Capacitación Ministerial.</p>
+    </div>
+
+    <!-- Start Here Section -->
+    <div class="start-section">
+        <h2 class="section-title">Empieza por aquí</h2>
+    </div>
+
+    <!-- Navigation Cards -->
+    <div class="cards-container">
+        <!-- Inscripciones Card -->
+        <div class="nav-card" routerLink="/inscriptions">
+            <div class="card-icon">
+                <img src="./assets/menu-inscripciones.png" alt="Inscripciones" />
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Inscripciones</h3>
+                <p class="card-description">Inscríbete a un nuevo curso.</p>
+            </div>
+            <div class="card-arrow">
+                <i class='bx bx-chevron-right'></i>
+            </div>
+        </div>
+
+        <!-- Mis Notas Card -->
+        <div class="nav-card" routerLink="/seasons">
+            <div class="card-icon">
+                <img src="./assets/menu-notas.png" alt="Mis notas" />
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Mis notas</h3>
+                <p class="card-description">Aquí verás las notas de tus cursos.</p>
+            </div>
+            <div class="card-arrow">
+                <i class='bx bx-chevron-right'></i>
+            </div>
+        </div>
+
+        <!-- Histórico Académico Card -->
+        <div class="nav-card" routerLink="/progress">
+            <div class="card-icon">
+                <img src="./assets/menu-historico.png" alt="Histórico Académico" />
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">Histórico Académico</h3>
+                <p class="card-description">Consulta tu progreso en la ECM.</p>
+            </div>
+            <div class="card-arrow">
+                <i class='bx bx-chevron-right'></i>
+            </div>
+        </div>
+    </div>
+</div>

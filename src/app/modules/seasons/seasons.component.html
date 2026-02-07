@@ -1,179 +1,198 @@
 <head>
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+    rel="stylesheet" />
 </head>
 
 <div class="content">
-  <h1 class="season-title">
-    <i class="bx bx-calendar icon-season"></i>Mis Ciclos
-  </h1>
+  <!-- Desktop View - Original -->
+  <div class="desktop-view">
+    <h1 class="season-title">
+      <i class="bx bx-calendar icon-season"></i>Mis Ciclos
+    </h1>
 
-  <table
-    mat-table
-    [dataSource]="dataSource"
-    class="custom-mat-table desktop-view"
-  >
-    <ng-container matColumnDef="period">
-      <th mat-header-cell *matHeaderCellDef class="th-column">Periodo</th>
-      <td mat-cell *matCellDef="let element" class="td-column">
-        {{ element.stud_season.seas_period.peri_description }}
-      </td>
-    </ng-container>
+    <table mat-table [dataSource]="dataSource" class="custom-mat-table">
+      <ng-container matColumnDef="period">
+        <th mat-header-cell *matHeaderCellDef class="th-column">Periodo</th>
+        <td mat-cell *matCellDef="let element" class="td-column">
+          {{ element.stud_season.seas_period.peri_description }}
+        </td>
+      </ng-container>
 
-    <ng-container matColumnDef="course">
-      <th mat-header-cell *matHeaderCellDef class="th-column">Curso</th>
-      <td mat-cell *matCellDef="let element" class="td-column">
-        {{ element.stud_season.seas_course.cour_description }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="teacher">
-      <th mat-header-cell *matHeaderCellDef class="th-column">Profesor</th>
-      <td mat-cell *matCellDef="let element" class="td-column">
-        {{
-          element.stud_season.seas_teacher.memb_name +
-            " " +
-            element.stud_season.seas_teacher.memb_surname
-        }}
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="mode">
-      <th mat-header-cell *matHeaderCellDef class="th-column">Modo</th>
-      <td mat-cell *matCellDef="let element" class="td-column">
-        <ng-container
-          *ngIf="element.stud_season.seas_mode.mode_name === 'Virtual'"
-        >
-          <span class="icon-with-text">
-            <i class="bx bxl-zoom icon" style="margin-right: 5px"></i> Virtual
-          </span>
-        </ng-container>
-        <ng-container
-          *ngIf="element.stud_season.seas_mode.mode_name === 'Online'"
-        >
-          <span class="icon-with-text">
-            <i class="bx bx-desktop icon" style="margin-right: 5px"></i>
-            Online
-          </span>
-        </ng-container>
-        <ng-container
-          *ngIf="element.stud_season.seas_mode.mode_name === 'Presencial'"
-        >
-          <span class="icon-with-text">
-            <i class="bx bx-user icon" style="margin-right: 5px"></i>
-            Presencial
-          </span>
-        </ng-container>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="note">
-      <th mat-header-cell *matHeaderCellDef class="th-column">Nota</th>
-      <td mat-cell *matCellDef="let element" class="td-column">
-        <div
-          class="nota-circle"
-          [ngClass]="{
-            aprobado: element.seas_final >= 13,
-            reprobado: element.seas_final < 13 && element.seas_final !== null,
-            none: element.seas_final === null
-          }"
-        >
-          {{ element.seas_final !== null ? element.seas_final : "None" }}
-        </div>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef class="th-column">Acciones</th>
-      <td mat-cell *matCellDef="let element" class="td-column">
-        <button class="button-detail" (click)="verDetalles(element)">
-          <i
-            class="bx bx-show bx-show-icon"
-            style="margin-right: 5px; margin-top: 2px"
-          ></i>
-          <span class="button-text">Detalles</span>
-        </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
-  <div class="spinner-container" *ngIf="loading">
-    <div class="spinner"></div>
-  </div>
-
-  <mat-paginator
-    class="desktop-view"
-    [pageSize]="5"
-    [pageSizeOptions]="[5, 10, 15, 20]"
-  ></mat-paginator>
-
-  <!----------------- MOBILE VIEW ----------------->
-  <div class="mobile-view">
-    <div *ngFor="let element of studentSeasons" class="list-season">
-      <div
-        class="icon-list"
-        [ngStyle]="{
-          'background-color': getLevelColor(
-            element.stud_season.seas_course.cour_level,
-            'backgroundColor'
-          )
-        }"
-      >
-        <i class="bx bx-shape-square icon-list-center"></i>
-      </div>
-      <div class="text-container">
-        <p class="list-item item-course">
+      <ng-container matColumnDef="course">
+        <th mat-header-cell *matHeaderCellDef class="th-column">Curso</th>
+        <td mat-cell *matCellDef="let element" class="td-column">
           {{ element.stud_season.seas_course.cour_description }}
-        </p>
-        <p class="list-item item-mode">
-          <ng-container
-            *ngIf="element.stud_season.seas_mode.mode_name === 'Virtual'"
-          >
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="teacher">
+        <th mat-header-cell *matHeaderCellDef class="th-column">Profesor</th>
+        <td mat-cell *matCellDef="let element" class="td-column">
+          {{
+          element.stud_season.seas_teacher.memb_name +
+          " " +
+          element.stud_season.seas_teacher.memb_surname
+          }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="mode">
+        <th mat-header-cell *matHeaderCellDef class="th-column">Modo</th>
+        <td mat-cell *matCellDef="let element" class="td-column">
+          <ng-container *ngIf="element.stud_season.seas_mode.mode_name === 'Virtual'">
             <span class="icon-with-text">
               <i class="bx bxl-zoom icon" style="margin-right: 5px"></i> Virtual
             </span>
           </ng-container>
-          <ng-container
-            *ngIf="element.stud_season.seas_mode.mode_name === 'Online'"
-          >
+          <ng-container *ngIf="element.stud_season.seas_mode.mode_name === 'Online'">
             <span class="icon-with-text">
               <i class="bx bx-desktop icon" style="margin-right: 5px"></i>
               Online
             </span>
           </ng-container>
-          <ng-container
-            *ngIf="element.stud_season.seas_mode.mode_name === 'Presencial'"
-          >
+          <ng-container *ngIf="element.stud_season.seas_mode.mode_name === 'Presencial'">
             <span class="icon-with-text">
               <i class="bx bx-user icon" style="margin-right: 5px"></i>
               Presencial
             </span>
           </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="note">
+        <th mat-header-cell *matHeaderCellDef class="th-column">Nota</th>
+        <td mat-cell *matCellDef="let element" class="td-column">
+          <div class="nota-circle" [ngClass]="{
+              aprobado: element.seas_final >= 13,
+              reprobado: element.seas_final < 13 && element.seas_final !== null,
+              none: element.seas_final === null
+            }">
+            {{ element.seas_final !== null ? element.seas_final : "None" }}
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="th-column">Acciones</th>
+        <td mat-cell *matCellDef="let element" class="td-column">
+          <button class="button-detail" (click)="verDetalles(element)">
+            <i class="bx bx-show bx-show-icon" style="margin-right: 5px; margin-top: 2px"></i>
+            <span class="button-text">Detalles</span>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div class="spinner-container" *ngIf="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
+  </div>
+
+  <!-- Mobile View - New Design -->
+  <div class="mobile-view">
+
+    <!-- Header -->
+    <div class="mobile-header">
+      <button class="back-button" routerLink="/menu">
+        <i class='bx bx-chevron-left'></i>
+      </button>
+      <h1 class="mobile-title">Mis notas</h1>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Buscar" [(ngModel)]="searchTerm" (input)="filterCourses()" />
+      <i class='bx bx-search search-icon'></i>
+    </div>
+
+    <!-- Filter Chips -->
+    <div class="filter-chips">
+      <button class="chip" [class.active]="selectedFilter === 'all'" (click)="filterByLevel('all')">
+        Todos
+      </button>
+      <button class="chip" [class.active]="selectedFilter === 1" (click)="filterByLevel(1)">
+        Nivel 1
+      </button>
+      <button class="chip" [class.active]="selectedFilter === 2" (click)="filterByLevel(2)">
+        Nivel 2
+      </button>
+      <button class="chip" [class.active]="selectedFilter === 3" (click)="filterByLevel(3)">
+        Nivel 3
+      </button>
+    </div>
+
+    <!-- Courses List -->
+    <div class="courses-list">
+      <div *ngFor="let element of filteredStudentSeasons" class="course-card">
+        <!-- Card Header -->
+        <div class="card-header">
+          <div class="card-level-info">
+            <span class="level-badge">{{ getLevelText(element.stud_season.seas_course.cour_level) }}</span>
+            <span class="course-code">{{ element.stud_season.seas_period.peri_description }}</span>
+          </div>
+          <span class="status-badge" [ngClass]="{
+              'status-truncal': getStatusText(element) === 'Troncal',
+              'status-electivo': getStatusText(element) === 'Electivo'
+            }">
+            {{ getStatusText(element) }}
+          </span>
+        </div>
+
+        <!-- Course Title -->
+        <h3 class="course-title">{{ element.stud_season.seas_course.cour_description }}</h3>
+
+        <!-- Teacher Name -->
+        <p class="teacher-name">
+          {{ element.stud_season.seas_teacher.memb_name + " " + element.stud_season.seas_teacher.memb_surname }}
         </p>
-        <div class="progress-bar">
-          <div
-            class="progress"
-            [ngStyle]="{
-              'background-color': getLevelColor(
-                element.stud_season.seas_course.cour_level,
-                'backgroundColor'
-              )
-            }"
-          ></div>
+
+        <!-- Course Info Grid -->
+        <div class="course-info-grid">
+          <div class="info-item">
+            <ng-container *ngIf="element.stud_season.seas_mode.mode_name === 'Virtual'">
+              <i class='bx bxl-zoom'></i>
+              <span>Virtual</span>
+            </ng-container>
+            <ng-container *ngIf="element.stud_season.seas_mode.mode_name === 'Online'">
+              <i class='bx bx-desktop'></i>
+              <span>Online</span>
+            </ng-container>
+            <ng-container *ngIf="element.stud_season.seas_mode.mode_name === 'Presencial'">
+              <i class='bx bx-building'></i>
+              <span>Presencial</span>
+            </ng-container>
+          </div>
+
+          <div class="info-item">
+            <i class='bx bx-time'></i>
+            <span>{{ element.stud_season.seas_schedule }}</span>
+          </div>
+
+          <div class="info-item">
+            <i class='bx bx-calendar'></i>
+            <span>2026-01-09</span>
+          </div>
+
+          <div class="info-item">
+            <i class='bx bx-check-circle'></i>
+            <span>{{ element.seas_final !== null ? element.seas_final : '-' }}</span>
+          </div>
         </div>
       </div>
-      <div class="button-container">
-        <button class="button-detail" (click)="verDetalles(element)">
-          <i class="bx bx-log-in-circle"></i>
-          <span class="button-text">Detalles</span>
-        </button>
-      </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="spinner-container" *ngIf="loading">
+      <div class="spinner"></div>
     </div>
   </div>
 </div>
